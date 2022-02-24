@@ -1,11 +1,11 @@
 ## Run instructions
 
 ### 1. Set directory paths.
-Code in `0_data_cleaning` operates using `cilpath` for Stata.  If `cilpath` is not installed, users can manually specify the relevant base directories within `utils/set_paths.do`.  The folders necessary for running the code are the following:
+As outlined in the main README, codes in this directory rely on the `REPO`, `DB`, and `OUTPUT` variables to be defined in your `~/.bash_profile`.
 
-- Repository path (global: `REPO` ) - specifies the directory on the user's machine which contains this repository, e.g., `/User/MGreenstone/repositories`
+- Repository path (global: `REPO` ) - specifies the directory on the user's machine which contains this repository, e.g., `/User/username/repositories`
 - Data path (global: `DB`) - specifies the location of the data folder downloaded from the online data repository. See "Downloading the data" in the master README for further instructions. 
-- Output path (global: `OUTPUT`) - specifies the folder in which output from the analysis should be saved. This includes all tables and figures in the main text and appendix of Carleton et al. (2019). 
+- Output path (global: `OUTPUT`) - specifies the folder in which output from the analysis should be saved. This includes all tables and figures in the main text and appendix of Carleton et al. (2022). 
 
 ### 2. Download the raw data.
 See [Downloading the Data](https://gitlab.com/ClimateImpactLab/Impacts/mortality/-/tree/dylan#downloading-the-data) for instructions on accessing the online data repository.
