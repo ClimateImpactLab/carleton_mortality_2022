@@ -1,19 +1,19 @@
 # Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits
 
-Supporting material for Carleton, Tamma A., Amir Jina, Michael T. Delgado, Michael Greenstone, Trevor Houser, Solomon M. Hsiang, Andrew Hultgren, Robert E. Kopp, Kelly E. McCusker, Ishan Nath, James Rising, Ashwin Rode, Hee Kwon Seo, Arvid Viaene, Jiacan Yuan, and Alice Tianbo Zhang, “Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits.” Quarterly Journal of Economics, (forthcoming).
+Supporting material for Carleton, Tamma, Amir Jina, Michael T. Delgado, Michael Greenstone, Trevor Houser, Solomon M. Hsiang, Andrew Hultgren, Robert E. Kopp, Kelly E. McCusker, Ishan Nath, James Rising, Ashwin Rode, Hee Kwon Seo, Arvid Viaene, Jiacan Yuan, and Alice Tianbo Zhang, “Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits.” Quarterly Journal of Economics, (forthcoming).
 
 # Desciption
 
-This repository provides code required to reproduce the tables, figures, and in-text summary statistics in Carleton et al. (2019). The analysis in the paper proceeds in the following **six steps**. 
+This repository provides code required to reproduce the tables, figures, and in-text summary statistics in Carleton et al. (2022). This repository's structure mirrors the analysis in the paper, which proceeds in the following **six steps**. 
 
 1. **Data Collection** - Historical data on all-cause mortality and climate are cleaned and merged, along with other covariates needed in our analysis (population and income). 
-2. **Estimation** - Econometric analysis is conducted to estimate the mortality-temperature empirical relationships for three age groups (<5, 5-64, 65+). 
-3. **Projection** - This relationship is used to project the impacts of climate change for 24,378 regions through 2100, accounting for both uncertainty in future climate and statistical uncertainty in the econometric model.  
+2. **Estimation** - Econometric analysis is conducted to estimate empirical mortality-temperature relationships for three age groups (<5, 5-64, >64). 
+3. **Projection** - The age-specific empirical mortality-temperature relationships are used to project the impacts of climate change on mortality for 24,378 regions through 2100, accounting for both uncertainty in future climate and statistical uncertainty in the econometric model.  
     * Note: this step is exceptionally computationally intensive and relies upon a separate repository for projecting climate change impacts. See `impact-calculations` **(add link to the projection system when public)** for documentation on Climate Impact Lab's projection system.
-4. **Valuation** - Various assumptions regarding the Value of Statistical Life (VSL) are applied to projected impacts, yielding economic damages in constant 2019 dollars purchasing power parity (PPP).
+4. **Valuation** - Various assumptions regarding the Value of Statistical Life (VSL) are applied to projected impacts on mortality risk, yielding a set of economic damage estimates for all years 2020-2100 in constant 2019 dollars purchasing power parity (PPP).
 5. **Damage Function** - Empirical “damage functions” are estimated by relating monetized damages to Global Mean Surface Temperature (GMST) anomalies from the surrogate mixed model ensemble (SMME).
-6. **SCC** - Damage functions are used to calculate the net present value of future damages associated with an additional ton of Carbon Dioxide in 2020, which represents a morality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs).
-    * Note: as in Step 3, the code used to produce SCC ouput lives in a separate repository because it is a computationally complex process that is highly generalizable across Climate Impact Lab sectors. See `pFAIR` **(add link to pFAIR when public)** for more information.
+6. **SCC** - Damage functions are used in combination with the simple climate model FAIR to calculate the net present value of future damages associated with an additional ton of carbon dioxide in 2020, which represents a morality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs).
+    * Note: as in Step 3, the code used to produce SCC output lives in a separate repository because it is a computationally complex process that is highly generalizable across Climate Impact Lab sectors. See `pFAIR` **(add link to pFAIR when public)** for more information.
 
 ## Folders
 
@@ -21,11 +21,11 @@ The folders in this repository are broadly consistent with the steps outlined ab
 
 `0_data_cleaning` - Code for cleaning and constructing the dataset used to estimate the mortality-temperature relationship.
 
-`1_estimation` - Code for estimating and plotting all models present in the paper.
+`1_estimation` - Code for estimating and plotting all mortality-temperature regression models present in the paper.
 
 `2_projection` - Code for running future projections using Climate Impact Lab projection tools (see `link-to-impact-calc`) and extracting, summarizing, and plotting the projection output.
 
-`3_valuation` - Code for calculating the VSL based on various assumptions and applying those values to our projected impacts.
+`3_valuation` - Code for calculating the VSL based on various assumptions and applying those values to our projected impacts of climate change on mortality risk.
 
 `4_damage_function` - Code for estimating empirical damage functions based upon monetized damages and GMST anomalies.
 
@@ -81,7 +81,7 @@ conda install -c conda-forge jupyterlab
 
 On Mac, you can do this by appending the following lines to your `~/.bash_profile`.
 
-First, do:
+First, run:
 ```
 nano ~/.bash_profile
 
