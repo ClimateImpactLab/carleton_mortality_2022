@@ -35,10 +35,6 @@ quietly {
 	// following global variables.
 	// The folder structures at the data directory must be consistent with that downloaded
 	// from the online data repository (see "Downloading the Data" in the master README).
-	global REPO "/home/`c(username)'/repos"
-	global DB "/shares/gcp/estimation/mortality/carleton_mortality_2022/data"
-	global OUTPUT "/shares/gcp/estimation/mortality/carleton_mortality_2022/output"
-
 
     noisily di "Initializing Mortality Sector..."
 
@@ -76,7 +72,7 @@ quietly {
 	global ISO BRA CHL EU JPN FRA MEX IND
 
 	// consistency with prep_data.do and drop IND
-	global ISO_post BRA CHL EUR JPN USA CHN FRA MEX
+	//global ISO_post BRA CHL EUR JPN USA CHN FRA MEX
 	global ISO_post BRA CHL EUR JPN FRA MEX
 
 	// country specific ranges of temperatures for response figures. Follows ISO_post. 

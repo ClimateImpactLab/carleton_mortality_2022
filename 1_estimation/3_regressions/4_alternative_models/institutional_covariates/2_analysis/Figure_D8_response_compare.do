@@ -65,7 +65,8 @@ local DATA "$data_dir/3_final"
 *****************************************************************************
 
 * which model will you be running this for (health, edu, institutions, inequality, informality)?
-local mod "health"
+//local mod "health"
+local mod $mod
 
 * do you want to use the log of the covariate value (ie logdocpc rather than docpc)? (1 = yes)
 loc logvar = 0

@@ -39,7 +39,8 @@ ones. Returns error and kills code if test does not pass.
 *****************************************************************************
 
 * which model will you be running this for (health, edu, or institutions)?
-local mod "institutions"
+//local mod "institutions"
+local mod $mod
 
 
 * do you want to use the log of the covariate value (ie logdocpc rather than docpc)? (1 = yes)
