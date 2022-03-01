@@ -175,5 +175,5 @@ if `final_merge' {
 
 	* save
 	compress
-	save "$data_dir/3_final/global_mortality_panel.dta", replace
+	save "$data_dir/3_final/global_mortality_panel_public.dta", replace
 }

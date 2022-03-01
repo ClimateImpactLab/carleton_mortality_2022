@@ -59,4 +59,4 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
     c.tavg_poly_3_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup c.tavg_poly_4_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup ///
         , absorb(  i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
         cluster(adm1_code)
-estimates save "`ster'/Agespec_interaction_response_noprecip.ster", replace
+estimates save "`ster'/Agespec_interaction_response_noprecip_public.ster", replace

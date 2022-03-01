@@ -84,7 +84,7 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				  i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/Agespec_interaction_response.ster", replace
+estimates save "`ster'/Agespec_interaction_response_public.ster", replace
 
 
 if (`altspec') {
@@ -108,7 +108,7 @@ if (`altspec') {
 			, absorb( i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 			 i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year ) ///
 			cluster(adm1_code) fast
-	estimates save "`ster'/altspec/Agespec_response_spec1_interacted.ster", replace
+	estimates save "`ster'/altspec/Agespec_response_spec1_interacted_public.ster", replace
 
 	* specification 3
 	reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegroup ///
@@ -120,7 +120,7 @@ if (`altspec') {
 			, absorb( i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup adm1_agegrp_code##c.year) ///
 			cluster(adm1_code) fast
-	estimates save "`ster'/altspec/Agespec_response_spec3_interacted.ster", replace
+	estimates save "`ster'/altspec/Agespec_response_spec3_interacted_public.ster", replace
 
 
 	*****************************************************************************
@@ -163,7 +163,7 @@ if (`altspec') {
 					i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup)  ///
 				cluster(adm1_code) fast tol(1e-7) maxiter(10000)
 
-		estimates save "`ster'/altspec/Agespec_response_spec4_interacted.ster", replace
+		estimates save "`ster'/altspec/Agespec_response_spec4_interacted_public.ster", replace
 	restore
 
 	*****************************************************************************
@@ -180,6 +180,6 @@ if (`altspec') {
 			, absorb(i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 			cluster(adm1_code) fast
-	estimates save "`ster'/altspec/Agespec_response_spec5_interacted.ster", replace
+	estimates save "`ster'/altspec/Agespec_response_spec5_interacted_public.ster", replace
 
 }

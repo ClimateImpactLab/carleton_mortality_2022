@@ -60,7 +60,7 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_poly4_`temp'", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_poly4_`temp'_public", replace
 
 	//Cubic Spline
 	reghdfe deathrate_w99 c.tavg_rcspline_term0_`temp'#i.agegroup c.tavg_rcspline_term1_`temp'#i.agegroup c.tavg_rcspline_term2_`temp'#i.agegroup ///
@@ -69,7 +69,7 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_cspline_`temp'", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_cspline_`temp'_public", replace
 
 	//Linear Spline
 	reghdfe deathrate_w99 c.tavg_cdd_25C_`temp'#i.agegroup c.tavg_hdd_0C_`temp'#i.agegroup ///
@@ -77,7 +77,7 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_lspline_`temp'", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_lspline_`temp'_public", replace
 
 	//Bins
 	reghdfe deathrate_w99 c.tavg_bins_nInfC_n13C_`temp'#i.agegroup c.tavg_bins_n13C_n8C_`temp'#i.agegroup c.tavg_bins_n8C_n3C_`temp'#i.agegroup ///
@@ -87,5 +87,5 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_bins_`temp'", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_bins_`temp'_public", replace
 }

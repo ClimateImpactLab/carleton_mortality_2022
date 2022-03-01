@@ -59,7 +59,7 @@ reghdfe deathrate_w99 c.tavg_rcspline_term0_GMFD#i.agegroup c.tavg_rcspline_term
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				 i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-estimates save "`ster'/Agespec_interaction_response_cspline.ster", replace
+estimates save "`ster'/Agespec_interaction_response_cspline_public.ster", replace
 
 * linear spline
 reghdfe deathrate_w99 c.tmax_cdd_0C_GMFD#i.agegroup c.tmax_hdd_25C_GMFD#i.agegroup ///
@@ -68,7 +68,7 @@ reghdfe deathrate_w99 c.tmax_cdd_0C_GMFD#i.agegroup c.tmax_hdd_25C_GMFD#i.agegro
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				 i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-estimates save "`ster'/Agespec_interaction_response_lspline.ster", replace
+estimates save "`ster'/Agespec_interaction_response_lspline_public.ster", replace
 
 * bins
 reghdfe deathrate_w99 c.tavg_bins_nInfC_n13C_GMFD#i.agegroup c.tavg_bins_n13C_n8C_GMFD#i.agegroup c.tavg_bins_n8C_n3C_GMFD#i.agegroup ///
@@ -87,7 +87,7 @@ reghdfe deathrate_w99 c.tavg_bins_nInfC_n13C_GMFD#i.agegroup c.tavg_bins_n13C_n8
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				 i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-estimates save "`ster'/Agespec_interaction_response_bins.ster", replace
+estimates save "`ster'/Agespec_interaction_response_bins_public.ster", replace
 
 
 * main model but with population weights in the way the interaction model has them
@@ -105,4 +105,4 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				  i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-estimates save "`ster'/Agespec_interaction_response_popweights.ster", replace
+estimates save "`ster'/Agespec_interaction_response_popweights_public.ster", replace

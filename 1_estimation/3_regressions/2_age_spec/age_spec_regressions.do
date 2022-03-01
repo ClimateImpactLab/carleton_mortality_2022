@@ -70,7 +70,7 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 		[aw = weight]  ///
 		, absorb( i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year ) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/Agespec_response_spec1.ster", replace
+estimates save "`ster'/Agespec_response_spec1_public.ster", replace
 
 	
 * specification 2
@@ -79,7 +79,7 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 		[aw = weight]  ///
 		, absorb( i.adm2_code#i.CHN_ts#i.agegroup   i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-estimates save "`ster'/Agespec_response_spec2.ster", replace
+estimates save "`ster'/Agespec_response_spec2_public.ster", replace
 
 
 * specification 3
@@ -88,7 +88,7 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 		[aw = weight] ///
 		, absorb(i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup adm1_agegrp_code##c.year) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/Agespec_response_spec3.ster", replace
+estimates save "`ster'/Agespec_response_spec3_public.ster", replace
 
  
 *****************************************************************************
@@ -120,7 +120,7 @@ preserve
 			, absorb(i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup)  ///
 			cluster(adm1_code) fast tol(1e-8) maxiter(10000)
 
-	estimates save "`ster'/Agespec_response_spec4.ster", replace
+	estimates save "`ster'/Agespec_response_spec4_public.ster", replace
 
 restore
 
@@ -135,4 +135,4 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD_13m#i.agegroup c.tavg_poly_2_GMFD_13m#i
 		[aw = weight] ///
 		, absorb(i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/Agespec_response_spec5.ster", replace
+estimates save "`ster'/Agespec_response_spec5_public.ster", replace

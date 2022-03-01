@@ -70,7 +70,7 @@ reghdfe deathrate_w99 tavg_poly_1_GMFD tavg_poly_2_GMFD tavg_poly_3_GMFD tavg_po
 		, absorb(adm0_code##c.prcp_poly_1_GMFD adm0_code##c.prcp_poly_2_GMFD ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year ) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/pooled_response_spec1.ster", replace
+estimates save "`ster'/pooled_response_spec1_public.ster", replace
 
 * specification 2
 reghdfe deathrate_w99 tavg_poly_1_GMFD tavg_poly_2_GMFD tavg_poly_3_GMFD tavg_poly_4_GMFD ///
@@ -78,7 +78,7 @@ reghdfe deathrate_w99 tavg_poly_1_GMFD tavg_poly_2_GMFD tavg_poly_3_GMFD tavg_po
 		, absorb(adm0_code##c.prcp_poly_1_GMFD      adm0_code##c.prcp_poly_2_GMFD ///
 				 i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)  fast residual(e_hat)
-estimates save "`ster'/pooled_response_spec2.ster", replace
+estimates save "`ster'/pooled_response_spec2_public.ster", replace
 * save rediduals for FGLS regressions
 
 * specification 3
@@ -87,7 +87,7 @@ reghdfe deathrate_w99 tavg_poly_1_GMFD tavg_poly_2_GMFD tavg_poly_3_GMFD tavg_po
 		, absorb(adm0_code##c.prcp_poly_1_GMFD adm0_code##c.prcp_poly_2_GMFD ///
 				 i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup adm1_agegrp_code##c.year) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/pooled_response_spec3.ster", replace
+estimates save "`ster'/pooled_response_spec3_public.ster", replace
 
 
 *****************************************************************************
@@ -111,7 +111,7 @@ reghdfe deathrate_w99 tavg_poly_1_GMFD tavg_poly_2_GMFD tavg_poly_3_GMFD tavg_po
 		, absorb(adm0_code##c.prcp_poly_1_GMFD adm0_code##c.prcp_poly_2_GMFD ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup) ///
 		cluster(adm1_code) fast tol(1e-7)
-estimates save "`ster'/pooled_response_spec4.ster", replace
+estimates save "`ster'/pooled_response_spec4_public.ster", replace
 
 
 *****************************************************************************
@@ -124,4 +124,4 @@ reghdfe deathrate_w99 tavg_poly_1_GMFD_13m tavg_poly_2_GMFD_13m tavg_poly_3_GMFD
 		, absorb(adm0_code##c.prcp_poly_1_GMFD adm0_code##c.prcp_poly_2_GMFD ///
 				 i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#agegroup ) ///
 		cluster(adm1_code) fast
-estimates save "`ster'/pooled_response_spec5.ster", replace
+estimates save "`ster'/pooled_response_spec5_public.ster", replace
