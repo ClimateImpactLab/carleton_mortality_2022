@@ -82,6 +82,6 @@ quietly {
 	// age labels for plots, typically. 
 	global age_label_1 "age <5" 
 	global age_label_2 "age 5-64"
-	global age_label_3"age >65"
+	global age_label_3 "age >65"
 
 }
