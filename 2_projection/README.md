@@ -11,7 +11,7 @@ We have included the outputs of this projection step as csv files in the data re
 ## Run instructions
 
 ### 1. Set directory paths and R environment.
-Please ensure that your `~/.bash_profile` defines the ` REPO`, `DB`, and `OUTPUT` environment variables as instructed in the main README file.  The folders necessary for running the code are the following.
+Please ensure that your `~/.bash_profile` defines the ` REPO`, `DB`, and `OUTPUT` environment variables as instructed in the main README file. 
 
 `2_projection/1_utils/load_utils.R` loads the R packages necessary to produce the charts contained in the paper, and depends on the package management tool `pacman`, which automatically installs and loads these packages. For a complete list of required packages, see `2_projection/1_utils/packages.txt`.
 
