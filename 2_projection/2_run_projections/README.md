@@ -1,34 +1,23 @@
-## Quick notes on running Mortality projections.
+##  Running, Aggregating, and Extracting Mortality projections.
 
-This README provides notes for RAs generating, aggregating, or extracting Mortality projections.
+This README provides details how projection output is generated in Carleton et. al, 2022. For reasons detailed in the `2_projection` README, we do not provide raw Monte Carlo projection output nor do we advise users to attempt to replicate without significant memory and computing resources. However, by following the workflow and viewing the code in this section provides detail into how the extracted projection files provided in the data repository were created. 
 
 ### 1. Required branches and conda environment.
 
-To run the projection, you need to set up your environment according to the projection system requirements. You need both to have the [`risingverse`](https://github.com/ClimateImpactLab/risingverse) (python 3) conda environment installed and the [projection package installed](https://gitlab.com/ClimateImpactLab/Impacts/impact-calculations/-/tree/master#installation).
+To access all of the scripts used to generate projections, you must clone the following repos in your `REPO` directory: `imapct_calculations`[https://gitlab.com/ClimateImpactLab/Impacts/impact-calculations], `prospectur_tools`[https://github.com/jrising/prospectus-tools], and `impact-commons`[XX]. To run the projections, you will need to install the `impact-env` conda environment by running the `environment.yml` file as described in the `impact-calculations` REAMDE file.  
 
 ### 2. Running projections
 
-The `main_specification` folder contains configuration files for generating and aggregating both Monte Carlo and single projections. It also contains `mortality_montecarlo.sh` which is a convenience script for running MC projections. Note that this script primarily wraps `generate.sh` and `aggregate.sh`, adding checks for the correct repositories and conda environment. 
+The `main_specification` folder contains configuration files (with a `.yml` suffix) for generating and aggregating both Monte Carlo and single projections. It also contains `mortality_montecarlo.sh` which is a convenience script for running MC projections. This script primarily wraps the `generate.sh` and `aggregate.sh` scripts in `impact-calculations`, adding checks for the correct repositories and conda environment. 
 
-The latest MC projections for mortality live in `/shares/gcp/outputs/mortality/impacts-darwin-u/brc/minpoly30mcs`, however, this directory is symlinked to `/shares/gcp/estimation/mortality/release_2020/data/2_projection/3_impacts/main_specification/raw/montecarlo`  because the original folder structure is not very clear and is pretty inconsistent with where the single projections are located.  Similarly, the various single projections live in `/shares/gcp/outputs/mortality/impacts-darwin` but are symlinked to `/shares/gcp/estimation/mortality/release_2020/data/2_projection/3_impacts/main_specification/raw/single`. Note that there are separate folders within `impacts-darwin` for the various rcp/iam/gcm/ssp combinations so the symlinks to single runs in `data/2_projection/3_impacts` are to several different locations.
+The relevant input from this repo is the regression output CSVV files, which are generated in the `1_estimation` branch and stored in the data repository. Please see section [XX] of the paper for more information of how the main age-specific interation model results feed into the gneration of projections.
 
-Best practice for Mortality going forward is to generate projections in `/shares/gcp/outputs/mortality/impacts-darwin` (or `darwin-u`) because that's where James is used to finding them, and then symlinking them to `data/2_projection/3_impacts/.../raw`, which is a coherent folder structure that will be necessary for data release down the line.
 
-### 3. Running single projections with alternative RCPs/IAMs/GCMs/SSPs
+The default single run projects impacts under RCP8.5, low (IIASA), CCSM4, SSP3, while the Monte Carlo is composed of 990 singles within a RCP-SSP combination, including 15 batches for 33 climate models for 2 IAMs.
 
-The default single run projects impacts under RCP8.5, high (OECD Econ-growth), CCSM4, SSP3; however most of the single runs that appear in the paper are based up on RCP8.5, _low_ (IIASA), CCSM4, SSP3. 
+### 3. Extracting projections
 
-Changing the single projection inputs isn't as simple as a config parameter as these parameters are hard coded in the projection system. To change them, open `impact-calculations/generate/loadmodels.py` and modify the variables in lines 9-12.
-
-```python
-single_clim_model = 'CCSM4'
-single_clim_scenario = 'rcp85'
-single_econ_model = 'low'
-single_econ_scenario = 'SSP3'
-```
-### 4. Extracting projections
-
-The `extract` folder contains a script and config file for interfacing with `quantiles.py`. `quantiles` runs on Python 2.7, so you should activate`risingverse-py27` when using it. `extract_mortality_impacts.sh` has variables at the top of the script for the various input parameters to `quantiles.py`. Iterables, over which this code will run instances of `quantiles.py`, include SSP, RCP, IAM, age groups, and adaptation scenarios. Other `quantiles.py` specifications include the output "format" (i.e., GCM-batch specific output or a mean/quantile over this distribution), spatial resolution (IR-level or aggregated), units (rates or levels), basename (corresponding to the name of the raw nc4 name without suffixes for the various output variables), default configuration file, and a toggle for whether the `quantiles.py` output should be shown in console or suppressed. Most of these specifications are discussed in more detail in the `prospectus-tools` repo. After specifying the desired options, run with the following:
+The `extract` folder contains a script and config file for interfacing with `quantiles.py`. `quantiles` runs on Python 2.7, so you should activate`risingverse-py27` environment contained in the [XX repo] when using it. `extract_mortality_impacts.sh` has variables at the top of the script for the various input parameters to `quantiles.py`. Iterables, over which this code will run instances of `quantiles.py`, include SSP, RCP, IAM, age groups, and adaptation scenarios. Other `quantiles.py` specifications include the output "format" (i.e., GCM-batch specific output or a mean/quantile over this distribution), spatial resolution (IR-level or aggregated), units (rates or levels), basename (corresponding to the name of the raw nc4 name without suffixes for the various output variables), default configuration file, and a toggle for whether the `quantiles.py` output should be shown in console or suppressed. Most of these specifications are discussed in more detail in the `prospectus-tools` repo. After specifying the desired options, run with the following:
 
 ```bash
 bash extract_mortality_impacts.sh extract_mortality.yml
