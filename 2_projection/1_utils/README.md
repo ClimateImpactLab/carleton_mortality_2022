@@ -4,7 +4,7 @@ This README summarizes the purpose of each file in this folder. For details on t
 
 #### Code for loading R environment and setting paths
 
-- `load_utils.R` - This function serves two purposes: (1) setting path variables using either `cilpath` or the user-defined paths within the script itself; and, (2) loading required packages, both external packages and those in this repository.
+- `load_utils.R` - This function loads required packages, both external packages and those in this repository.
   - `packages.txt` provides the list of required packages. It's passed to `pacman` which automatically installs packages in the active R environment if needed. 
   - Packages are loaded from this directory (which primarily contains functions specific to this analysis) and from `mortality/utils` which contains functions that are general across the Climate Impact Lab sectors.
 
@@ -65,27 +65,28 @@ This README summarizes the purpose of each file in this folder. For details on t
   - Relevant input data directories:
     - `data/2_projection/main_specification/` (for CSVV, MMT, covariates)
   - Relevant output directories:
-    - `output/2_projection/figures/2a_beta_map` (beta/delta maps)
-    - `output/2_projection/figures/2b_spaghettis`(response functions
+    - `output/figures/Figure_3_D5_beta_maps` (beta maps)
+    - `output/figures/Figure_3_D5_spaghettis`(response functions)
+    - `output/figures/Figure_E2_delta_maps`(delta maps)
   - Dependencies:
     - `mortality/utils/ggspaghetti.R`
 
-- `insample_data_coverage.R` - Generates Figure 1 Panel A in the Carleton et al. (2019), which shows the in-sample data coverage of mortality's estimation sample.
+- `insample_data_coverage.R` - Generates Figure B1 in the Carleton et al. (2022), which shows the in-sample data coverage of mortality's estimation sample.
 
   - User functions:
     - `insample_data_coverage`- Generates map.
   - Relevant input data directories:
     - `data/1_estimation/3_regions`
   - Relevant output directories:
-    - `output/2_projection/figures/1_data_coverage`
+    - `output/figures/Figure_B1_data_coverage`
 
-- `covariate_coverage.R`- Generates Figure 3 in Carleton et al. (2019), which compares in-sample vs. global loggdppc and climtas distributions in 2010 and 2100. 
+- `covariate_coverage.R`- Generates Figure 2 in Carleton et al. (2022), which compares in-sample vs. global loggdppc and climtas distributions in 2010 and 2100. 
 
   - User functions:
     - `insample_data_coverage`- Generates heat map.
 
   - Relevant output directories:
-    - `output/2_projection/figures/1_data_coverage`
+    - `output/figures/Figure_2_covariate_coverage`
   - Dependencies:
     - `impacts.R:::get_mortality_covariates`
 
@@ -93,11 +94,12 @@ This README summarizes the purpose of each file in this folder. For details on t
 
   - User functions:
     - `quick_map` - Utility function for calling `impacts.R` functions and plotting projection output.
-    - `mortality_impacts_map` - Generates map of the mortality risk of future climate change (Figure 7 map)
-    - `mortality_impacts_map_all_adaptation` - Generates maps for each adaptation scenario (Appendix Figure F1)
+    - `mortality_impacts_map` - Generates map of the mortality risk of future climate change (Figures 4, F1, F6)
+    - `mortality_impacts_map_all_adaptation` - Generates maps for each adaptation scenario
   - Relevant output directories:
-    - `output/2_projection/figures/3a_maps`
-    - `output/2_projection/figures/appendix/maps`
+    - `output/figures/Figure_4_impact_maps`
+    - `output/figures/Figure_F1_impact_maps`
+    - `output/figures/Figure_F6_impact_maps`
   - Dependencies:
     - `impacts.R`
     - `morality/utils/mapping.R`
@@ -105,9 +107,9 @@ This README summarizes the purpose of each file in this folder. For details on t
 - `density_plots.R` - Generates density plots providing the full distribution of estimated mortality impacts across all Monte Carlo simulations.
 
   - User functions:
-    - `impacts_density_plot.R` - generates density plot across GCMs and batches. Plots GCM-weighted average of monte carlo draws and shades at 1, 2, and 3 standard deviations. (Figure 7 density plots)
+    - `impacts_density_plot.R` - generates density plot across GCMs and batches. Plots GCM-weighted average of monte carlo draws and shades at 1, 2, and 3 standard deviations. (Figure 4 density plots)
   - Relevant output directories:
-    - `output/2_projection/figures/3b_density_plots`
+    - `output/figures/Figure_4_density_plots`
   - Dependencies:
     - `impacts.R:::get_mortality_impacts`
     - `mortality/utils/ggkd.R`
@@ -116,37 +118,43 @@ This README summarizes the purpose of each file in this folder. For details on t
 
   - User functions:
     - `multi_timeseries` - Utility function for calling `impacts.R` functions and plotting the output. Supports multiple calls for producing comparisons of time series on the same plot.
-    - `timeseries_compare_adaptation` - Generates time series comparing adaptation scenarios (Figure 8 Panel A).
-    - `timeseries_compare_rcp` - Generates time series with uncertainty and boxplots comparing RCPs at end of century (Figure 8 Panel B).
-    - `imeseries_compare_age_groups` - Heterogeneity in climate change impacts on mortality by age group (Figure F2).
-    - `timeseries_compare_ssp_iam` - The full mortality risk of climate change under different scenarios of population growth, economic growth, and emissions (Figure F3).
-    - `timeseries_compare_binnned` - Robustness of impact projections to alternate functional forms of temperature  (Figure F6).
-    -  `timeseries_slow_adaptation` - Impacts of climate change on mortality are qualitatively similar with a model of slower adaptation rates (Figure F7).
+    - `timeseries_compare_adaptation` - Generates time series comparing adaptation scenarios (Figure 5 Panel A).
+    - `timeseries_compare_rcp` - Generates time series with uncertainty and boxplots comparing RCPs at end of century (Figure 5 Panel B).
+    - `imeseries_compare_age_groups` - Heterogeneity in climate change impacts on mortality by age group (Figure F4).
+    - `timeseries_compare_ssp_iam` - The full mortality risk of climate change under different scenarios of population growth, economic growth, and emissions (Figure F5).
+    - `timeseries_compare_binnned` - Robustness of impact projections to alternate functional forms of temperature  (Figure F9).
+    - `timeseries_linear_extrapolation` - Robustness of impact projections to various linear extrapolations (Figure F10)
+    -  `timeseries_flexadapt_rate` - Impacts of climate change on mortality are qualitatively similar with a model of slower or faster adaptation rates (Figure F11).
   - Relevant output directories:
-    - `output/2_projection/figures/4_timeseries`
-    - `output/2_projection/figures/appendix/timeseries`
+    - `output/figures/Figure_5_timeseries`
+    - `output/figures/Figure_F4_timeseries`
+    - `output/figures/Figure_F5_timeseries`
+    - `output/figures/Figure_F9_timeseries`
+    - `output/figures/Figure_F10_timeseries`
+    - `output/figures/Figure_F11_timeseries`
   - Dependencies:
     - `impacts.R`
     - `morality/utils/ggtimeseries.R`
 
-- `barchart.R` - Produces impacts at terciles of the income and climate distributions for purposes of the bar chart in Figure 11.
+- `barchart.R` - Produces impacts at terciles of the income and climate distributions for purposes of the bar chart in Figures 9 and F8.
 
   - User functions
-    - `mortality_barchart` - Generates CSV file containing data required to generate Figure 11.
+    - `mortality_barchart` - Generates CSV file containing data required to generate Figures 9 and F8.
       - RA note: values from this function are manually input into the excel spreadsheet in the output folder. We need to use excel here because no other plotting method allows us to manually arrange the order in which the bars are stacked. From there, a lot of processing happens in Illustrator before we get the final figure for the paper.
   - Relevant output directories:
-    - `output/2_projection/figures/7_barchart`
+    - `output/figures/Figure_9_barchart`
+    - `output/figures/Figure_F8_barchart`
   - Dependencies
     - `impacts.R:::get_mortality_impacts`
     - `impacts.R:::get_mortality_covariates`
     - `econvar.R:::get_econvar`
 
-- `mortality_deciles.R` - Produces box-and-whisker plots of future impacts at deciles of today's income and climate distributions (Figures F4 and F5 of the appendix.)
+- `alt_deciles.R` - Produces box-and-whisker plots of future impacts at deciles of today's income and climate distributions (Figure 6)
 
   - User functions
-    - `deciles_plot`- Produces plot for a given covariate and scenario. Accepts flag `demean` for user to demean within deciles for figure F5.
+    - `deciles_plot_new`- Produces plot for a given covariate and scenario.
   - Relevant output directories
-    - `output/2_projection/figures/appendix/decile_plots`
+    - `output/figures/Figure_6_deciles`
   - Dependencies
     - `impacts.R:::get_mortality_impacts`
     - `impacts.R:::get_mortality_covariates`
