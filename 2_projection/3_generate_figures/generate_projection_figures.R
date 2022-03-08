@@ -57,7 +57,7 @@ source(paste0(REPO, "/mortality/2_projection/1_utils/load_utils.R"))
 #   - Covariate coverage (Figure 2): Joint coverage of income and long-run
 #    average temperature for estimating and full samples.
 #       - Dependencies: `2_projection/1_utils/covariate_coverage.R`
-#       - Output: `output/2_projection/figures/Figure_2_covariate_coverage`
+#       - Output: `output/2_projection/figures/ `
 #           - `covariate_coverage_climtas_lgdppc_*_*.pdf` where * indicates
 #           (insample vs global) and (2010 vs 2100).
 # 
@@ -95,7 +95,7 @@ if (Part1) {
 #   Maps showing the mortality sensitivity of a 35C day for the 64+ age group, both for
 #   in-sample regions and for the fully  extrapolated world. 
 #       - Dependencies: `2_projection/1_utils/calculate_betas.R`
-#       - Output: `output/2_projection/figures/Figure_3_D5_beta_maps`
+#       - Output: `output/figures/Figure_3_D5_beta_maps`
 #           - `beta_map_*_*.png`, where * indicates (young, oldest) and (global,
 #           insample)
 # 
@@ -104,7 +104,7 @@ if (Part1) {
 #   average across regions both for in-sample regions and for the fully
 #   extrapolated world.
 #       - Dependencies: `2_projection/1_utils/calculate_betas.R`
-#       - Output: `output/2_projection/figures/Figure_3_D5_spaghettis`
+#       - Output: `output/figures/Figure_3_D5_spaghettis`
 #           - `*_spaghetti_response_*.pdf`, where * indicates (global, insample)
 #           and (young, oldest).
 # 
@@ -112,7 +112,7 @@ if (Part1) {
 #    sensitivity to a 35C day for the oldest age group (>64) between 2015 and
 #    2050 or 2100.
 #       - Dependencies: `2_projection/1_utils/calculate_betas.R`
-#       - Output: `output/2_projection/figures/Figure_E2_delta_maps`
+#       - Output: `output/figures/Figure_E2_delta_maps`
 #           - `delta_map_*_*_sensitivity.png`, where * indicates (young, oldest)
 #           and (2050, 2100)
 #           
@@ -177,16 +177,16 @@ if (Part2) {
 #   of adapatation in 2100. Impacts represent the mean across Monte Carlo
 #   simulations conducted on 33 climate models. 
 #       - Dependencies - `2_projection/1_utils/impact_map.R`
-#       - Output - `output/2_projection/figures/Figure_4_impact_maps`
-#       - Output - `output/2_projection/figures/Figure_F1_impact_maps`
-#       - Output - `output/2_projection/figures/Figure_F6_impact_maps`
+#       - Output - `output/figures/Figure_4_impact_maps`
+#       - Output - `output/figures/Figure_F1_impact_maps`
+#       - Output - `output/figures/Figure_F6_impact_maps`
 #           - `impact-map_fulladaptcosts_*rcp*-*SSP*-*iam*-*age*-*year*-*units*.png`
 # 
 #   - IR density plots (Figure 4): Full distribution of estimated impacts across
 #   GCMs and Monte Carlo draws. Solid lines indiciate mean estimate with shading
 #   at one, two, and three standard deviations from the mean.
 #       - Dependencies - `2_projection/1_utils/density_plots.R`
-#       - Output - `2_projection/figures/Figure_4_density_plots`
+#       - Output - `output/figures/Figure_4_density_plots`
 #           - `density_fulladaptcosts_SSP3_85_*_2099.pdf` where * indicates the
 #           unique region code for the 7 cities in the figure.
 # 
@@ -317,19 +317,19 @@ if (Part4) {
         # Figure F9: Robustness of impact projections to alternate functional forms
         # of temperature.
         #   - Dependencies: `2_projection/1_utils/timeseries.R`
-        #   - Output: `output/2_projection/figures/Figure_F9_timeseries`
+        #   - Output: `output/figures/Figure_F9_timeseries`
         timeseries_compare_binnned(output_dir=glue('{OUTPUT}/figures/Figure_F9_timeseries'))   
 
 
         # Figure F10: Robustness of impact projections to various linear extrapolations.
         #   - Dependencies: `2_projection/1_utils/timeseries.R`
-        #   - Output: `output/2_projection/figures/Figure_F10_timeseries`
-        timeseries_compare_binnned(output_dir=glue('{OUTPUT}/figures/Figure_F10_timeseries'))      
+        #   - Output: `output/figures/Figure_F10_timeseries`
+        timeseries_linear_extrapolation(output_dir=glue('{OUTPUT}/figures/Figure_F10_timeseries'))      
 
 
         # Figure F11: Robustness to models with different adaptation rates
         #   - Dependencies: `2_projection/1_utils/timeseries.R`
-        #   - Output: `output/2_projection/figures/appendix/timeseries`
+        #   - Output: `output/figures/Figure_F11_timeseries`
         for speed in c('normal', 'slow', 'fast15') {
             timeseries_flexadapt_rate(adaptrate=speed, output_dir=glue('{OUTPUT}/figures/Figure_F11_timeseries'))
         }
@@ -339,7 +339,7 @@ if (Part4) {
 # Part 5: Climate change impacts and adaptation costs are correlated  
 # with present-day income and climate. (Figure 6)
 #   - Dependencies: `2_projection/1_utils/new_mortality_deciles_new.R`
-#   - Output: `output/2_projection/figures/6_decile_plots`
+#   - Output: `output/figures/Figure_6_deciles`
 
 
 if (Part5) {
@@ -357,9 +357,9 @@ if (Part5) {
 #   - Bar chart providing impacts at terciles of the income and climate
 #   distribution (Figure 9, Figure F8).
 #       - Dependencies - `2_projection/1_utils/barchart.R`
-#       - Output - `output/2_projection/Figure_9_barchart`
+#       - Output - `output/figures/Figure_9_barchart`
 #           - `tercile_impacts_barchart_rcp85_SSP3_low.csv`
-#       - Output - `output/2_projection/Figure_F8_barchart`
+#       - Output - `output/figures/Figure_F8_barchart`
 #           - `tercile_impacts_barchart_rcp45_SSP3_low.csv`
 #
 # NOTES:
