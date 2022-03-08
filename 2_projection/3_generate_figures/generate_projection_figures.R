@@ -28,6 +28,8 @@ Part5 = TRUE # Decile plot
 Part6 = TRUE # Bar Chart
 Appendix = FALSE # Parts 1-4 have Appendix figures
 
+# Paper default: rcp85, low, SSP3
+
 # RCP scenario ('rcp85', 'rcp45')
 rcp='rcp85' 
 
@@ -41,7 +43,7 @@ ssp='SSP3'
 
 # Initialize paths, packages, and user functions.
 REPO <- Sys.getenv(c("REPO"))
-DATA <- Sys.getenv(c("DATA"))
+DB <- Sys.getenv(c("DB"))
 OUTPUT <- Sys.getenv(c("OUTPUT"))
 
 source(paste0(REPO, "/mortality/2_projection/1_utils/load_utils.R"))
@@ -215,7 +217,7 @@ if (Part3) {
 
         # Impact maps for both RCPs emissions pathways for panels A & B (Figure F6)
         for (rcp in c('rcp45', 'rcp85')) {
-            mortality_impacts_map(rcp=rcp, iam='low', ssp='SSP3', scn=scn, 
+            mortality_impacts_map(rcp=rcp, iam='low', ssp='SSP3', scn='fulladapt', 
                 output_dir=glue('{OUTPUT}/figures/Figure_F6_impact_maps'))
         }
     }

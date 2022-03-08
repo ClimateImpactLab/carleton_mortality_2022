@@ -10,9 +10,9 @@ COV_DEFAULT = glue('{DB}/2_projection/3_impacts/main_specification/raw/',
 BETA_INPUT_DEFAULT = glue('{DB}/2_projection/3_impacts/main_specification/raw/',
     'single')
 
-BETA_OUTPUT_DEFAULT = glue('{OUTPUT}/2_projection/figures/Figure_3_D5_beta_maps')
-RF_OUTPUT_DEFAULT = glue('{OUTPUT}/2_projection/figures/Figure_3_D5_spaghettis')
-DELTA_OUTPUT_DEFAULT = glue('{OUTPUT}/2_projection/figures/Figure_E2_delta_maps')
+BETA_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_3_D5_beta_maps')
+RF_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_3_D5_spaghettis')
+DELTA_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_E2_delta_maps')
 
 #' Generates response functions, or betas (which we define as the sensitivity of
 #' mortality to a given temperature day, i.e., the response function height at

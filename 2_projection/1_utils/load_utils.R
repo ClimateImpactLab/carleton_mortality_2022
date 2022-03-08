@@ -6,6 +6,10 @@
 # consistent with that downloaded from the online data repository  
 # (see "Downloading the Data" in the master README). 
 
+REPO <- Sys.getenv(c("REPO"))
+DB <- Sys.getenv(c("DB"))
+OUTPUT <- Sys.getenv(c("OUTPUT"))
+
 
 # Import list of required packages.
 packages = scan(
