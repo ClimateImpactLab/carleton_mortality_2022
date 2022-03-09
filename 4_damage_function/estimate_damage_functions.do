@@ -113,6 +113,8 @@ global OUTPUT: env OUTPUT
 global datadir = "$DB/3_valuation/global"
 global dfdir = "$DB/4_damage_function"
 global plot_outputdir = "$OUTPUT/figures/Figure_7_damage_func"
+capture mkdir "$OUTPUT/figures"
+capture mkdir "$plot_outputdir"
 
 * Functional form
 loc ff = "poly4_uclip_sharecombo"
