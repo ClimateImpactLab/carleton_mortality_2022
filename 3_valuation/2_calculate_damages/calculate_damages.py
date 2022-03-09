@@ -17,7 +17,6 @@ import parse
 import xarray as xr
 import re
 from joblib import Parallel, delayed
-import cilpath
 import dask
 from statsmodels.stats.weightstats import DescrStatsW
 from itertools import product

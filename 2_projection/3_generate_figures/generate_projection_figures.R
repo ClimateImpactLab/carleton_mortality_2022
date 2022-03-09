@@ -46,7 +46,7 @@ REPO <- Sys.getenv(c("REPO"))
 DB <- Sys.getenv(c("DB"))
 OUTPUT <- Sys.getenv(c("OUTPUT"))
 
-source(paste0(REPO, "/mortality/2_projection/1_utils/load_utils.R"))
+source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"))
 
 
 

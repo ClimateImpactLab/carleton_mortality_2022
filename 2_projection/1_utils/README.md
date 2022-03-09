@@ -6,7 +6,7 @@ This README summarizes the purpose of each file in this folder. For details on t
 
 - `load_utils.R` - This function loads required packages, both external packages and those in this repository.
   - `packages.txt` provides the list of required packages. It's passed to `pacman` which automatically installs packages in the active R environment if needed. 
-  - Packages are loaded from this directory (which primarily contains functions specific to this analysis) and from `mortality/utils` which contains functions that are general across the Climate Impact Lab sectors.
+  - Packages are loaded from this directory (which primarily contains functions specific to this analysis) and from `carleton_mortality_2022utils` which contains functions that are general across the Climate Impact Lab sectors.
 
 #### Code for loading and manipulating data
 
@@ -69,7 +69,7 @@ This README summarizes the purpose of each file in this folder. For details on t
     - `output/figures/Figure_3_D5_spaghettis`(response functions)
     - `output/figures/Figure_E2_delta_maps`(delta maps)
   - Dependencies:
-    - `mortality/utils/ggspaghetti.R`
+    - `carleton_mortality_2022utils/ggspaghetti.R`
 
 - `insample_data_coverage.R` - Generates Figure B1 in the Carleton et al. (2022), which shows the in-sample data coverage of mortality's estimation sample.
 
@@ -112,7 +112,7 @@ This README summarizes the purpose of each file in this folder. For details on t
     - `output/figures/Figure_4_density_plots`
   - Dependencies:
     - `impacts.R:::get_mortality_impacts`
-    - `mortality/utils/ggkd.R`
+    - `carleton_mortality_2022utils/ggkd.R`
 
 - `timeseries.R` - Produces time series of projected impacts.
 

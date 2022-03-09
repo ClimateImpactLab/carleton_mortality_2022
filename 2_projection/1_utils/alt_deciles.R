@@ -193,7 +193,7 @@ alt_deciles = function(
   # library(dplyr)
   # library(reshape2)
 
-  #setwd("~/Documents/CIL_server_downloads/mortality/ggplot graphs")
+  #setwd("~/Documents/CIL_server_downloads/carleton_mortality_2022ggplot graphs")
 
   # read and clean dataframes
   cov15 = read_csv("/home/sklos/charts/ctile_deciles_SSP3_low_rcp85_vly_2099_2015cov.csv") 

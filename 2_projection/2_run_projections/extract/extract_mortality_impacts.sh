@@ -19,7 +19,7 @@ show_output='TRUE'
 DATA="${DB}/2_projection/3_impacts/main_specification" 
 results_root="$DATA/raw/montecarlo"
 
-CONFIG=${REPO}/mortality/2_projection/2_run_projections/extract/extract_mortality.yml
+CONFIG=${REPO}/carleton_mortality_2022/2_projection/2_run_projections/extract/extract_mortality.yml
 echo $CONFIG
 
 cd ${REPO}/prospectus-tools/gcp/extract

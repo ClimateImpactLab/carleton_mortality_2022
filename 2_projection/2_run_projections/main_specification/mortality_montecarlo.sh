@@ -29,7 +29,7 @@ fi
 
 if [[ "$1" == "generate" ]] ; then
 
-    config="$REPO/mortality/2_projection/2_run_projections/main_specification/configs/mortality-generate-montecarlo.yml"
+    config="$REPO/carleton_mortality_2022/2_projection/2_run_projections/main_specification/configs/mortality-generate-montecarlo.yml"
 
     cd "$REPO/impact-calculations"
 
@@ -46,7 +46,7 @@ if [[ "$1" == "generate" ]] ; then
 
 elif [[ "$1" == "aggregate" ]] ; then
 
-    config="$REPO/mortality/2_projection/2_run_projections/main_specification/configs/mortality-aggregate-montecarlo.yml"
+    config="$REPO/carleton_mortality_2022/2_projection/2_run_projections/main_specification/configs/mortality-aggregate-montecarlo.yml"
 
     cd "$REPO/impact-calculations"
 

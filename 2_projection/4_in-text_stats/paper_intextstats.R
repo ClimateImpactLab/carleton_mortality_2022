@@ -23,7 +23,7 @@ REPO <- Sys.getenv(c("REPO"))
 DATA <- Sys.getenv(c("DATA"))
 OUTPUT <- Sys.getenv(c("OUTPUT"))
 
-source(paste0(REPO, "/mortality/2_projection/1_utils/load_utils.R"))
+source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"))
 
 
 
@@ -474,7 +474,7 @@ write_stats('2.3',
     )
     
 # Calculate % increase over today's mortality levels in Accra & Oslo & London (deaths per 100k); 
-# Source: www.un.org/en/development/desa/population/publications/pdf/mortality/World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
+# Source: www.un.org/en/development/desa/population/publications/pdf/carleton_mortality_2022World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
 write_stats('2.4',
     "Accra, Ghana % increase over today's mortality levels (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"]/(8.3*100)*100,
@@ -527,7 +527,7 @@ write_stats('2.9',
     )
 
 # Calculate % increase over today's mortality levels in Accra & Oslo & London (deaths per 100k); 
-# Source: www.un.org/en/development/desa/population/publications/pdf/mortality/World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
+# Source: www.un.org/en/development/desa/population/publications/pdf/carleton_mortality_2022World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
 write_stats('2.10',
     "Accra, Ghana % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"]/(8.3*100)*100,
@@ -582,7 +582,7 @@ write_stats('2.15',
     )
 
 # Calculate % increase over today's mortality levels in Accra & Oslo & London (deaths per 100k); 
-# Source: www.un.org/en/development/desa/population/publications/pdf/mortality/World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
+# Source: www.un.org/en/development/desa/population/publications/pdf/carleton_mortality_2022World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
 write_stats('2.16',
     "Accra, Ghana % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"]/(8.3*100)*100,

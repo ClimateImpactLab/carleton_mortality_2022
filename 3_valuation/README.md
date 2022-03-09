@@ -16,7 +16,7 @@ Please ensure that your `~/.bash_profile` defines the ` REPO`, `DB`, and `OUTPUT
 A number of external packages are required to run the code. We provide a `mortalityverse.yml` file that will allow users to create a `conda` environment with the requisite packages. To do so, install the [latest version](https://docs.conda.io/en/latest/miniconda.html) of `conda` and run the following:
 
 ```bash
-cd /path/to/mortality/3_valuation
+cd /path/to/carleton_mortality_20223_valuation
 conda env create -f mortalityverse.yml
 conda activate mortalityverse
 ```

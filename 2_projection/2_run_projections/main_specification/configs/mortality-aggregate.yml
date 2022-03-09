@@ -9,7 +9,7 @@ only-variables:
   - costs_lb
   - costs_ub
 costs-config: 
-  command-prefix: 'Rscript {REPO}/mortality/2_projection/2_run_projections/adaptation_costs/costs_script.R' #manually point this to your REPO variable
+  command-prefix: 'Rscript {REPO}/carleton_mortality_2022/2_projection/2_run_projections/adaptation_costs/costs_script.R' #manually point this to your REPO variable
   ordered-args:
     known-args:
       - clim_scenario
