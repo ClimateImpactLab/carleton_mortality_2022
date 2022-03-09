@@ -7,9 +7,9 @@ DB = os.getenv('DB')
 
 def life_expectancy_mt(data_path=DB):
 
-	df = pd.read_csv(os.path.join(data_path, '/3_valuation/inputs/exp/raw/survival_ratio.csv'))
-	pop = pd.read_csv(os.path.join(data_path, '/3_valuation/inputs/exp/raw/population_agegroup_reshape.csv')) 
-	mt = pd.read_csv(os.path.join(data_path, '/3_valuation/inputs/exp/raw/Murphy_Topel.csv') )
+	df = pd.read_csv(f'{data_path}/3_valuation/inputs/exp/raw/survival_ratio.csv')
+	pop = pd.read_csv(f'{data_path}/3_valuation/inputs/exp/raw/population_agegroup_reshape.csv') 
+	mt = pd.read_csv(f'{data_path}/3_valuation/inputs/exp/raw/Murphy_Topel.csv')
 
 	# ---- Life Expectancy ---- #
 
@@ -158,4 +158,4 @@ def life_expectancy_mt(data_path=DB):
 		'expectancy_young','expectancy_older','expectancy_oldest',
 		'expectancy_25_29_mt', 'mt_young','mt_older','mt_oldest']
 
-	df2[exort_cols].to_csv(os.path.join(data_path, '/3_valuation/inputs/exp/raw/life_expectancy_mt.csv'), index = False)
+	df2[export_cols].to_csv(os.path.join(data_path, '3_valuation/inputs/exp/raw/life_expectancy_mt.csv'), index = False)

@@ -26,7 +26,7 @@ The valuation code in this repository relies upon raw netCDF4 output from the pr
 
 
 ### 3. Calculate Value of Statistical Life (VSL) and related values.
-`generate_vsl_data.py` is a "master" script that generates inputs to the valuation of impacts. In particular, it generates (1) the monetary VSLs that are multiplied by the impacts to achieve monetized damages and, (2) the age-adjustment factors that are required for valuation assumptions which heterogeneously value the three age-groups.
+`run_vsl.py` is a "master" script that generates inputs to the valuation of impacts. In particular, it generates (1) the monetary VSLs that are multiplied by the impacts to achieve monetized damages and, (2) the age-adjustment factors that are required for valuation assumptions which heterogeneously value the three age-groups.
 
 ### 4. Generate monetized damages by applying the VSL assumptions to projected impacts.
 

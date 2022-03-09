@@ -6,14 +6,12 @@ import os
 
 DB = os.getenv('DB')
 
-
 calculate_life_expectancy = True
 calculate_vsl_data = True
 
 # Calculate remaining life expectancies and the Murphy-Topel adjustment factors.
 if calculate_life_expectancy:
     life_expectancy_mt(DB)
-
 
 # Calculate income-scaled and population-weighted average VSL/VLY from 
 if calculate_vsl_data:
