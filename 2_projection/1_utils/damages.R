@@ -73,7 +73,7 @@ get_mortality_damages = function(
     suffix <- ifelse(deryugina_scalar, "_deryugina_scalar", "")
 
     # Open base file.
-    df = memo.csv(glue(
+    df = read.csv(glue(
         '{input_dir}/damages_IR_{valuation}_{rcp}_{iam}_{ssp}{suffix}.csv'),
             key=c('region', 'year'))
     
