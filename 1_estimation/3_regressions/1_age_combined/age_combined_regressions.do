@@ -43,16 +43,18 @@ details.
 * 						PART 1. Initializing		 						*
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+global REPO "D:/All/Documents/UChicago/2020-21/Togo_CIL_GSAL/20-21_CIL/Mortality_Related_Workflow/"
+*global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+*do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths_junho.do"
 
 local ster "$ster_dir/age_combined"
 
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+global REPO "D:/All/Documents/UChicago/2020-21/Togo_CIL_GSAL/20-21_CIL/Mortality_Related_Workflow/"
+global DB "D:/All/Documents/UChicago/2020-21/Togo_CIL_GSAL/20-21_CIL/Mortality_Related_Workflow/shares/gcp/estimation/mortality/carleton_mortality_2022/data"
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
 
 *****************************************************************************
 * 						PART 2. OLS Regressions                 		    *
