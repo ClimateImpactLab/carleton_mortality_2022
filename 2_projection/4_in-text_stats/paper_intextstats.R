@@ -28,6 +28,7 @@ source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"
 
 
 output.file = glue("{OUTPUT}/tables/Table_2_stats_in-text.txt")
+dir.create(glue("{OUTPUT}/tables"))
 
 write_stats = function(id, description, value, output_file) {
     if (is.numeric(value))
