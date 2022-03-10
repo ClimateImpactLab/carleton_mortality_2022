@@ -7,7 +7,7 @@ Inputs
 ------
 
 - `data/1_estimation/1_ster/age_spec`
-	- `Agespec_response_spec*_public.ster` where * is model 1 through 5.
+	- `Agespec_response_spec*.ster` where * is model 1 through 5.
 	Ster files containing uninteracted, age-stacked regressuion results under
 	various fixed effects, estimation, and data construction assumptions.
 
@@ -59,7 +59,7 @@ local max = min(4, `num_spec')
 forvalues j = 1(1)`max' {
 
 	* 1. import estimation results for column j
-	estimates use "`ster'/Agespec_response_spec`j'_public.ster"
+	estimates use "`ster'/Agespec_response_spec`j'.ster"
 
 	* 2. loop over the 4 temperature points and get marginal effect at 4 temperature points
 	local i = 1
@@ -92,7 +92,7 @@ if `num_spec' == 5 {
 	local j = 5
 	
 	* 1. import estimation results for column j
-	estimates use "`ster'/Agespec_response_spec`j'_public.ster"
+	estimates use "`ster'/Agespec_response_spec`j'.ster"
 
 	* 2. loop over the 4 temperature points and get marginal effect at 4 temperature points
 	local i = 1
