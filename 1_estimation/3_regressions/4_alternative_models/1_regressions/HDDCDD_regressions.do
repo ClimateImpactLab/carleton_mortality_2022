@@ -38,6 +38,6 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 					c.tavg_poly_3_GMFD#c.loggdppc_adm1_avg#i.agegroup c.tavg_poly_4_GMFD#c.loggdppc_adm1_avg#i.agegroup ///
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				  i.adm2_code#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
-		cluster(adm1_code) fast
+		cluster(adm1_code)
 estimates save "`ster'/Agespec_interaction_HDDCDD_response_public.ster", replace
 
