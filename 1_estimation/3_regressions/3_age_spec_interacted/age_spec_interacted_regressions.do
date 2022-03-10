@@ -83,7 +83,7 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 	c.tavg_poly_3_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup c.tavg_poly_4_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup ///
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				  i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
-		cluster(adm1_code) fast
+		cluster(adm1_code)
 estimates save "`ster'/Agespec_interaction_response_public.ster", replace
 
 
@@ -107,7 +107,7 @@ if (`altspec') {
 		c.tavg_poly_3_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup c.tavg_poly_4_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup ///
 			, absorb( i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 			 i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year ) ///
-			cluster(adm1_code) fast
+			cluster(adm1_code)
 	estimates save "`ster'/altspec/Agespec_response_spec1_interacted_public.ster", replace
 
 	* specification 3
@@ -119,7 +119,7 @@ if (`altspec') {
 		c.tavg_poly_3_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup c.tavg_poly_4_GMFD#c.lr_tavg_GMFD_adm1_avg#i.agegroup ///
 			, absorb( i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup adm1_agegrp_code##c.year) ///
-			cluster(adm1_code) fast
+			cluster(adm1_code)
 	estimates save "`ster'/altspec/Agespec_response_spec3_interacted_public.ster", replace
 
 
@@ -161,7 +161,7 @@ if (`altspec') {
 				[pw = precisionweight] ///
 				, absorb(i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 					i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup)  ///
-				cluster(adm1_code) fast tol(1e-7) maxiter(10000)
+				cluster(adm1_code) tol(1e-7) maxiter(10000)
 
 		estimates save "`ster'/altspec/Agespec_response_spec4_interacted_public.ster", replace
 	restore
@@ -179,7 +179,7 @@ if (`altspec') {
 		c.tavg_poly_3_GMFD_13m#c.lr_tavg_GMFD_adm1_avg#i.agegroup c.tavg_poly_4_GMFD_13m#c.lr_tavg_GMFD_adm1_avg#i.agegroup ///
 			, absorb(i.adm0_code#c.prcp_poly_1_GMFD#i.agegroup i.adm0_code#c.prcp_poly_2_GMFD#i.agegroup ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
-			cluster(adm1_code) fast
+			cluster(adm1_code)
 	estimates save "`ster'/altspec/Agespec_response_spec5_interacted_public.ster", replace
 
 }
