@@ -1,10 +1,21 @@
 ## Run instructions
 
-### 1. Calculate SCC based upon estimated damage functions.
 
-Due to the computational complexity and relative generalizability of this last step of the analysis, the codes used to produce estimates of the mortality-only partial social cost of carbon are located in the [pFAIR](https://gitlab.com/ClimateImpactLab/Climate/pFAIR) repository.
+### 1. Set directory paths and Python environment.
 
-`pFAIR` contains Jupyter Notebooks that estimate the mortality-only partial social cost of carbon using the simple climate model FAIR and the damage functions computed in `4_damage_functions`. Specifically, the code does the following:
+Please ensure that your `~/.bash_profile` defines the ` REPO`, `DB`, and `OUTPUT` environment variables as instructed in the main README file.  
+
+A number of external packages are required to run the code. We provide a `mortalityverse.yml` file that will allow users to create a `conda` environment with the requisite packages. To do so, install the [latest version](https://docs.conda.io/en/latest/miniconda.html) of `conda` and run the following:
+
+```bash
+cd /path/to/carleton_mortality_2022/
+conda env create -f mortalityverse.yml
+conda activate mortalityverse
+```
+
+### 2. Calculate SCC point estimates and damage function uncertainty based upon estimated damage functions.
+
+`FAIR_pulse.ipynb` is the Jupyter Notebooks that estimates the mortality-only partial social cost of carbon using the simple climate model FAIR and the damage functions computed in `4_damage_functions`. Specifically, the code does the following:
 
 - Calculates GMST under the RCP scenarios as defined by the default FAIR model
 - Adds an additional CO2 impulse (1 Gt C) to each trajectory in 2020
@@ -13,14 +24,20 @@ Due to the computational complexity and relative generalizability of this last s
 - Divides this value by the quantity of added CO2 (1 Gt C * 44.0098 / 12.011 = 3.66 Gt CO2) to achieve \$/ton CO2
 - Computes the NPV of this time series of marginal damages using various discount rates
 
-To operate the code, navigate to the latest mortality notebook in `pFAIR/damages` (currently `v.0.5`) and follow the steps outlined in the documentation. The crucial link between the `pFAIR` notebooks and this repository is the output directory of the damage functions generated in `4_damage_function` . Be sure that the paths specified in the notebook correspond to the correct damage function coefficient output (i.e., the intended csv file in `data/4_damage_function/damages`). The corresponding output path should be `data/5_scc/global`.
+To operate the code, first ensure that you are in the `mortalityverse` conda environment. 
 
-`pFAIR` estimates SCCs under several types of uncertainty, following Carleton et al. (2019):
+Then, it is recommended you run the notebook cell by cell. There are a few toggles explained in the notebook which, which allow users to either calculate the point estimate of SCCs vs damage function uncertatinty, produce SCCs including or excluding adaptation costs, among other things. 
 
-1.  **Point estimates**: SCC estimates based on the median fair parameters and mean damage functions.
-2. **Climate-only uncertainty**: SCC estimates based on Monte Carlo draws from FAIR uncertainty and mean damage functions.
-3. **Damage function uncertainty**: SCC estimates based on median fair parameters and quantile damage functions.
+The crucial link between the `pFAIR` notebooks and this repository is the output directory of the damage functions generated in `4_damage_function`. The toggles above will determine which input file is selsected. Be sure that the paths specified in the notebook correspond to the correct damage function coefficient output (i.e., the intended csv file in `data/4_damage_function/`). The corresponding output path where the SCCs will be saved should be `data/5_scc/global`.
+
+While the complete FAIR/SCC step estimates SCCs under several types of uncertainty, following Carleton et al. (2022):
+
+1. **Point estimates**: SCC estimates based on the median fair parameters and mean damage functions.
+2. **Damage function uncertainty**: SCC estimates based on median fair parameters and quantile damage functions.
+3. **Climate-only uncertainty**: SCC estimates based on Monte Carlo draws from FAIR uncertainty and mean damage functions.
 4. **Full uncertainty**: SCC estimates based on Monte Carlo draws from the FAIR uncertainty and quantile damage functions.
+
+... The `FAIR_pulse.ipynb` notebook provided in this public release will only allow users to calculate the first 2. Calculating climate and full uncertanty requires running 100,000 simulations which uses an extraordinary amount of memmory, which we ourselves use server clusters to run. 
 
 See the `pFAIR` documentation for instructions on running the various types of uncertainty presented in Carleton et al. Note that the tables showing SCC uncertainty in the main text and appendix of Carleton et al (2020) provide the IQR from these runs.
 
@@ -45,7 +62,7 @@ Income-scaling assumption:
 There are also several robustness SCC results provided in the appendix:
 
 1. Estimates of SCC under various socioeconomic projections;
-2. Estimates of SCC using a 1.5% discount rate;
+2. Estimates of SCC including or excluding adaptation costs
 3. Estimates of SCC in which the estimated 2100 damage function is applied to all years from 2100-2300 (rather than extrapolating damage functions beyond 2100); and,
 4. Estimates of SCC using a cubic polynomial damage function.
 
@@ -58,9 +75,11 @@ The analysis uses an income elasticity of 1 when income-scaling the VSLs, allowi
 `data/5_scc/global_scc` - location in which output is saved from the SCC calculation notebooks.
 
 - `quadratic` contains folders for the main specification (including uncertainty) and all the robustness checks except for the cubic damage function robustness check.
-- `cubic` contains output from the cubic damage function robustness check.
+  - `wo_costs` contain SCCs calculated without adaptation costs. The default is with costs.
+  - `uncertainty` contains quantiles of SCCs using damage function, climate, and full uncertainty. While users can only calculate the first, the output of all 3 are stored in this colder
+- `cubic` contains output from the cubic damage function robustness check. 
 
-`output/5_scc` - location of tables and figures in Carleton et al (2019).
+`output/5_scc` - location of tables and figures in Carleton et al (2022).
 
 - `tables` contains Latex files for each SCC presentation table in the paper. These are generated manually from the output in `data/5_scc/global_scc`.
-- `figures` contains SCC-related figures that appear in the appendix of the paper. These are output by the SCC notebooks in `pfair`. 
+- `figures` contains SCC-related figures that appear in the appendix of the paper. These are output by the SCC notebooks in this repo. 
