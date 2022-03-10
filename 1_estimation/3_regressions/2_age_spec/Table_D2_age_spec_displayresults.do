@@ -54,7 +54,7 @@ local num_spec = 5
 * 						PART 1. Calculate Marginal Effect     			    *
 *****************************************************************************
 
-* I. calculate margianl effect of the 1st-5th specification (with consistent variable names)
+* I. calculate marginal effect of the 1st-5th specification (with consistent variable names)
 local max = min(4, `num_spec')
 forvalues j = 1(1)`max' {
 
