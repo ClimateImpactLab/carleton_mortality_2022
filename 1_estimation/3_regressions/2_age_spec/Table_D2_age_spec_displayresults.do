@@ -59,7 +59,7 @@ local max = min(4, `num_spec')
 forvalues j = 1(1)`max' {
 
 	* 1. import estimation results for column j
-	estimates use "`ster'/Agespec_response_spec`j'.ster"
+	estimates use "`ster'/Agespec_response_spec`j'_public.ster"
 
 	* 2. loop over the 4 temperature points and get marginal effect at 4 temperature points
 	local i = 1
