@@ -2,17 +2,17 @@
 
 Supporting material for Carleton, Tamma, Amir Jina, Michael T. Delgado, Michael Greenstone, Trevor Houser, Solomon M. Hsiang, Andrew Hultgren, Robert E. Kopp, Kelly E. McCusker, Ishan Nath, James Rising, Ashwin Rode, Hee Kwon Seo, Arvid Viaene, Jiacan Yuan, and Alice Tianbo Zhang, “Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits.” Quarterly Journal of Economics, (forthcoming).
 
-# Desciption
+# Description
 
 This repository provides code required to reproduce the tables, figures, and in-text summary statistics in Carleton et al. (2022). This repository's structure mirrors the analysis in the paper, which proceeds in the following **six steps**. 
 
 1. **Data Collection** - Historical data on all-cause mortality and climate are cleaned and merged, along with other covariates needed in our analysis (population and income). 
 2. **Estimation** - Econometric analysis is conducted to estimate empirical mortality-temperature relationships for three age groups (<5, 5-64, >64). 
-3. **Projection** - The age-specific empirical mortality-temperature relationships are used to project the impacts of climate change on mortality for 24,378 regions through 2100, accounting for both uncertainty in future climate and statistical uncertainty in the econometric model.  
+3. **Projection** - The age-specific empirical mortality-temperature relationships are used to project the impacts of climate change on mortality for 24,378 regions through 2100, accounting for both uncertainty in future climate (through the use of the surrogate mixed model ensemble, or SMME) and statistical uncertainty in the econometric model through Monte Carlo simulation.  
     * Note: this step is exceptionally computationally intensive and relies upon a separate repository for projecting climate change impacts. See `impact-calculations` **(add link to the projection system when public)** for documentation on Climate Impact Lab's projection system.
-4. **Valuation** - Various assumptions regarding the Value of Statistical Life (VSL) are applied to projected impacts on mortality risk, yielding a set of economic damage estimates for all years 2020-2100 in constant 2019 dollars purchasing power parity (PPP).
-5. **Damage Function** - Empirical “damage functions” are estimated by relating monetized damages to Global Mean Surface Temperature (GMST) anomalies from the surrogate mixed model ensemble (SMME).
-6. **SCC** - Damage functions are used in combination with the simple climate model FAIR to calculate the net present value of future damages associated with an additional ton of carbon dioxide in 2020, which represents a morality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs).
+4. **Valuation** - Various assumptions regarding the Value of Statistical Life (VSL) are applied to projected impacts on mortality risk, yielding a set of economic damage estimates for all years 2020-2100 in constant 2019 dollars purchasing power parity (PPP). Valuation is performed for all Monte Carlo simulation estimates constructed in Step 3.
+5. **Damage Function** - Empirical “damage functions” are estimated by relating monetized damages from all Monte Carlo simulations to corresponding Global Mean Surface Temperature (GMST) anomalies from the surrogate mixed model ensemble (SMME).
+6. **SCC** - Damage functions are used in combination with the simple climate model FAIR to calculate the net present value of future damages associated with an additional ton of carbon dioxide in 2020, which represents a mortality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs) and Shared Socioeconomic Pathways (SSPs).
     * Note: as in Step 3, the code used to produce SCC output lives in a separate repository because it is a computationally complex process that is highly generalizable across Climate Impact Lab sectors. See `pFAIR` **(add link to pFAIR when public)** for more information.
 
 ## Folders
