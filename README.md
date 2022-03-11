@@ -29,11 +29,8 @@ The folders in this repository are broadly consistent with the steps outlined ab
 
 `4_damage_function` - Code for estimating empirical damage functions based upon monetized damages and GMST anomalies.
 
-`5_scc` - Code (or documentation) outlining the SCC calculation, which relies upon mortality damage functions.
+`5_scc` - Code for applying a CO2 pulse from the FAIR model to global damage functions, and summing damages over time to calculate SCCs.
 
-`data` - Default directory for input data required to generate outputs.
-
-`output` - Default directory for tables, figures, and other outputs produced by codes in this analysis.
 
 For run instructions on each step of the analysis, refer to the README files located within the corresponding directories.
 
@@ -57,7 +54,7 @@ git clone https://github.com/ClimateImpactLab/carleton_mortality_2022.git
 
 ```
 cd <yourREPO>/carleton_mortality_2022
-conda env create -f mortalityverse.yaml
+conda env create -f mortalityverse.yml
 ```
 
 Try activating the environment:
@@ -77,7 +74,7 @@ conda install -c conda-forge jupyterlab
 3. Download data from `add_link_here` and unzip it somewhere on your machine with ** XX GB+** space. Let's call this location `yourDATA`.
 
 
-4. Set up a few environmental variables so that all the code runs smoothly.
+4. Set up a few environment variables so that all the code runs smoothly.
 
 On Mac, you can do this by appending the following lines to your `~/.bash_profile`.
 
@@ -103,4 +100,4 @@ On Windows.....
 
 **(do we any description of how to install/run stata)** 
 
-5. Setup for the whole repo is complete! Please follow the `README`s in each subdirectory to run each part of the analysis. In general, each directory will come with a `.sh` bash script which you can use `./path_to_bash_script.sh` to run scripts in that subdirectory. If you encounter the permission denied error, use `chmod +x path_to_bash_script.sh` to make it runnable.
+5. Setup for the whole repo is complete! Please follow the `README`s in each subdirectory to run each part of the analysis. In general, each directory will contain one or more staging files where individual analysis or output producing scripts can be run from in one go. Before running, it is recommended that users review and set the TRUE/FALSE toggles to produce the desired set of outputs. More detail is available in the section READMEs. 
