@@ -83,7 +83,7 @@ local x_int = 10
 *************************************************************************
 
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
 
 
 * generate dummy for if obs is pre or post 2005
