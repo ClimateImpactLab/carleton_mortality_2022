@@ -91,7 +91,7 @@ get_mortality_impacts = function(
 
         if (units != 'levels' | resolution != 'aggregated') {
             # Extract projection output from CSVs.
-            dflist[[resolution]] = read.csv(glue('{input_dir}/{rcp}/{iam}/{ssp}/',
+            dflist[[resolution]] = memo.csv(glue('{input_dir}/{rcp}/{iam}/{ssp}/',
             '{rcp}-{ssp}-{age}-{scn}-{iam}-{resolution}-{units}-{extract}.csv'))[
                 # Subset regions/years.
                 year %in% year_list &
@@ -103,7 +103,7 @@ get_mortality_impacts = function(
             # Manually aggregate levels files.
             aggregates = get_children(resolution_list[['aggregated']])
             for (reg in names(aggregates)) {
-                dflist[[reg]] = read.csv(glue('{input_dir}/{rcp}/{iam}/{ssp}/',
+                dflist[[reg]] = memo.csv(glue('{input_dir}/{rcp}/{iam}/{ssp}/',
                 '{rcp}-{ssp}-{age}-{scn}-{iam}-ir_level-{units}-{extract}.csv'))[
                     # Subset regions/years.
                     year %in% year_list &
@@ -340,7 +340,7 @@ get_mortality_covariates = function(
     resolution_list = check_resolution(region_list)
 
     # Open input file
-    df = read.csv(glue('{single_path}/mortality-allpreds.csv')) %>%
+    df = memo.csv(glue('{single_path}/mortality-allpreds.csv')) %>%
         dplyr::filter(
             model=='Agespec_interaction_GMFD_POLY-4_TINV_CYA_NW_w1-young',
             year %in% year_list) %>%

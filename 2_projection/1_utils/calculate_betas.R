@@ -61,7 +61,7 @@ calculate.beta = function(
     inc_adapt=F) {
 
     #load minimum ref temp 
-    ref_temperatures = read.csv(glue("{MMTdir}/",
+    ref_temperatures = memo.csv(glue("{MMTdir}/",
         "Agespec_interaction_GMFD_POLY-4_TINV_CYA_NW_w1-{age}-polymins.csv"), 
         stringsAsFactors = F)
 
@@ -77,7 +77,7 @@ calculate.beta = function(
 
     #load covariates
     filt=glue('Agespec_interaction_GMFD_POLY-4_TINV_CYA_NW_w1-{age}')
-    betas = read.csv(glue('{cov_path}/mortality-allpreds.csv')) %>%
+    betas = memo.csv(glue('{cov_path}/mortality-allpreds.csv')) %>%
         dplyr::filter(
             model==filt,
             year %in% yearlist)

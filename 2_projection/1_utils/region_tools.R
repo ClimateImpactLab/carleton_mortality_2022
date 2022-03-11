@@ -13,7 +13,7 @@ check_resolution = function(region_list) {
 
     out = list()
 
-    check = read.csv(glue('{DB}/2_projection/1_regions/hierarchy.csv')) %>%
+    check = memo.csv(glue('{DB}/2_projection/1_regions/hierarchy.csv')) %>%
         data.frame()
 
     list = check %>%
@@ -43,7 +43,7 @@ check_resolution = function(region_list) {
 #' @return List of IRs or region codes.
 return_region_list = function(regions) {
 
-    check = read.csv(glue('{DB}/2_projection/1_regions/hierarchy.csv')) %>%
+    check = memo.csv(glue('{DB}/2_projection/1_regions/hierarchy.csv')) %>%
         data.frame()
 
     list = check %>%
@@ -75,7 +75,7 @@ return_region_list = function(regions) {
 #' @return List of IRs associated with each aggregated region.
 get_children = function(region_list) {
 
-    check = read.csv(glue('{DB}/2_projection/1_regions/hierarchy.csv')) %>%
+    check = memo.csv(glue('{DB}/2_projection/1_regions/hierarchy.csv')) %>%
         data.frame()
 
     list = dplyr::filter(check, region.key %in% region_list)$region.key
