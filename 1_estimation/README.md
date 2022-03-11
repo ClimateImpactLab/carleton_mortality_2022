@@ -1,5 +1,7 @@
 ## Run Instructions
 
+These scripts use the historical mortality and climate dataset compiled in the `0_data_cleaning` subfolder of this repository to: (i) estimate regression analyses recovering empirical mortality-temperature relationships; (ii) produce plots describing these regression results; (iii) conduct a set of cross-validation exercises to investigate the out-of-sample performance of the main estimated regression model. 
+
 ### 1. Set directory paths.
 As outlined in `0_data_cleaning`, codes in this directory rely on the `REPO`, `DB`, and `OUTPUT` variables to be defined in your `~/.bash_profile`. Other directories, such as those that store `.ster` and log files, are set in the `0_data_cleaning/1_utils_set_paths.do` file, which is run at the top of every script. The user is not required to change anything in this file, but can override path locations if desired. See the header documentation in that script and the README in `0_data_cleaning` for more information.
 
@@ -17,22 +19,19 @@ If however, you do decide to run the regression generation scripts, they will be
 
 The user may also estimate the alternative regression models discussed in Appendix D including:
 
-2. The age-combined temperature-mortality response function using pooled subnational data.
-3. The age-specific temperature-mortality relationships for the three age groups, <5, 5-64, >64. 
-4. Estimates a series of robustness models that appear in the Carleton et al. (2022) appendix:
-    * Models using heating degree days and cooling degree days as alternative measure of weather exposure
-    * Models under alternative functional forms (e.g., binned, cubic/linear splines) and climate data sources (BEST/UDEL)
-    * Models accounting for heterogeneity in country level measures of institutions
-    * A model omitting precipitation controls
+2. The age-combined mortality-temperature relationship using pooled subnational data across all age groups (Appendix D.2)
+3. A series of robustness models that appear in the Carleton et al. (2022) Appendix:
+    * Models using heating degree days and cooling degree days as alternative measure of weather exposure (Appendix D.4)
+    * Models under alternative functional forms (e.g., binned, cubic/linear splines) and climate data sources (BEST/UDEL) (Appendix D.2)
+    * Models accounting for additional sources of heterogeneity, including institutions, educational attainment, health services, and labor force informality (Appendix D.6)
+    * A model omitting precipitation controls (Appendix D.5)
 
 Additionally, the user may generate:
 
-5. Summary statistics on historical mortality and climate and that produce Table 1 in Carleton et al. (2022).
-6. Cross validation exercises that appear in Appendix D in Carleton et al. (2022).
+4. Summary statistics on historical mortality and climate and that produce Table I 
+5. Cross-validation exercises that appear in Appendix D 
 
 See the header of `estimate.do`for further instructions on running some or all portions of the `1_estimation` process.
-
-
 
 ## Folder Structure
 
@@ -40,8 +39,8 @@ See the header of `estimate.do`for further instructions on running some or all p
 
 `1_utils`- Contains script which prepares the final dataset for regressions.
 
-`2_summary_statistics`- Generates summary statistics on historical mortality and climate (Table I) for Carleton et al. (2022)
+`2_summary_statistics`- Generates summary statistics on historical mortality and climate (Table I). 
 
-`3_regressions` - Contains sub-directories for all regression models estimated in the analysis. Details on the regressions in Carleton et al. (2022) are provided in this folder's README.
+`3_regressions` - Contains sub-directories for all regression models estimated in the analysis. Details on the regressions in Carleton et al. (2022) are provided in the sub-directory's README.
 
-`4_crossval` - Contains the scripts that perform the regrssion crossvalidation exercises that are described in Appendix D in Carleton et al. (2022). 
+`4_crossval` - Contains the scripts that perform the regression cross-validation exercises that are described in Appendix D. 
