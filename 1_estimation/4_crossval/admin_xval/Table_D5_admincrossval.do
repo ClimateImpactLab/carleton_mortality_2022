@@ -9,10 +9,10 @@ global OUTPUT: env OUTPUT
 do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
 
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
 
 * Get crossval function.
-do "$REPO/mortality/1_estimation/1_utils/crossval_function.do"
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/crossval_function.do"
 
 set rmsg on
 cap log close
