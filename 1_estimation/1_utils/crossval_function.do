@@ -2,13 +2,12 @@
 *** LEAVE-ONE-OUT CROSS VALIDATION v.1.0.2
 ********************************************************************************
 
-* Authors: Manuel Barron, Lau Alcocer, Zaya Delgerjagal
+/* Function that randomly divides sample into 10 nearly equally sized ADM1 groups,
+   and randomly leaves one out to run a regression with the other 9. Then, it predicts
+   Y for that group out of sample. 
 
-* Last edited by: Kit Schwarz, csschwarz@uchicago.edu
-* Date edited: 2020.10.26
-* Change: Copied agriculture leave-one-out crossval to the mortality code repo.
-* Identical as of commit 2ebc0031 on agriculture@cov-xval, except for the
-* slight modification that saves the file after crossval is completed.
+   In order to interpret the RMSE, the data must be residualized
+ */ 
 
 cap prog drop adminfoldcrossval
 prog def adminfoldcrossval, rclass
@@ -71,7 +70,7 @@ syntax anything [aweight fweight iweight pweight/] [if] [in] using/, [cc(varname
 
 			mat rownames `results' = "Total" `adminlist'
 
-			mat colnames `results' = "RMSE" "MAE" "Rho2" "R2"
+			mat colnames `results' = "RMSE" 
 			// loop over countries, regress without that country, store in that country.
 			di " "
 			di "################## STARTING TO CROSS VALIDATE #####################"
@@ -118,58 +117,6 @@ syntax anything [aweight fweight iweight pweight/] [if] [in] using/, [cc(varname
 
 			}
 
-			* MAE
-			g `absdiff' = abs(diff)
-			sum `absdiff' `eweight'
-			scalar cv2 = r(mean)
-			return scalar mae = cv2
-			mat `results'[1,2] = cv2
-
-
-			foreach admin in `adminlist' {
-				di "`admin'"
-				loc ii = rownumb(`results',"`admin'")
-				sum `absdiff' `eweight' if kfold == "`admin'"
-				scalar cv2`admin' = r(mean)
-				mat `results'[`ii',2]  = cv2`admin'
-
-			}
-
-			* Rho^2 (Squared correlation coefficient)
-			qui corr Yhat `depvar'
-			scalar cv3  = r(rho)^2
-			return scalar rho2 = cv3
-			mat `results'[1,3] =  cv3
-
-			foreach admin in `adminlist' {
-				di "`admin'"
-				loc ii = rownumb(`results',"`admin'")
-				qui corr Yhat `depvar' if kfold == "`admin'"
-				scalar cv3`admin'  = r(rho)^2
-				mat `results'[`ii',3]  = cv3`admin'
-			}
-
-			* Pseudo R^2 (1-SSR/SST)
-			sum `depvar' 
-			scalar den = r(Var)
-			sum `sqdiff' `eweight'
-			scalar nummse = r(mean)     
-			scalar cv4 = 1 - nummse/den
-			return scalar r2 = cv4
-			mat `results'[1,4] = cv4  
-
-			foreach admin in `adminlist' {
-				di "`admin'"
-				loc ii = rownumb(`results',"`admin'")
-				sum `depvar' if kfold == "`admin'" 
-		    	scalar den`admin' = r(Var)
-		    	sum `sqdiff' `eweight' if kfold == "`admin'"
-		    	scalar nummse`admin' = r(mean)     
-		    	scalar cv4`admin' = 1 - ( nummse`admin' / den`admin' )
-				mat `results'[`ii',4]  = cv4`admin'
-			}					
-			
-			return matrix loocv = `results'
 			
 		restore
 	*}
@@ -180,9 +127,6 @@ syntax anything [aweight fweight iweight pweight/] [if] [in] using/, [cc(varname
 	di as text "         Method          {c |}" _col(30) " Value"
 	di as text "{hline 25}{c +}{hline 15}"	
 	display as text "Root Mean Squared Errors {c |}" _col(30) as result cv1
-	display as text "Mean Absolute Errors     {c |}" _col(30) as result cv2
-	display as text "Rho2               {c |} " _col(30) as result cv3
-	display as text "R2			  {c |}" _col(30) as result cv4
 	di as text "{hline 25}{c BT}{hline 15}"	
 		
 	

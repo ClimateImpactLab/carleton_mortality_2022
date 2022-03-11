@@ -3,7 +3,7 @@
 Purpose: Master Do file for 0_data_cleaning.
 
 This script manages the initial cleaning and merging of mortality, climate and
-income data for Carleton et al. 2019.
+income data for Carleton et al. 2022.
 
 This script assumes that the raw climate, mortality, and income data are
 downloaded from the online data repository and that directories are properly set
@@ -35,11 +35,13 @@ The toggles below control which portions of the cleaning process is run.
 * 							PART A. Initializing						*			
 *************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 // Toggles:
 local clean_climate 0

@@ -1,8 +1,9 @@
 /*
 
 Purpose: Estimates the temperature-mortality response function with
-demographic and subnational heterogeneity. Uses secondary schhool completion rate
-as an additional covariate to proxy for educational institutions.
+demographic and subnational heterogeneity. Uses secondary school completion rate
+variable - temperature interaction to test robustness to heterogeneity in 
+education institutions to temperature-mortality response
 
 Inputs
 ------
@@ -60,11 +61,13 @@ by default.
 *                       PART A. Initializing                                *
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local ster "$ster_dir/diagnostic_specs"
 

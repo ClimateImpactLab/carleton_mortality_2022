@@ -1,11 +1,12 @@
 /*=======================================================================
 
-Creator: Greg Dobbels, gdobbels@uchicago.edu
-
 Purpose: 
 	1) Imports and cleans USA mortality data
 	2) Merges income data
 	3) Merges climate data
+
+Note: This file is not run in the clean.do public release version due to 
+the mortality data not being publically available
 
 ==========================================================================*/
 
@@ -14,11 +15,13 @@ Purpose:
 * 						PART A. Initializing		 					*
 *****************************************************************************
 
-/* global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do" */
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local USA_raw "$cntry_dir/USA"
 local outdir "$data_dir/2_cleaned"

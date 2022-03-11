@@ -1,6 +1,7 @@
 /*
 
-Purpose: Plot the preferred age specific non interacted response estimates for main text paper. With some aesthetics alternatives. 
+Purpose: Plot the preferred age specific non interacted response functions
+along with the age-pooled prefered model. This is Figure D3 in the Appendix
 
 Inputs
 ------
@@ -21,11 +22,13 @@ Outputs
 * 						PART 1. Initializing		 						*
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local ster "$ster_dir"
 local output_dir "$OUTPUT/figures/Figure_D3"

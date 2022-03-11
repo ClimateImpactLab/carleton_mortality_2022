@@ -1,6 +1,11 @@
 /*
 
-Purpose: Merge in WDI Doctors per Capita data.
+Purpose: Merge in WDI Doctors per Capita data
+to be used in model robustness checks as described in Appendix D6.
+
+Data is from World Bank WDI 2020 panel which can be found here:
+https://datacatalog.worldbank.org/dataset/world-development-indicators
+The variable is: SH_MED_PHYS_ZS and label is: Physicians (per 1,000 people)
 
 Call this code for any health model regressions or plotting, right after running prep_data.do
 
@@ -10,10 +15,6 @@ Inputs
 
 - `0_data_cleaning/2_cleaned/institutional_covariates/wdi_docs_pc.dta` - file containing ADM0 level
 WDI Doctors per Capita (docpc) variable for countries in the sample 
-
-Data is from World Bank WDI 2020 panel which can be found here:
-https://datacatalog.worldbank.org/dataset/world-development-indicators
-The variable is: SH_MED_PHYS_ZS and label is: Physicians (per 1,000 people)
 
 */
 

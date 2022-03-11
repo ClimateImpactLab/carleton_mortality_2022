@@ -1,6 +1,11 @@
 /*
 
-Purpose: Merge in World Inequality Database (WID) pre-tax income GINI coefficient data.
+Purpose: Merge in World Inequality Database (WID) pre-tax income GINI coefficient data
+to be used in model robustness checks as described in Appendix D6
+
+Data from WID can be downloaded here: https://wid.world/data/
+The Variable is: gptinc_992_j_*iso*
+and the description is: Total population | Gini coefficient | adults | equal split | Pre-tax national income
 
 Call this code for any informality model regressions or plotting, right after running prep_data.do
 
@@ -10,10 +15,6 @@ Inputs
 
 - `0_data_cleaning/2_cleaned/institutional_covariates/WDI_selfemp.dta` - file containing ADM0 level
 Gini Coefficient (gini) variable for countries in the sample 
-
-Data from WID can be downloaded here: https://wid.world/data/
-The Variable is: gptinc_992_j_*iso*
-and the description is: Total population | Gini coefficient | adults | equal split | Pre-tax national income
 
 
 Notes

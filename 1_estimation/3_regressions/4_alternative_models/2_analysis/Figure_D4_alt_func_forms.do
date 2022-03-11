@@ -18,11 +18,13 @@ set varabbrev on
 * 						PART 0. Initializing		 					*
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local model "pooled_age_spec_no_interaction"
 local OUTPUT "$output_dir/figures/Figure_D4"
@@ -46,7 +48,7 @@ tset id_lag year
 tempfile MORTALITY_TEMP
 save "`MORTALITY_TEMP'", replace
 
-//locals to match Jingyuan spec names
+//locals to match spec names
 local CY_NewPW "spec1"
 local CYA_NewPW "spec2"
 local CYA_A1LT_NewPW "spec3"

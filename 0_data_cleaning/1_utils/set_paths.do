@@ -3,20 +3,16 @@
 Purpose: Initializes relative paths for carrying out dataset construction
 and econometric model estimation.
 
-By default, codes in this directory rely on `cilpath` installation for Stata. 
-(See master README for installation instructions.) However, users can alternatively  
-specify paths in this script if cilpath is not installed.
 
-cilpath creates three global variables in your Stata session:
-`DB` - Directory of all input data to the analysis.
-`REPO` - Directory containing this repository (e.g., /User/MGreenstone/repositories).
+`DB` - (Database) Directory of all input data to the analysis.
+`REPO` - (Repository) Directory containing this repository (e.g., /User/MGreenstone/repositories).
 `OUTPUT` - Directory of all output from the analysis.
 
 This script automatically installs user-created Stata packages if needed, including
 any packages written by the Climate Impact Lab team and contained within this repo.
 
 Finally, this script sets the `ISO` global, which controls which countries are included in
-dataset construction and model estimation. Note that for data privacy reasons, the 
+dataset construction and model estimation. Note that to comply with data use agreements, the 
 released versions of code and data do not include USA and China.
 
 */
@@ -35,6 +31,10 @@ quietly {
 	// following global variables.
 	// The folder structures at the data directory must be consistent with that downloaded
 	// from the online data repository (see "Downloading the Data" in the master README).
+
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
     noisily di "Initializing Mortality Sector..."
 

@@ -1,6 +1,7 @@
 /*
-Purpose: Estimates an alternative model of the main regression specification -
-- Excluding precipitation-age interactions from the fixed effects
+Purpose: Estimates an alternative model of the main age spec interacted regression
+specification excluding precipitation-age interactions variables for diagnostic
+purposes. Regression results produce Figure D7.
 
 Inputs
 ------
@@ -29,11 +30,13 @@ Summary of models:
 *                       PART 1. Initializing                                *
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local ster "$ster_dir/diagnostic_specs"
 

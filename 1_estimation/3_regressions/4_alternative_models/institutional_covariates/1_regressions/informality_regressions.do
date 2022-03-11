@@ -2,7 +2,8 @@
 
 Purpose: Estimates the temperature-mortality response function with
 demographic and subnational heterogeneity. Uses self employed % of labor force
-as an additional covariate to proxy for educational institutions.
+variable - temperature interaction to test robustness to heterogeneity in 
+the informal economy to temperature-mortality response
 
 Inputs
 ------
@@ -57,11 +58,13 @@ by default.
 *****************************************************************************
 
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local ster "$ster_dir/diagnostic_specs"
 

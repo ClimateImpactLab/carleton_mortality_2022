@@ -1,7 +1,18 @@
 /*
 
-Purpose: Estimates the temperature-mortality response function with
-demographic and subnational heterogeneity (Figure 2).
+Purpose: Estimates age specific temperature-mortality response function with
+termperature-income and temperature-LR climate interaction terms. 
+
+The `Agespec_interaction_response` file is the main regression that is discussed
+in Carleton et al 2022, and is carried through to the projection system 
+and beyond:
+
+*2. 4th-order polynomial OLS (Age x ADM2) & (AGE x Country x Year) FE
+
+
+Notes: In this public release, the `_public` suffix is added on to signify
+that the regressions would be run on the publically available mortality 
+sample, which excludes USA and China.
 
 Inputs
 ------
@@ -56,11 +67,13 @@ regressions for other specifications, modify the `altspec` toggle below from
 * 						PART 1. Initializing		 						*
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local ster "$ster_dir/age_spec_interacted"
 
@@ -84,7 +97,7 @@ reghdfe deathrate_w99 c.tavg_poly_1_GMFD#i.agegroup c.tavg_poly_2_GMFD#i.agegrou
 		, absorb( adm0_agegrp_code##c.prcp_poly_1_GMFD  adm0_agegrp_code##c.prcp_poly_2_GMFD ///
 				  i.adm2_code#i.CHN_ts#i.agegroup  i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-estimates save "`ster'/Agespec_interaction_response_public.ster", replace
+estimates save "`ster'/Agespec_interaction_response_public.ster", replace 
 
 
 if (`altspec') {

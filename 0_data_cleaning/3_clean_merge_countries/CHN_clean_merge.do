@@ -1,5 +1,4 @@
 /*=======================================================================
-Creator: Jingyuan Wang
 
 Purpose: 
 	1) Imports and cleans mortality data
@@ -12,17 +11,22 @@ Purpose:
 		4.2) Appendix B: income data
 		4.3) Appendix C: area
 
+Note: This file is not run in the clean.do public release version due to 
+the mortality data not being publically available
+
 ==========================================================================*/
 
 *****************************************************************************
 * 						PART 0. Initializing		 					*
 *****************************************************************************
 
-/* global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do" */
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local CHN_raw "$cntry_dir/CHN"
 local outdir "$data_dir/2_cleaned"

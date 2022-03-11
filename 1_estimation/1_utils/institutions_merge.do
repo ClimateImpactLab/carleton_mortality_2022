@@ -1,16 +1,19 @@
 /*
 
-Purpose: Merges in Polity2 and Democ data to be used in later regression files.
-Run immediately after prepping data with `prep_data.do`
+Purpose: Merges in Polity2 and Democ data to be used in later regression scripts
+to be used in model robustness checks as described in Appendix D6
+
+Data from Polity 2 can be found here: https://www.systemicpeace.org/inscrdata.html
+
+Data from Democ can be found here: https://ourworldindata.org/democracy
+
+Call this code for any institutions model regressions or plotting, right after running prep_data.do
 
 Inputs
 ------
 
 - `0_data_cleaning/2_cleaned/institutional_covariates/inst_qlt.dta` - final institutional quality data
 
-Data from Polity 2 can be found here: https://www.systemicpeace.org/inscrdata.html
-
-Data from Democ can be found here: https://ourworldindata.org/democracy
 
 */
 

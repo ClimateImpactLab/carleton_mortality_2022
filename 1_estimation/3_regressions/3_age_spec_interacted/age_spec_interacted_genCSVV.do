@@ -4,6 +4,10 @@ Purpose: Converts ster file into response function configuration file for the
 Climate Impact Lab projection system. Commonly referred to in documentation as a
 "CSVV".
 
+The CSVV generated is for the main age-spec interacted model (Spec 2), that is 
+the one that is carried through to the projection system/through the rest of 
+the paper. 
+
 Inputs
 ------
 
@@ -39,11 +43,13 @@ CSVVs for the other specifications, specify the ster file in Part 1 below.
 * 						PART 0. Initializing		 						*
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 local ster "$ster_dir/age_spec_interacted"
 local output "$csvv_dir"

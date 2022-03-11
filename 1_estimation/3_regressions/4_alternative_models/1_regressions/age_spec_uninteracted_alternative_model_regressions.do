@@ -1,7 +1,17 @@
 /*
 
-Purpose: run age specific uninteracted models using temperature data from two different climate datasets (GMFD and BEST) as a robustness check. 
-There is already an almost identical code doing this but with covariate interaction. 
+Purpose: Generate alternative age specific regression sters displayed
+in Fig D4. The alternative functional forms being estimated are:
+
+1) Fourth order polynomial (main)
+2) Binned - annual values are calculated as the number of days that have an 
+   average temperature that falls within a fixed set of 5 degree bins
+3) Restricted cubic spline specification
+4) Linear spline specification
+
+Each of these are estimated both using GMFD temperatures (main) as well as 
+Berkeley Earth Surface Temperature (BEST), and monthly precipitation from 
+University of Delaware 
 
 */
 
@@ -9,18 +19,23 @@ There is already an almost identical code doing this but with covariate interact
 *****************************************************************************
 * 						PART 0. Initializing		 					*
 *****************************************************************************
-	
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
+
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
+
 
 local ster "$ster_dir/diagnostic_specs"
 
+do "0_data_cleaning/1_utils/set_paths.do"
+
 * Prepare data for regressions.
 do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
-
 
 *****************************************************************************
 * 						PART 1. OLS Regressions                 		    *
@@ -60,7 +75,7 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_poly4_`temp'_public", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_poly4_`temp'", replace
 
 	//Cubic Spline
 	reghdfe deathrate_w99 c.tavg_rcspline_term0_`temp'#i.agegroup c.tavg_rcspline_term1_`temp'#i.agegroup c.tavg_rcspline_term2_`temp'#i.agegroup ///
@@ -69,7 +84,7 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_cspline_`temp'_public", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_cspline_`temp'", replace
 
 	//Linear Spline
 	reghdfe deathrate_w99 c.tavg_cdd_25C_`temp'#i.agegroup c.tavg_hdd_0C_`temp'#i.agegroup ///
@@ -77,7 +92,7 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_lspline_`temp'_public", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_lspline_`temp'", replace
 
 	//Bins
 	reghdfe deathrate_w99 c.tavg_bins_nInfC_n13C_`temp'#i.agegroup c.tavg_bins_n13C_n8C_`temp'#i.agegroup c.tavg_bins_n8C_n3C_`temp'#i.agegroup ///
@@ -87,5 +102,5 @@ foreach temp in "GMFD" "BEST" {
 		, absorb(adm0_code##c.prcp_poly_1_`temp' adm0_code##c.prcp_poly_2_`temp' ///
 				i.adm2_code#i.CHN_ts#i.agegroup i.adm0_code#i.year#i.agegroup ) ///
 		cluster(adm1_code)
-	estimates save "`ster'/pooled_age_spec_no_interaction_bins_`temp'_public", replace
+	estimates save "`ster'/pooled_age_spec_no_interaction_bins_`temp'", replace
 }

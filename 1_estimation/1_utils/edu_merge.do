@@ -1,16 +1,7 @@
 /*
 
-Purpose: Merges in cleaned Secondary School Completion rate data from OECD/WDI combined file.
-
-
-Call this code for any edu model regressions or plotting, right after running prep_data.do
-
-
-Inputs
--------
-
-- `0_data_cleaning/2_cleaned/institutional_covariates/hsgrad_data_trimmed.dta` - file containing ADM0 level
-hsgrad variable for countries in the mortality sample. 
+Purpose: Merges in cleaned Secondary School Completion rate data from OECD/WDI combined file
+to be used in model robustness checks as described in Appendix D6.
 
 Data from World Bank WDI 2020 panel can be found here:
 https://datacatalog.worldbank.org/dataset/world-development-indicators
@@ -20,6 +11,15 @@ Data from OECD "Education at a Glance 2020 Report" can be found here:
 https://data.oecd.org/eduatt/adult-education-level.htm
 The indicator-subject-measure combination is: EDUADULT - BUPPSRY - PC_25_64
 and the label is: "Adult education level, Upper secondary, % of 25-64 year-olds"
+
+Call this code for any edu model regressions or plotting, right after running prep_data.do
+
+
+Inputs
+-------
+
+- `0_data_cleaning/2_cleaned/institutional_covariates/hsgrad_data_trimmed.dta` - file containing ADM0 level
+hsgrad variable for countries in the mortality sample. 
 
 
 Notes

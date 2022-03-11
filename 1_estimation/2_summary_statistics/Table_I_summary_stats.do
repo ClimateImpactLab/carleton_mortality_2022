@@ -1,9 +1,5 @@
 /*
 
-Creator: Jingyuan Wang, jingyuanwang@uchicago.edu
-
-Date last modified: 7/6/19
-Last modified by: Dylan Hogan, dylanhogan@gmail.com
 
 Purpose: Generates Table I in Carleton et al, 2022 - summary statistics table,
 historical mortality & climate data.
@@ -29,11 +25,13 @@ Outputs
 * 							PART 0. Initializing		 					*
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 *****************************************************************************
 * 						PART 1. Generate variables for stats			    *

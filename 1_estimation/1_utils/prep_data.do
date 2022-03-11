@@ -7,13 +7,13 @@ This script is run at the top of each regression script in order to:
 
 1. Subset the final dataset to the observations relevant for running 
 regressions, e.g., years beyond 2010 for which we don't have climate data or
-observations which represent the total across age groups.
+observations where data does not exist for each of the 3 age groups.
 
 2. Construct final deathrate measure, which is 1% winsorized within each
 country-agegroup.
 
 3. Construct ADM unit IDs and other variables required for assigning fixed
-effect.
+effects.
 
 Note: `CHN_ts' is an additional dummy variable representing two segments of
 the China time series that originate from different sources. We interact this

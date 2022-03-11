@@ -7,9 +7,9 @@ library(glue)
 #  the folder structures at the data directory must be consistent with that downloaded
 #  from the online data repository (see "Downloading the Data" in the master README).
 
-REPO 		<- "~/repos"
-DB 			<- "/shares/gcp/estimation/mortality/release_2020/data"
-OUTPUT 		<- "/shares/gcp/estimation/mortality/release_2020/output"
+REPO <- Sys.getenv(c("REPO"))
+DB <- Sys.getenv(c("DB"))
+OUTPUT <- Sys.getenv(c("OUTPUT"))
 
 message("Initializing Mortality Sector...")
 
