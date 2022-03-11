@@ -150,9 +150,9 @@ quietly {
 	}
 	*
 
-	graph combine "`output'/gph/RF_agegrp1.gph" ///
-					"`output'/gph/RF_agegrp2.gph" ///
-					"`output'/gph/RF_agegrp3.gph" ///
+	graph combine "`output'/gph/RF_comparemodels_35C_agegrp1.gph" ///
+					"`output'/gph/RF_comparemodels_35C_agegrp2.gph" ///
+					"`output'/gph/RF_comparemodels_35C_agegrp3.gph" ///
 					, ///
 		title("Responses at 35C (relative to 20C)", size(medsmall)) ///
 		iscale(* .8) rows(1)  ysize(5) xsize(12)  ///

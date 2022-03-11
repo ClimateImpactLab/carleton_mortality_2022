@@ -7,9 +7,9 @@ Inputs
 ------
 
 - `data/1_estimation/1_ster/age_spec`
-	- `Agespec_response_spec*.ster` where * is model 1 through 5. Ster files
-	containing uninteracted, age-stacked regressuion results under various
-	fixed effects, estimation, and data construction assumptions.
+	- `Agespec_response_spec*.ster` where * is model 1 through 5.
+	Ster files containing uninteracted, age-stacked regressuion results under
+	various fixed effects, estimation, and data construction assumptions.
 
 Outputs
 -------
@@ -54,7 +54,7 @@ local num_spec = 5
 * 						PART 1. Calculate Marginal Effect     			    *
 *****************************************************************************
 
-* I. calculate margianl effect of the 1st-5th specification (with consistent variable names)
+* I. calculate marginal effect of the 1st-5th specification (with consistent variable names)
 local max = min(4, `num_spec')
 forvalues j = 1(1)`max' {
 
