@@ -1,10 +1,14 @@
 ## Run Instructions
 
 ### 1. Set directory paths.
-As outlined in `0_data_cleaning`, codes in this directory rely on the `REPO`, `DB`, and `OUTPUT` variables to be defined in your `~/.bash_profile`. Other directories, such as those that store Stata ster and log files, are set in the `0_data_cleaning/1_utils_set_paths.do` file, which is run at the top of every script. The user is not required to change anything in this file, but can override path locations if desired. See the header documentation in that script and the README in `0_data_cleaning` for more information.
+As outlined in `0_data_cleaning`, codes in this directory rely on the `REPO`, `DB`, and `OUTPUT` variables to be defined in your `~/.bash_profile`. Other directories, such as those that store `.ster` and log files, are set in the `0_data_cleaning/1_utils_set_paths.do` file, which is run at the top of every script. The user is not required to change anything in this file, but can override path locations if desired. See the header documentation in that script and the README in `0_data_cleaning` for more information.
 
 ### 2. Construct final dataset.
-All code in this folder depends on the final mortality dataset (`data/0_data_cleaning/3_final/global_mortality_panel.dta`), which can be compiled using code in the `0_data_cleaning` subfolder of this repository or downloaded from the data repository.
+All code in this folder depends on the final mortality dataset (`data/0_data_cleaning/3_final/global_mortality_panel.dta`), which can be compiled using code in the `0_data_cleaning` subfolder of this repository or downloaded from the data repository. Note that mortality and population data from the United States and China are not publicly available. As such, they are not included in the public data repository and cannot be used to replicate exact versions of the pre-projection tables and figures from the analysis contained in `1_estimation` without the use of hardcoding certain values in the script. 
+
+However, regression output run on the full dataset are stored as `.ster` files in `DB/1_estimation/1_ster`. These regression results feed into the Monte Carlo generation described in `2_projection`, so beyond this section results generated using this public repo will match those in Carleton et al. (2022).
+
+If however, you do decide to run the regression generation scripts, they will be saved with the suffix `_public` so that they can be differentiated from the full sample regression `ster` files. 
 
 ### 3. Toggle desired outputs and run master do file, `estimate.do`.
 `estimate.do` is the master script for this step of the analysis, relying upon code within the subfolders of `1_estimation` to produce tables and figures related to the estimation of the temperature-mortality relationship. Following Carleton et al. (2022), the master script does the folowing:
