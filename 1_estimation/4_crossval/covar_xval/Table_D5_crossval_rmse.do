@@ -44,7 +44,7 @@ global OUTPUT: env OUTPUT
 do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
 
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
 
 set rmsg on
 //cap log close
@@ -66,7 +66,7 @@ file write resultcsv "Omitted ADM1s, Observations, 2010 Pop Share, 2100 Pop Shar
 
 
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
 
 * merge in residualized series 
 merge 1:1 adm2_code year agegroup using "`data'/residualized_series.dta"
