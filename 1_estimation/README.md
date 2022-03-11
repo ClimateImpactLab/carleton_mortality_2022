@@ -1,6 +1,6 @@
 ## Run Instructions
 
-These scripts use the historical mortality and climate dataset compiled in the `0_data_cleaning` subfolder of this repository to: (i) estimate regression analyses recovering empirical mortality-temperature relationships; (ii) produce plots describing these regression results; (iii) conduct a set of cross-validation exercises to investigate the out-of-sample performance of the main estimated regression model. 
+These scripts use the historical mortality and climate dataset compiled in the `0_data_cleaning` to: (i) estimate regression analyses recovering empirical mortality-temperature relationships; (ii) produce plots describing these regression results; (iii) conduct a set of cross-validation exercises to investigate the out-of-sample performance of the main estimated regression model. 
 
 ### 1. Set directory paths.
 As outlined in `0_data_cleaning`, codes in this directory rely on the `REPO`, `DB`, and `OUTPUT` variables to be defined in your `~/.bash_profile`. Other directories, such as those that store `.ster` and log files, are set in the `0_data_cleaning/1_utils_set_paths.do` file, which is run at the top of every script. The user is not required to change anything in this file, but can override path locations if desired. See the header documentation in that script and the README in `0_data_cleaning` for more information.
