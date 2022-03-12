@@ -1,5 +1,5 @@
-# Purpose: Generates Panel A of Figure 1 in the Carleont et al. (2019), 
-# which shows the insample data coverage of mortality's estimation sample.
+# Purpose: Generates Figure B1 in Carleton et al. (2022), 
+# which shows the geographic and temporal coverage of subnational mortality records used throughout the analysis. 
 
 INSAMPLE_DAT_OUTPUT = glue('{OUTPUT}/2_projection/figures/Figure_B1_data_coverage')
 
