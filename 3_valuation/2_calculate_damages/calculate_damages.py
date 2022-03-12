@@ -1,7 +1,7 @@
 '''
 bundle of tools to convert mortality death-impacts into dollar impacts (i.e damages), i.e to do mortality valuation. 
 
-Essentially the idea is to multiply the number of deaths or lifes saved due to climate change by an appropriate measure of the statistical value of a life, that may be 
+Essentially the idea is to multiply the number of deaths or lives saved due to climate change by an appropriate measure of the statistical value of a life, that may be 
 varying across time and space. 
 
 There are two master functions, `concatenate_IR_damages` to run damages for all the montecarlo output and save to netfcdf files for integration purposes,
