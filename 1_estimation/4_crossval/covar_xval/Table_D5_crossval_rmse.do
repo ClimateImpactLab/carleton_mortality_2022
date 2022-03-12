@@ -4,8 +4,12 @@ Purpose: Generates a table calculating out of sample fit (RMSE) of the interacte
 where each row a left out subsection of observations based on their income and climate covariate values 
 (each divided into mutually exclusive 3x3 terciles). The interacted and uninteracted models  are then estimated
 using the remaing 8/9 adm1s, and used to predict the omitted subsample. Aggregate out of sample RMSEs are calculated 
-using the y-hats from the out of sample subsection predictions.
+using the y-hats from the out of sample subsection predictions. Creates rows that feed into Table D5 in Carleton et al 2022.
 
+
+Note: Data must be demeaned/residualized prior to estimation. By providing the residualized data but not the regression 
+output that generated it, we are able to mask the not publicly available USA and China mortality data.
+Therefor, users can begin the script at this stage rather than being able to residualize themselves. 
 
 Inputs
 ------
@@ -37,14 +41,14 @@ Notes
 *                       PART A. Initializing                                *
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
-* Prepare data for regressions.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
 
 set rmsg on
 //cap log close
@@ -66,7 +70,7 @@ file write resultcsv "Omitted ADM1s, Observations, 2010 Pop Share, 2100 Pop Shar
 
 
 * Prepare data for regressions.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
 
 * merge in residualized series 
 merge 1:1 adm2_code year agegroup using "`data'/residualized_series.dta"

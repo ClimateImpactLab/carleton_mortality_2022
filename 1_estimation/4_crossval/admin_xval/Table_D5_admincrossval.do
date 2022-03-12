@@ -1,30 +1,14 @@
-*****************************************************************************
-* 						PART 1. Initializing		 						*
-*****************************************************************************
+/*
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+Purpose: Generates a table calculating out of sample fit (RMSE) of the interacted and uninteracted models,
+where data is divided up into 10 groups of ADM1s. This is done by estimating the models described below using observations
+that fall into 9/10 of the ADM1 groups to predict the 10th out of sample. This is done 10 times for rach group.
+With the actual and predicted mortality values, we are able to calculate the RMSE. Results feed into Table D5 of Carleton et al 2022.
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
-
-* Prepare data for regressions.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
-
-* Get crossval function.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/crossval_function.do"
-
-set rmsg on
-cap log close
-
-* open output & log files
-loc data "$base_dir/2_crossval/admincrossval"
-loc output "$output_dir/tables/Table_D5_crossval"
-
-//log using "`output'/logs/log_admincrossval.smcl", replace
-
-file open resultcsv using "`output'/admincrossval_table.csv", write replace
-file write resultcsv "MODEL, RMSE, MAE, RHO2, R2" _n
+Note: Data must be demeaned/residualized prior to estimation. By providing the residualized data but not the regression 
+output that generated it, we are able to mask the not publicly available USA and China mortality data.
+Therefor, users can begin the script at this stage rather than being able to residualize themselves. 
+*/
 
 *****************************************************************************
 * 						Please select specs for crossval!					*
@@ -42,7 +26,41 @@ gl specs 	 "unint gdp_int lrt_int gdp_lrt_int"
 * test_code runs with 1% of data (for speed), fw_test runs a test to see if 
 * residualized regression coefficients match normal regression coefficients
 gl test_code "no"
-gl fw_test 	 "yes"
+gl fw_test 	 "no" // test will not work without unresidualized mortality data, but leaving in to show process
+gl demean    "no"
+
+
+*****************************************************************************
+* 						PART 1. Initializing		 						*
+*****************************************************************************
+
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
+
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
+
+* Prepare data for regressions.
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
+
+* Get crossval function.
+do "$REPO/carleton_mortality_2022/1_estimation/1_utils/crossval_function.do"
+
+set rmsg on
+cap log close
+
+* open output & log files
+loc data "$base_dir/2_crossval/admincrossval"
+loc output "$output_dir/tables/Table_D5_crossval"
+
+//log using "`output'/logs/log_admincrossval.smcl", replace
+
+file open resultcsv using "`output'/admincrossval_table.csv", write replace
+file write resultcsv "MODEL, RMSE, MAE, RHO2, R2" _n
+
+
 
 *****************************************************************************
 * 						Generating  variables								*
@@ -107,20 +125,27 @@ foreach spec in $specs {
 	* 						De-meaning regressions								*
 	*****************************************************************************
 
-	* setting model weights
-	if "`spec'" == "unint"	loc weights "[aweight = weight]"
-	else					loc weights ""
+	if `demean' == "yes" {
 
-	* de-meaning regressions
-	cap drop *_rsd
-	loc vars_rsd ""
-	foreach var in ``spec'_reg' {
+		* setting model weights
+		if "`spec'" == "unint"	loc weights "[aweight = weight]"
+		else					loc weights ""
 
-		di "reghdfe `var' `controls' `weights', absorb(`fe') residuals(`var'_rsd)"
-		qui reghdfe `var' `controls' `weights', absorb(`fe') residuals(`var'_rsd)
-		loc vars_rsd "`vars_rsd' `var'_rsd"
-		di "Command finished at $S_TIME"
+		* de-meaning regressions
+		cap drop *_rsd
+		loc vars_rsd ""
+		foreach var in ``spec'_reg' {
 
+			di "reghdfe `var' `controls' `weights', absorb(`fe') residuals(`var'_rsd)"
+			qui reghdfe `var' `controls' `weights', absorb(`fe') residuals(`var'_rsd)
+			loc vars_rsd "`vars_rsd' `var'_rsd"
+			di "Command finished at $S_TIME"
+
+		}
+	}
+
+	else {
+		merge 1:1 adm2_code year agegroup using "$DB/1_estimation/admincrossval/`spec'/`spec'_admincrossval.dta"
 	}
 
 

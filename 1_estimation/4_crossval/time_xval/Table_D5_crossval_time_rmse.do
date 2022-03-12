@@ -2,6 +2,12 @@
 
 Purpose: Generates a table calculating out of sample fit (RMSE) of the interacted and uninteracted models,
 where the post 2004 observations are predicted using models fitted on the pre 2005 observations.
+Creates rows that feed into Table D5 in Carleton et al 2022.
+
+
+Note: Data must be demeaned/residualized prior to estimation. By providing the residualized data but not the regression 
+output that generated it, we are able to mask the not publicly available USA and China mortality data.
+Therefor, users can begin the script at this stage rather than being able to residualize themselves. 
 
 
 Inputs
@@ -30,11 +36,13 @@ Notes
 *                       PART A. Initializing                                *
 *****************************************************************************
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 set rmsg on
 cap log close
@@ -55,7 +63,7 @@ file write resultcsv "Omitted ADM1s, Observations, RMSE (adapt), RMSE (no adapt)
 
 
 * Prepare data for regressions.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
 
 
 * generate dummy for if obs is pre or post 2005

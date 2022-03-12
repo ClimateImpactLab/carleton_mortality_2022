@@ -1,7 +1,8 @@
 /*
 
-Purpose: build 'response functions' that are made up of two vectors : a vector of temperature values, and a vector of values indicating death rate changes. Additionally the code will produce 
-the confidence interval of the latter vector -- so two additional vectors. 
+Purpose: Plot the India-specific response functions using the Burgess et al (2017) recreation model,
+the mortality-temperature interaction model, one each that uses just one of the income/climate 
+interaction terms to create Figure D11 in Carleton et al 2022. 
 
 
 Inputs
@@ -67,13 +68,15 @@ set processors 24
 set scheme s1color
 
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+	global REPO: env REPO
+	global DB: env DB 
+	global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
-local OUTPUT "$output_dir/figures/Figure_D11"
+local OUTPUT "$output_dir/figures/Figure_D11_India_response"
 
 *****************************************************************************
 * 						PART 1. Prepare data
@@ -81,7 +84,7 @@ local OUTPUT "$output_dir/figures/Figure_D11"
 * Usually done in prep_data.do but that one drops IND	
 *****************************************************************************
 
-use "$DB/0_data_cleaning/3_final/global_mortality_panel", clear
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_public", clear
 
 drop if year > 2010
 
@@ -163,11 +166,11 @@ foreach model in full no_income no_tbar {
 
 	if "`model'"=="no_income"{
 		local mycovariates lr_tavg_GMFD_adm1_avg
-		local ster_file_to_use "`STER'/Agespec_interaction_response_`model'.ster"
+		local ster_file_to_use "`STER'/Agespec_interaction_response_clim_only.ster"
 	}
 	else if "`model'"=="no_tbar"{
 		local mycovariates loggdppc_adm1_avg	
-		local ster_file_to_use "`STER'/Agespec_interaction_response_`model'.ster"	
+		local ster_file_to_use "`STER'/Agespec_interaction_response_inc_only.ster"	
 	} 
 	else {
 		local mycovariates lr_tavg_GMFD_adm1_avg loggdppc_adm1_avg

@@ -4,6 +4,7 @@ Purpose: Generate either a 3x3 or 2x2 array plot, each cell displaying two respo
 is broken up into terciles along both covariate axis based on the post 2004 averages of LR income (Y axis)
 and Tbar (X axis). For each cell, the response function of the uninteracted model using the in sample
 data and the predicted response function of the interacted model using the out of sample data are shown. 
+Creates Figure D9 in Carleton et al 2022.
 
 
 Inputs
@@ -57,11 +58,13 @@ set maxvar 32700
 set scheme s1color
 
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 
 local STER "$ster_dir/age_spec_interacted/crossval/space"
@@ -82,7 +85,7 @@ cap log close
 local g = 3
 
 * do you want to run the regressions (1) or just produce the plots using the saved .ster (0)
-local run_regs = 0
+local run_regs = 0 // won't be able to run for public data release
 
 * trim response function to only be evaluated over middle 99% of daily temp distribution
 local trimrf = 1
@@ -108,7 +111,7 @@ local x_int = 10
 
 
 * Prepare data for regressions.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
 
 * test with smaller sample
 *sample 10

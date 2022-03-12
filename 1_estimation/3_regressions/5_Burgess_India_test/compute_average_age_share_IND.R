@@ -21,7 +21,7 @@
 
 	# => the approach is to combine the two latter to obtain shares for the target age categories listed on the top of this explanatory header. 
 
-# output : it doesn't save anything, just prints the shares. Then we copied them in our Stata code. Lovely :) 
+# output : shares are printed and hardcoded into other script
 
 ##############################
 

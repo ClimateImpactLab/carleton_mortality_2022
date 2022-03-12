@@ -4,7 +4,7 @@ Purpose: Generate a plot showing the response functions of the uninteracted mode
 the post 2004 data as well as the interacted model estimated using the pre 2005 data
 evaluated at the post 2004 income and T averages. The data is divided into income terciles
 based on the post 2004 ADM1 average income. The in sample uninteracted models are predicted
-separately for each tercile. 
+separately for each tercile. Creates Figure D9 in Carleton et al 2022.
 
 Inputs
 ------
@@ -37,11 +37,13 @@ set maxvar 32700
 set scheme s1color
 
 
-global REPO: env REPO
-global DB: env DB 
-global OUTPUT: env OUTPUT 
+if "$REPO" == "" {
+    global REPO: env REPO
+    global DB: env DB 
+    global OUTPUT: env OUTPUT 
 
-do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+    do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
+}
 
 
 local STER "$ster_dir/age_spec_interacted/crossval/time"
@@ -58,7 +60,7 @@ cap log close
 *************************************************************************
 
 * do you want to run the regressions (1) or just produce the plots using the saved .ster (0)
-local run_regs = 0
+local run_regs = 0 // won't be able to run if using public data repo
 
 * trim response function to only be evaluated over middle 99% of daily temp distribution
 local trimrf = 1
@@ -83,8 +85,7 @@ local x_int = 10
 *************************************************************************
 
 * Prepare data for regressions.
-do "$REPO/carleton_mortality_2022/1_estimation/1_utils/prep_data.do"
-
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
 
 * generate dummy for if obs is pre or post 2005
 gen pre_05 = year < 2005
