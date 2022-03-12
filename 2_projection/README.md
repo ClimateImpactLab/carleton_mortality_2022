@@ -1,7 +1,7 @@
 ## User suitability 
 
-- ***Please note - the code in `2_projection/` does not need to be run in order for a user to work with codes later in the process.
-We have included the outputs of this projection step as csv files in the data repository associated with this repo, so that the user does not need to re-generate them. ***
+**Please note - the code in `2_projection/` does not need to be run in order for a user to work with codes later in the process.
+We have included the outputs of this projection step as csv files in the data repository associated with this repo, so that the user does not need to re-generate them.**
 - Running a full set of Monte Carlo projections over all climate models, socioeconomic models (i.e., IIASA and OECD "IAMs"), all SSPs, all age groups, and resampling from statistical uncertainty is highly computationally intensive. This can only be done on a computing cluster or using cloud computing resources.
 - The full set of raw Monte Carlo projection output files used to generate the results in the paper are large, requiring ~14TB of storage.
 - Rather than including these output files, we provide what we refer to as "extracted files" which contain impact region-level GCM-weighted mean and quantile impact values aross the Monte Carlo simulation runs. All of the charts and tables that appear in the paper can be created using these "extracted" files.
