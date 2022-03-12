@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Iterables
-ssplist=( SSP3 ) # SSP1, SSP2, SSP3, SSP4, SSP5
+ssplist=( SSP3 ) # SSP1, SSP2, SSP3, SSP4, SSP5 [Note: SSPs 2-4 currently available]
 rcplist=( rcp85 ) # rcp45, rcp85
 iamlist=( low ) # low, high
 agelist=( combined )  # young, older, oldest, combined
