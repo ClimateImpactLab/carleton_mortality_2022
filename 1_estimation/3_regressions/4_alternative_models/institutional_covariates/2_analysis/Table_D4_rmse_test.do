@@ -5,9 +5,9 @@ This script requires the use of mortality data, and USA and China mortality are 
 provided to the public 
 
 Purpose: Generate table calculating RMSE and other measures of model predictive performance
-of an institutional covariate model, institutional covariate model omitting the relevant covariate
-(to simulate not being able to project it going forward), and for the main model trimmed to match the
-sample available in for the covariate model in question. 
+of the 5 proxys for government institutions covariate models, institutional covariate model omitting the
+relevant covariate (to simulate not being able to project it going forward), and for the main model 
+trimmed to match the sample available in for the covariate model in question. 
 
 In order to negate the impact of the fixed effects, the code residualizes each variable and runs a 
 regression of residualized deathrate on the residualized other variables. 
