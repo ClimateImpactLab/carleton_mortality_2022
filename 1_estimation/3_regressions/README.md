@@ -50,5 +50,5 @@ The following list provides details on the models in the order in which they app
     * `age_spec_interacted_array_plots_presentation.do`- generates array plots in Figures I, D1, and D2.
     * `age_spec_interacted_displayresults.do` - generates Table D3.
     * `array_output_in-text.do` - generates in-text summary statistics on the changes in temperature-sensitivity associated with changes in income and long-run average temperature.
-    * `age_spec_interacted_genCSVV.do` - Generate configuration file (or "CSVV") of the main specification for the Climate Impact Lab projection system.
+    * `age_spec_interacted_genCSVV.do` - generates configuration file (or "CSVV") of the main specification for the Climate Impact Lab projection system.
         * See the next step, `2_projection` for a more detailed discussion of this input and how it's implemented in the projection system.
