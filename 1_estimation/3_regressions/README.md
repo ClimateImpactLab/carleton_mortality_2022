@@ -18,7 +18,7 @@ The following list provides details on the models in the order in which they app
 
 - Location in Carleton et al. (2022): Table D2
 
-* Folder: `1_age_combined`
+* Folder: `1_age_combined/`
   * `age_combined_regressions.do` - estimates the model.
   * `age_combined_displayresults.do` - generates Table D2.
 
@@ -30,7 +30,7 @@ The following list provides details on the models in the order in which they app
 
 - Location in Carleton et al. (2022): Table D3
 
-* Folder: `2_age_spec`
+* Folder: `2_age_spec/`
     * `age_spec_regressions.do` - estimates the model.
     * `age_spec_displayresults.do` - generates Table D3.
 
@@ -45,7 +45,7 @@ The following list provides details on the models in the order in which they app
     - In-text discussion of the reduction in temperature sensitivity associated with moving between terciles of the interaction space.
     - All projection output is based upon the interaction model estimated here.
 
-* Folder: `3_age_spec_interacted`
+* Folder: `3_age_spec_interacted/`
     * `age_spec_interacted_regressions.do` - estimates the model.
     * `age_spec_interacted_array_plots_presentation.do`- generates array plots in Figures I, D1, and D2.
     * `age_spec_interacted_displayresults.do` - generates Table D3.
@@ -58,7 +58,7 @@ The following list provides details on the models in the order in which they app
 - Locations in Carleton et al. (2022): 
     - Tables D3 and D4, and Figures D4, D6, D7, D8
 
-* Folder: `4_alternative_models`
+* Folder: `4_alternative_models/`
     * `1_regressions/` - scripts to estimate alternative regression models
     * `2_analysis/`- scripts to plot figures and/or tables displaying regression results
     * `institutional_covariates/` - scripts to estimate and plot the alternative models that include additional determinants of heterogeneity, such as institutional quality and workforce informality
