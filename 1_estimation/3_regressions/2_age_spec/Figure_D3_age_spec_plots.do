@@ -1,7 +1,7 @@
 /*
 
-Purpose: Plot the preferred age specific non interacted response functions
-along with the age-pooled prefered model. This is Figure D3 in the Appendix
+Purpose: Plot the preferred age-specific non interacted response functions
+along with the age-pooled preferred model. This is Figure D3 in the Appendix.
 
 Inputs
 ------
