@@ -1,5 +1,5 @@
 # Purpose: Calculates response functions for purposes of plotting responses and
-# visualizing temperature sensitivity (e.g., beta maps).  
+# visualizing temperature sensitivity (e.g., maps of the effect of a 35C day on mortality).  
 
 CSVV_DEFAULT = glue('{DB}/2_projection/3_impacts/main_specification/inputs/',
     'Agespec_interaction_GMFD_POLY-4_TINV_CYA_NW_w1.csvv')
