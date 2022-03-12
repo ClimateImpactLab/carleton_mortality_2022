@@ -1,8 +1,8 @@
 /*
 
-Purpose: Estimates the temperature-mortality response function with
-demographic heterogeneity estimated using pooled subnational data (Appendix Table D2).
-Displays mortality coefficient of each age group at various temperatures
+Purpose: Estimates the mortality-temperature response function with
+demographic heterogeneity using pooled subnational data (Appendix Table D2).
+Results table displays mortality coefficient of each age group at various temperatures.
 
 Inputs
 ------
