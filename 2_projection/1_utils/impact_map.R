@@ -1,4 +1,4 @@
-# Purpose Generates maps of projected mortality impacts.
+# Purpose: Generates maps of projected mortality impacts.
 
 IMPACT_MAPS_OUTPUT = glue('{OUTPUT}/2_projection/figures/3a_maps')
 
