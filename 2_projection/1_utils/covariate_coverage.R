@@ -1,10 +1,10 @@
-# Purpose: Generates Figure 3 in Carleton et al. (2019), which compares
-# in-sample vs. global loggdppc and climtas distributions in 2010 and 2100.
+# Purpose: Generates Figure II in Carleton et al. (2022), which compares
+# in-sample vs. global income and climate distributions in 2015 and 2100.
 
 BLOB_OUTPUT= glue("{OUTPUT}/2_projection/figures/Figure_2_covariate_coverage")
 
-#' Generates heat plot showing in-sample coverage of covariates in 2010 and 2100 
-#' (Figure 3 in Carleton et al. (2019)). 
+#' Generates heat plot showing in-sample coverage of covariates in 2015 and 2100 
+#' (Figure II in Carleton et al. (2022)). 
 #' 
 #' Inputs
 #' ------
