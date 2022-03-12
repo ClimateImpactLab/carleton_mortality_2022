@@ -31,9 +31,9 @@ if "$REPO" == "" {
 }
 
 local ster "$ster_dir"
-local output_dir "$OUTPUT/figures/Figure_D3"
+local output_dir "$OUTPUT/figures/Figure_D3_response_functions"
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+use "$data_dir/3_final/global_mortality_panel_covariates.dta", clear
 
 *****************************************************************************************
 * 						Set Params           		                *

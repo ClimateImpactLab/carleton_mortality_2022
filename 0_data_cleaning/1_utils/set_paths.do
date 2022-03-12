@@ -49,7 +49,7 @@ quietly {
 	global csvv_dir "$base_dir/1_estimation/2_csvv"
 
 	// Output directory for regression tables and pre-projection figures.
-	global output_dir "$OUTPUT/1_estimation"
+	global output_dir "$OUTPUT"
 
 	// Download ssc packages.
 	local ssc_get reclink estout reghdfe 

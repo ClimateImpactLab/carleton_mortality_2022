@@ -22,47 +22,16 @@ if "$REPO" == "" {
 	do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
 }
 
-local ster 		"$ster_dir/diagnostic_specs"
-local output 	"$output_dir/figures/Figure_D6"
+local ster 		"$ster_dir"
+local output 	"$output_dir/figures/Figure_D6_HDDCDD"
 
-use "$data_dir/3_final/global_mortality_panel", clear
+
 
 *****************************************************************************
 * 						PART 1. Generate variables for regressions			*
 *****************************************************************************
-drop if year > 2010
 
-* 1. create winsorized deathrate with-in country-agegroup
-bysort iso agegroup: egen deathrate_p99 = pctile(deathrate), p(99)
-gen deathrate_w99 = deathrate
-replace deathrate_w99 = deathrate_p99 if deathrate > deathrate_p99 & !mi(deathrate)
-drop deathrate_p99
-
-* 2. set up sample  
-* (no long being regression sample in this file)
-gen sample = 0
-replace sample = 1 if year < = 2010
-replace sample = 1 if agegroup != 0 | iso == "IND"
-replace sample = 0 if mi(deathrate_w99)
-replace sample = 0 if mi(tavg_poly_1_GMFD)
-replace sample = 0 if mi(prcp_poly_1_GMFD)
-replace sample = 0 if mi(loggdppc_adm1_avg)
-replace sample = 0 if mi(lr_tavg_GMFD_adm1_avg)
-
-keep if sample == 1
-
-* 3. clean up ids
-sort iso adm1_id
-egen adm0_code 			= group(iso)
-egen adm1_code 			= group(iso adm1_id)
-replace adm2_id 		= adm1_id if iso == "JPN"
-
-sort iso adm1_id adm2_id
-egen adm2_code 			= group(iso adm1_id adm2_id)
-
-egen adm0_agegrp_code 	= group(iso agegroup)
-egen adm1_agegrp_code	= group(iso adm1_id agegroup)
-
+use "$data_dir/3_final/global_mortality_panel_covariates", clear
 
 
 
@@ -80,7 +49,7 @@ gen T = 35
 * 2. Get the regression parameters from .ster files	
 quietly {
 	* 2.1. import estimation results for Tmean
-	estimate use "`ster'/Agespec_interaction_response.ster"
+	estimate use "`ster'/age_spec_interacted/Agespec_interaction_response.ster"
 	
 	forvalues agegrp = 1(1)3 {
 		forvalues i = 1(1)4 {
@@ -93,7 +62,7 @@ quietly {
 	*
 		
 	* 2.2. import estimation results for HDD CDD
-	estimate use "`ster'/Agespec_interaction_HDDCDD_response.ster"
+	estimate use "`ster'/diagnostic_specs/Agespec_interaction_HDDCDD_response.ster"
 		
 	forvalues agegrp = 1(1)3 {
 		forvalues i = 1(1)4 {
@@ -148,13 +117,13 @@ quietly {
 					ylabel( , labs(small) glw(thin) glpattern(dot) glc(gs10) tlc(gs12)) ///
 					ytick(, grid gmin gmax glw(thin) glpattern(dot) glc(gs10) tlc(gs12)) ///
 					graphregion(color(gs16))
-		graph save "`output'/gph/RF_comparemodels_35C_agegrp`agegrp'.gph", replace
+		graph save "`output'/RF_comparemodels_35C_agegrp`agegrp'.gph", replace
 	}
 	*
 
-	graph combine "`output'/gph/RF_comparemodels_35C_agegrp1.gph" ///
-					"`output'/gph/RF_comparemodels_35C_agegrp2.gph" ///
-					"`output'/gph/RF_comparemodels_35C_agegrp3.gph" ///
+	graph combine "`output'/RF_comparemodels_35C_agegrp1.gph" ///
+					"`output'/RF_comparemodels_35C_agegrp2.gph" ///
+					"`output'/RF_comparemodels_35C_agegrp3.gph" ///
 					, ///
 		title("Responses at 35C (relative to 20C)", size(medsmall)) ///
 		iscale(* .8) rows(1)  ysize(5) xsize(12)  ///

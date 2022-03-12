@@ -56,7 +56,7 @@ global OUTPUT: env OUTPUT
 do "$REPO/carleton_mortality_2022/0_data_cleaning/1_utils/set_paths.do"
 
 local STER "$ster_dir/diagnostic_specs"
-local OUTPUT "$output_dir/figures/Figure_D8"
+local OUTPUT "$output_dir/figures/Figure_D8_institutions"
 local DATA "$data_dir/3_final"
 
 
@@ -65,7 +65,7 @@ local DATA "$data_dir/3_final"
 *****************************************************************************
 
 * which model will you be running this for (health, edu, institutions, inequality, informality)?
-//local mod "health"
+//local mod "informality"
 local mod $mod
 
 * do you want to use the log of the covariate value (ie logdocpc rather than docpc)? (1 = yes)

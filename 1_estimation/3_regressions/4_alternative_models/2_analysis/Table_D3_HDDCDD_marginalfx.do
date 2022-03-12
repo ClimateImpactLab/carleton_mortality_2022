@@ -21,7 +21,7 @@ if "$REPO" == "" {
 }
 
 local ster "$ster_dir/diagnostic_specs"
-local output "$output_dir/tables/Table_D3"
+local output "$output_dir/tables/Table_D3_HDDCDD"
 
 *****************************************************************************
 * 						PART 1. Calculate Marginal Effect     			    *

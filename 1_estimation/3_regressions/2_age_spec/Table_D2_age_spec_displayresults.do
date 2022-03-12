@@ -46,7 +46,7 @@ if "$REPO" == "" {
 
 * Script paths.
 local ster "$ster_dir/age_spec"
-local output "$output_dir/tables/Table_D2"
+local output "$output_dir/tables/Table_D2_reg_output"
 
 * set up number of decimal digits in the table
 local precision 3

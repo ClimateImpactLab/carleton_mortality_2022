@@ -46,7 +46,7 @@ if "$REPO" == "" {
 }
 
 local ster "$ster_dir/age_spec_interacted"
-local output "$output_dir/tables/Tables_D1"
+local output "$output_dir/tables/Tables_D1_reg_output"
 
 * set up number of decimal digits in the table
 local precision 3

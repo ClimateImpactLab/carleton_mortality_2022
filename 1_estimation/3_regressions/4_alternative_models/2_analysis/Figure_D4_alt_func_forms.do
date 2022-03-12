@@ -27,10 +27,11 @@ if "$REPO" == "" {
 }
 
 local model "pooled_age_spec_no_interaction"
-local OUTPUT "$output_dir/figures/Figure_D4"
+local OUTPUT "$output_dir/figures/Figure_D4_alt_specs"
 local STER "$ster_dir/diagnostic_specs"
+
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+use "$data_dir/3_final/global_mortality_panel_covariates.dta", clear
 
 
 set processors 20

@@ -1,5 +1,9 @@
 /*
 
+NOTE: Users will not be able to replicate these results using the public repository.
+This script requires the use of mortality data, and USA and China mortality are not
+provided to the public 
+
 Purpose: Generate table calculating RMSE and other measures of model predictive performance
 of an institutional covariate model, institutional covariate model omitting the relevant covariate
 (to simulate not being able to project it going forward), and for the main model trimmed to match the
@@ -80,7 +84,7 @@ set rmsg on
 cap log close
 
 * open output & log files
-loc output "$output_dir/tables/Table_D4"
+loc output "$output_dir/tables/Table_D4_institutions"
 
 //log using "`output'/logs/log_rmse_test_`mod'.smcl", replace
 

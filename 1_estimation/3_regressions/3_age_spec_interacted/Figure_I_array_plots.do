@@ -93,32 +93,8 @@ local suffix ""
 * 							PART C. Prepare Dataset						*			
 *************************************************************************
 
-use "`DATA'/3_final/global_mortality_panel", clear
+use "$data_dir/3_final/global_mortality_panel_covariates.dta", clear
 
-//generate ids
-egen adm0_code = group(iso)
-egen adm1_code = group(iso adm1_id)
-replace adm2_id = adm1_id if iso == "JPN"
-egen adm2_code = group(iso adm1_id adm2_id)
-
-//dropping all-age and year>2010
-drop if agegroup==0
-drop if year>2010
-
-//winsorize deathrate
-gen deathrate_w99 = deathrate
-bysort adm0_code agegroup: egen p99 = pctile(deathrate), p(99)
-bysort adm0_code agegroup: replace deathrate_w99 = p99 if deathrate_w99>p99 & !missing(deathrate_w99)
-
-//drop missing obs
-drop if missing(deathrate_w99)
-drop if missing(loggdppc_adm1_avg)
-drop if missing(tavg_poly_1_GMFD)
-
-//sort the panel
-sort adm2_code agegroup year
-egen id_lag = group(adm2_code agegroup)
-tset id_lag year
 
 tempfile MORTALITY_TEMP
 save "`MORTALITY_TEMP'", replace
@@ -349,17 +325,17 @@ foreach age of numlist 1/3 {
 			if `ii' == 7 | `ii' == 4 {
 				loc ylab "ytitle(`ytit') ylabel(, labsize(small))"
 				loc xlab "xtitle(`space') xlabel(none) xscale(off) fysize(25.2)"
-				} 
+			} 
 
 			if `ii' == 8 | `ii' == 5 {
 				loc ylab "ytitle(`space') ylabel(none) yscale(off) fxsize(38)"
 				loc xlab "xtitle(`space') xlabel(none) xscale(off) fysize(25.2)"
-				} 
+			} 
 
 			if `ii' == 9 | `ii' == 6 {
 				loc ylab "ytitle(`ytit') ylabel(, labsize(small)) yscale(alt)"
 				loc xlab "xtitle(`space') xlabel(none) xscale(off) fysize(25.2)"
-				} 
+			} 
 
 			if `ii' == 1 {
 				loc ylab "ytitle(`ytit') ylabel(, labsize(small))"
@@ -414,8 +390,8 @@ foreach age of numlist 1/3 {
     } 
     if `age' == 3 {
     	loc agetit "> 64"
-    	loc fig "I"
-    } loc 
+    	loc fig "1"
+    }
 
 	
 	if `ycommon' == 1 {
@@ -425,7 +401,7 @@ foreach age of numlist 1/3 {
 		plotregion(color(white)) graphregion(color(white)) cols(3) ycommon ///
 		l2title("Poor {&rarr} Rich") b2title("Cold {&rarr} Hot") imargin(vsmall) ///
 		title("Age `agetit' Adaptation Model Response Functions", size(medsmall)) 
-		graph export "`OUTPUT'/Figure_`fig'/Age`age'_interacted_response_array_GMFD`suffix'.pdf", replace
+		graph export "`OUTPUT'/Figure_`fig'_array_plots/Age`age'_interacted_response_array_GMFD`suffix'.pdf", replace
 	}
 	else {
 		graph combine matrix_Y3_T1_noSE matrix_Y3_T2_noSE matrix_Y3_T3_noSE ///
@@ -434,7 +410,7 @@ foreach age of numlist 1/3 {
 		plotregion(color(white)) graphregion(color(white)) cols(3) rows(3) xcommon ///
 		l2title("Poor {&rarr} Rich") b2title("Cold {&rarr} Hot") ///
 		title("Age `agetit' Adaptation Model Response Functions", size(medsmall)) 
-		graph export "`OUTPUT'/Figure_`fig'/Age`age'_interacted_response_array_GMFD`suffix'_ydiff.pdf", replace
+		graph export "`OUTPUT'/Figure_`fig'_array_plots/Age`age'_interacted_response_array_GMFD`suffix'_ydiff.pdf", replace
 	}
 	
 	graph drop _all

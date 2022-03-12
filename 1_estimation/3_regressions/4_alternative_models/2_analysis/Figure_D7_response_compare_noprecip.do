@@ -55,8 +55,8 @@ if "$REPO" == "" {
 }
 
 
-local STER "$ster_dir/diagnostic_specs"
-local OUTPUT "$output_dir/figures/Figure_D7"
+local STER "$ster_dir"
+local OUTPUT "$output_dir/figures/Figure_D7_noprecip"
 local DATA "$data_dir/3_final"
 
 
@@ -93,7 +93,7 @@ local x_int = 10
 *************************************************************************
 
 * Prepare data for regressions.
-do "$REPO/mortality/1_estimation/1_utils/prep_data.do"
+use "$data_dir/3_final/global_mortality_panel_covariates", clear
 
 * sort the panel
 sort adm1_code agegroup year
@@ -242,7 +242,7 @@ foreach age of numlist 1/3 {
 
 
         *main model estimates
-        estimate use "`STER'/Agespec_interaction_response.ster"
+        estimate use "`STER'/age_spec_interacted/Agespec_interaction_response.ster"
 
 
         *uninteracted terms
@@ -277,7 +277,7 @@ foreach age of numlist 1/3 {
 
 
         *noprecip model estimates
-        estimate use "`STER'/Agespec_interaction_response_noprecip.ster"
+        estimate use "`STER'/diagnostic_specs/Agespec_interaction_response_noprecip.ster"
 
         *uninteracted terms
         local line = "_b[`age'.agegroup#c.tavg_poly_1_GMFD]*(tavg_poly_1_GMFD-`omit')"
