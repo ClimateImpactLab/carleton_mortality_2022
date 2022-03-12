@@ -1,5 +1,5 @@
-# Produces box-and-whisker plots of future impacts at deciles of today's income
-# and climate distributions (Figures F4 and F5 of the appendix.)
+# Produces box-and-whisker plots of future mortality impacts of climate change
+# by deciles of today's income and climate distributions (Figure VI).
 
 DECILES_OUTPUT = glue("{OUTPUT}/2_projection/figures/appendix/decile_plots")
 
