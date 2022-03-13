@@ -71,7 +71,7 @@ conda install -c conda-forge jupyterlab
 
 4. Set up a few environment variables so that all the code runs smoothly.
 
-On Mac, you can do this by appending the following lines to your `~/.bash_profile`.
+Append the following lines to your `~/.bash_profile`.
 
 First, run:
 ```
@@ -90,7 +90,5 @@ export LOG=<yourDATA>/log
 ```
 Save and exit. 
 Then, run `source ~/.bash_profile` to load the changes we just made.
-
-On Windows.....
 
 5. Setup for the whole repo is complete! Please follow the `README`s in each subdirectory to run each part of the analysis. In general, each directory will contain one or more staging files where individual analysis or output producing scripts can be run from in one go. Before running, it is recommended that users review and set the TRUE/FALSE toggles to produce the desired set of outputs. More detail is available in the section READMEs. 
