@@ -28,7 +28,7 @@ spatial heterogeneity in average income and climate.
 	- toggle: `age_spec_interacted`
 
 5. Estimate a series of robustness models that appear in the Carleton et al. 
-(2019) appendix:
+(2022) appendix:
 	- Country-level regressions
 	- Models using heating degree days and cooling degree days as alternative
 	measure of weather exposure
