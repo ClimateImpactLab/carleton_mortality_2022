@@ -9,28 +9,27 @@ This repository provides code required to reproduce the tables, figures, and in-
 1. **Data Collection** - Historical data on all-cause mortality and climate are cleaned and merged, along with other covariates needed in our analysis (population and income). 
 2. **Estimation** - Econometric analysis is conducted to estimate empirical mortality-temperature relationships for three age groups (<5, 5-64, >64). 
 3. **Projection** - The age-specific empirical mortality-temperature relationships are used to project the impacts of climate change on mortality for 24,378 regions through 2100, accounting for both uncertainty in future climate (through the use of the surrogate mixed model ensemble, or SMME) and statistical uncertainty in the econometric model through Monte Carlo simulation.  
-    * Note: this step is exceptionally computationally intensive and relies upon a separate repository for projecting climate change impacts. See `impact-calculations` **(add link to the projection system when public)** for documentation on Climate Impact Lab's projection system.
+    * Note: this step is exceptionally computationally intensive and relies upon Climate Impact Lab's projection system, which is composed of a set of public external repositories. Details on how to link code and data in this repository to the projection system to reproduce all projection results in Carleton et al. (2022) are detailed in the `2_projection/` folder READMEs. 
 4. **Valuation** - Various assumptions regarding the Value of Statistical Life (VSL) are applied to projected impacts on mortality risk, yielding a set of economic damage estimates for all years 2020-2100 in constant 2019 dollars purchasing power parity (PPP). Valuation is performed for all Monte Carlo simulation estimates constructed in Step 3.
 5. **Damage Function** - Empirical “damage functions” are estimated by relating monetized damages from all Monte Carlo simulations to corresponding Global Mean Surface Temperature (GMST) anomalies from the surrogate mixed model ensemble (SMME).
 6. **SCC** - Damage functions are used in combination with the simple climate model FAIR to calculate the net present value of future damages associated with an additional ton of carbon dioxide in 2020, which represents a mortality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs) and Shared Socioeconomic Pathways (SSPs).
-    * Note: as in Step 3, the code used to produce SCC output lives in a separate repository because it is a computationally complex process that is highly generalizable across Climate Impact Lab sectors. See `pFAIR` **(add link to pFAIR when public)** for more information.
+    * Note: as in Step 3, estimating uncertainty in the mortality partial SCC (driven both by uncertainty in the damage function and climate uncertainty) is highly computationally intensive and relies on an external repository. However, constructing point estimates of the mortality partial SCC is relatively simple and can be completed fully using code and data contained within this repository. Deatils are provided in the `5_scc/` folder README. 
 
 ## Folders
 
 The folders in this repository are broadly consistent with the steps outlined above:
 
-`0_data_cleaning` - Code for cleaning and constructing the dataset used to estimate the mortality-temperature relationship.
+`0_data_cleaning/` - Code for cleaning and constructing the dataset used to estimate the mortality-temperature relationship.
 
-`1_estimation` - Code for estimating and plotting all mortality-temperature regression models present in the paper.
+`1_estimation/` - Code for estimating and plotting all mortality-temperature regression models present in the paper.
 
-`2_projection` - Code for running future projections using Climate Impact Lab projection tools (see `link-to-impact-calc`) and extracting, summarizing, and plotting the projection output.
+`2_projection/` - Code for running future projections using Climate Impact Lab projection tools, and extracting, summarizing, and plotting the projection output.
 
-`3_valuation` - Code for calculating the VSL based on various assumptions and applying those values to our projected impacts of climate change on mortality risk.
+`3_valuation/` - Code for calculating the VSL based on various assumptions and applying those values to our projected impacts of climate change on mortality risk.
 
-`4_damage_function` - Code for estimating empirical damage functions based upon monetized damages and GMST anomalies.
+`4_damage_function/` - Code for estimating empirical damage functions based upon monetized damages and GMST anomalies.
 
-`5_scc` - Code for applying a CO2 pulse from the FAIR model to global damage functions, and summing damages over time to calculate SCCs.
-
+`5_scc/` - Code for applying a CO2 pulse from the FAIR simple climate model to global damage functions, and summing damages over time to calculate mortality partial SCCs.
 
 For run instructions on each step of the analysis, refer to the README files located within the corresponding directories.
 
@@ -68,11 +67,7 @@ Also, you need to install Jupyter for the scc calculation code
 conda install -c conda-forge jupyterlab
 ```
 
- **(do we need to tell users to clone impact `impact-calculations`, `open-estimate` and `impact-common` if they are only dealing with extracted files??)**
-
-
-3. Download data from `add_link_here` and unzip it somewhere on your machine with ** XX GB+** space. Let's call this location `yourDATA`.
-
+3. Download data from the [QJE Dataverse](https://dataverse.harvard.edu/dataverse/qje) and unzip it somewhere on your machine with at least 45 GB of space. Let's call this location `yourDATA`.
 
 4. Set up a few environment variables so that all the code runs smoothly.
 
@@ -97,7 +92,5 @@ Save and exit.
 Then, run `source ~/.bash_profile` to load the changes we just made.
 
 On Windows.....
-
-**(do we any description of how to install/run stata)** 
 
 5. Setup for the whole repo is complete! Please follow the `README`s in each subdirectory to run each part of the analysis. In general, each directory will contain one or more staging files where individual analysis or output producing scripts can be run from in one go. Before running, it is recommended that users review and set the TRUE/FALSE toggles to produce the desired set of outputs. More detail is available in the section READMEs. 
