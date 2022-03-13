@@ -7,7 +7,7 @@ and a polynomial interaction model with climate heterogeneity only.
 
 NOTE: The binned regressions are not used in the paper, but are left in the script as additional disgnostics should users try to replicate
 
-Most importantly, we use data from Burgess et al. (2017) and replicate a version of their main specification that is directly comparable
+Here, we use data from Burgess et al. (2017) and replicate a version of their main specification that is directly comparable
 to the main estimating equation in Carleton et al. (2022). 
 To ensure comparability, our implementation of Burgess et al. differs from theirs in several aspects:
 
