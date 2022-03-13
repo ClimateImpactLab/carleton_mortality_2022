@@ -1,7 +1,7 @@
 /*
 
 Purpose: plot the responses computed in age_spec_interacted_india_compare_responses.do : the India response functions for different models, including
-their confidence intervals. This also plots the histogram that represents the historical temperature exposure in India. Prodeces Appendix Figure D11
+their confidence intervals. This also plots the histogram that represents the historical temperature exposure in India. Produces Appendix Figure D11.
 
 
 Inputs
