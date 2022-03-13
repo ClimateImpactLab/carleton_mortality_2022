@@ -8,7 +8,7 @@ As outlined in the main README, codes in this directory rely on the `REPO`, `DB`
 - Output path (global: `OUTPUT`) - specifies the folder in which output from the analysis should be saved. This includes all tables and figures in the main text and appendix of Carleton et al. (2022).
 
 ### 2. Download the data. 
-See [Downloading the Data](addlink) for instructions on accessing the online data repository.
+See [Downloading the Data](https://dataverse.harvard.edu/dataverse/qje) for instructions on accessing the online data repository.
  
 
 ### 3. (Optional) Run master do file, `clean.do`. 
