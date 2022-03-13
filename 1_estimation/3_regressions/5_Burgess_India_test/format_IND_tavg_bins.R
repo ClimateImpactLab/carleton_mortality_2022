@@ -1,8 +1,8 @@
 ##############################
 
-# purpose : read the India-level historical monthly binned daily average temperature data, and reformat it so that it you can make a histogram representation of it.
+# Purpose : read the India-level historical monthly binned daily average temperature data, and reformat it so that it you can make a histogram representation of it.
 
-# input : that data is /DB/0_data_cleaning/1_raw/Countries/IND/Climate/adm0/weather_data/csv_monthly
+# Input : that data is /DB/0_data_cleaning/1_raw/Countries/IND/Climate/adm0/weather_data/csv_monthly
 
 ##############################
 
