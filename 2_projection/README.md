@@ -13,8 +13,8 @@ Please ensure that your `~/.bash_profile` defines the `REPO`, `DB`, and `OUTPUT`
 
 `2_projection/1_utils/load_utils.R` loads the R packages necessary to produce the charts contained in the paper, and depends on the package management tool `pacman`, which automatically installs and loads these packages. For a complete list of required packages, see `2_projection/1_utils/packages.txt`.
 
-### 2. (Optional) View the README in `2_run_projections` to see how projections and the extracted files are generated
-`2_run_projections` provides details on how projections were run using the regression output CSVV file generated in the `1_estimation` step and code from the Climate Impact Lab projection system which exists in the `impact_calculations`[https://gitlab.com/ClimateImpactLab/Impacts/impact-calculations/-/tree/master], `impact-commons`[XX], and `prospectus-tools`[https://github.com/jrising/prospectus-tools] repos. The step-by-step process of generating projections, aggregating by regions, and extracting means across Monte Carlo outputs is detailed here. 
+### 2. (Optional) View the README in `2_run_projections/` to see how projections and the extracted files are generated
+`2_run_projections/` provides details on how projections were run using the regression output CSVV file generated in the `1_estimation/` step and code from the Climate Impact Lab projection system which exists in the `impact_calculations`[https://github.com/ClimateImpactLab/impact-calculations], `impact-commons`[https://github.com/ClimateImpactLab/impact-common], and `prospectus-tools`[https://github.com/jrising/prospectus-tools] repos. The step-by-step process of generating projections, aggregating by regions, and extracting means across Monte Carlo outputs is detailed here. 
 
 ### 3. Generate figures using `3_generate_figures/generate_projection_figures.R`.
 `generate_projection_figures.R` is the master script for generating figures from Monte Carlo simulation output, using the functions within `1_utils` to load the appropriate data and produce the visualizations. This script is organized into six sections:
