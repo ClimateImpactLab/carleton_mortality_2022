@@ -3,7 +3,7 @@
 Purpose: Master Do file for 1_estimation.
 
 This script manages the estimation and plotting of all regression models in
-Carleton et al. 2019.
+Carleton et al. 2022.
 
 This script assumes (1) the final dataset is constructed by
 0_data_cleaning or downloaded from the online data repository and (2)
