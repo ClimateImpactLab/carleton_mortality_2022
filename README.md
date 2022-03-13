@@ -67,7 +67,7 @@ Also, you need to install Jupyter for the scc calculation code
 conda install -c conda-forge jupyterlab
 ```
 
-3. Download data from the [QJE Dataverse](https://dataverse.harvard.edu/dataverse/qje) and unzip it somewhere on your machine with at least 45 GB of space. Let's call this location `yourDATA`.
+3. Download data from the [QJE Dataverse](https://dataverse.harvard.edu/dataverse/qje) and unzip it somewhere on your machine with at least 90 GB of space. Let's call this location `yourDATA`.
 
 4. Set up a few environment variables so that all the code runs smoothly.
 
