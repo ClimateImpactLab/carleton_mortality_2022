@@ -1,7 +1,8 @@
 /*
 
-Purpose: Residualize regressions for covar (space) crossval RMSE exercise. Output saved 
-in dta format to be used in `rmse_crossval_space.do`.
+Purpose: Residualize outcome (mortality) and key independent variables (weather, climate, income)) 
+for the spatial cross-validation RMSE exercise shown in Appendix Table D5. Output saved in dta 
+format to be used in `rmse_crossval_space.do`.
 
 
 Inputs
