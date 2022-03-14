@@ -11,8 +11,11 @@ BETA_INPUT_DEFAULT = glue('{DB}/2_projection/3_impacts/main_specification/raw/',
     'single')
 
 BETA_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_3_D5_beta_maps')
+dir.create(BETA_OUTPUT_DEFAULT)
 RF_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_3_D5_spaghettis')
+dir.create(RF_OUTPUT_DEFAULT)
 DELTA_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_E2_delta_maps')
+dir.create(DELTA_OUTPUT_DEFAULT)
 
 #' Generates response functions, or betas (which we define as the sensitivity of
 #' mortality to a given temperature day, i.e., the response function height at

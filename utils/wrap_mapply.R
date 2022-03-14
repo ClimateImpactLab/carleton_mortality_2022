@@ -132,4 +132,4 @@ stack = function(
 }
 
 
-memo.csv = addMemoization(read.csv)
+# memo.csv = addMemoization(read.csv)

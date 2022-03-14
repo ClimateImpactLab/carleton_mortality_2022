@@ -26,7 +26,7 @@ Part3 = TRUE # Maps and histograms
 Part4 = TRUE # Time series
 Part5 = TRUE # Decile plot
 Part6 = TRUE # Bar Chart
-Appendix = FALSE # Parts 1-4 have Appendix figures
+Appendix = TRUE # Parts 1-4 have Appendix figures
 
 # Paper default: rcp85, low, SSP3
 
@@ -47,7 +47,6 @@ DB <- Sys.getenv(c("DB"))
 OUTPUT <- Sys.getenv(c("OUTPUT"))
 
 source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"))
-
 
 
 # Part 1: Data Coverage.
