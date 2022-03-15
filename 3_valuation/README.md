@@ -37,10 +37,6 @@ The valuation code in this repository relies upon raw netCDF4 output from the pr
 
 ## Folder Structure
 
-`1_utils`- Contains functions for initializing the `R` environment and generating the figures and in-text summary stats in Carleton et al. (2022). See the `README` in this folder for details on the functions written for this stage of the analysis.
+`1_calculate_vsl`- Contains scripts that compute the VSL and VLY (value of life-years) at impact region level over time, under various socioeconomic and valuation scenarios.
 
-`2_run_projections` - Configuration files and helpful bash scripts for generating, aggregating, and extracting projected mortality impacts based upon the model inputs generated in `1_estimation`. See the [`impact-calculations`](https://github.com/ClimateImpactLab/impact-calculations) repository for detailed documentation and run instructions for the Climate Impact Lab projection system.
-
-`3_generate_figures` - Contains documented master script for generating figures reflecting monetized mortality risk in Carleton et al. (2022).
-
-`4_in-text_stats` - Contains master script for generating in-text statistics based upon projection and valuation results.
+`2_calculate_damages` - Contains scripts to combine projected impacts of climate change on death risk, which are output from steps outlined in `2_projection/`, with VSL and VLYs estimated in `1_calculate_vsl/` to converte impacts on death risk into monetized damages.
