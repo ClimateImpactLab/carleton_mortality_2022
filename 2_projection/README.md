@@ -44,7 +44,7 @@ See the header of `paper_intextstats.R` for further instructions on replicating 
 
 `1_utils`- Contains functions for initializing the R environment and generating the figures and in-text summary stats in Carleton et al. (2022). See the `README` in this folder for details on the functions written for this stage of the analysis.
 
-`2_run_projections` - Configuration files and helpful bash scripts for generating, aggregating, and extracting projected mortality impacts based upon the model inputs generated in `1_estimation`. See the `impact-calculations` repository for detailed documentation and run instructions for the Climate Impact Lab projection system.
+`2_run_projections` - Configuration files and helpful bash scripts for generating, aggregating, and extracting projected mortality impacts based upon the model inputs generated in `1_estimation`. See the [`impact-calculations`](https://github.com/ClimateImpactLab/impact-calculations) repository for detailed documentation and run instructions for the Climate Impact Lab projection system.
 
 `3_generate_figures` - Contains documented master script for generating post-projection figures in Carleton et al. (2022).
 
