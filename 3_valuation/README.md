@@ -37,6 +37,6 @@ The valuation code in this repository relies upon raw netCDF4 output from the pr
 
 ## Folder Structure
 
-`1_calculate_vsl`- Contains scripts that compute the VSL and VLY (value of life-years) at impact region level over time, under various socioeconomic and valuation scenarios.
+`1_calculate_vsl/`- Contains scripts that compute the VSL and VLY (value of life-years) at impact region level over time, under various socioeconomic and valuation scenarios.
 
-`2_calculate_damages` - Contains scripts to combine projected impacts of climate change on death risk, which are output from steps outlined in `2_projection/`, with VSL and VLYs estimated in `1_calculate_vsl/` to converte impacts on death risk into monetized damages.
+`2_calculate_damages/` - Contains scripts to combine projected impacts of climate change on death risk, which are output from steps outlined in `2_projection/`, with VSL and VLYs estimated in `1_calculate_vsl/` to convert impacts on death risk into monetized damages.
