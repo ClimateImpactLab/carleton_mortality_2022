@@ -1,10 +1,10 @@
 # Purpose: Produces impacts at terciles of the income and climate distributions
-# for purposes of the bar chart in Figure 11.
+# for purposes of the bar chart in Figure IX.
 
 BARCHART_OUTPUT= glue("{OUTPUT}/2_projection/figures/5_barchart")
 
 #' This function generates the impacts values required to generate the bar chart
-#' in Figure 11 of Carleton et al. 2019. Note that generating the figure in the
+#' in Figure IX of Carleton et al. 2022. Note that generating the figure in the
 #' paper is largely a post processing effort that relies upon excel (due to
 #' arbitrarily ordered barchart stacking) and Adobe Illustrator.
 #' 
