@@ -10,10 +10,8 @@
 # Section 1: Global mortality impacts
 # Section 2: Impact-region level impacts
 # Section 3: Marginal effect of a hot day (35C) for each age group
-# Section 4: Share of death equivalents attributable to adaptation costs by 2015 
-# income deciles
-# Section 5: Monetized mortality damages as percent of GDP.
-# Section 6: CPU-hours required for Monte Carlo simulations
+# Section 4: Monetized mortality damages as percent of GDP.
+# Section 5: CPU-hours required for Monte Carlo simulations
 
 
 rm(list = ls())
@@ -453,18 +451,11 @@ impacts_fin = get_mortality_impacts(
     iam=iam)
 
 # At the end of the century we project an increase of about XX death equivalents 
-# annually in Accra, Ghana and a decrease of about YY annually in Oslo, Norway (deaths per 100k)
-# and Berlin, DE! 
+# annually in Accra, Ghana and a decrease of about YY annually in Berlin, DE (deaths per 100k)
 
 write_stats('2.1',
     "Accra, Ghana fulladapt+costs deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"],
-    output.file
-    )
-
-write_stats('2.2',
-    "Oslo, Norway fulladapt+costs deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
-    impacts_fin$mean[impacts_fin$region=="NOR.12.288"],
     output.file
     )
 
@@ -474,17 +465,11 @@ write_stats('2.3',
     output.file
     )
     
-# Calculate % increase over today's mortality levels in Accra & Oslo & London (deaths per 100k); 
-# Source: www.un.org/en/development/desa/population/publications/pdf/carleton_mortality_2022World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
+# Calculate % increase over today's mortality levels in Accra & Berlin (deaths per 100k); 
+# Source: https://www.un.org/en/development/desa/population/publications/pdf/mortality/World-Mortality-2017-Data-Booklet.pdf, pages 12 & 15
 write_stats('2.4',
     "Accra, Ghana % increase over today's mortality levels (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"]/(8.3*100)*100,
-    output.file
-    )
-
-write_stats('2.5',
-    "Oslo, Norway % increase over today's mortality levels (RCP8.5, SSP3, IIASA-GDP)",
-    impacts_fin$mean[impacts_fin$region=="NOR.12.288"]/(8.0*100)*100,
     output.file
     )
 
@@ -506,20 +491,13 @@ impacts_fin = get_mortality_impacts(
 
 
 # At the end of the century we project an increase of about XX death equivalents 
-# annually in Accra, Ghana and a decrease of about YY annually in Oslo, Norway (deaths per 100k)
-# and Berlin ! 
+# annually in Accra, Ghana and a decrease of about YY annually in Berlin, DE (deaths per 100k)
+
 write_stats('2.7',
     "Accra, Ghana fulladapt deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"],
     output.file
     )
-
-write_stats('2.8',
-    "Oslo, Norway fulladapt deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
-    impacts_fin$mean[impacts_fin$region=="NOR.12.288"],
-    output.file
-    )
-
 
 write_stats('2.9',
     "Berlin, DE fulladapt deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
@@ -527,20 +505,13 @@ write_stats('2.9',
     output.file
     )
 
-# Calculate % increase over today's mortality levels in Accra & Oslo & London (deaths per 100k); 
-# Source: www.un.org/en/development/desa/population/publications/pdf/carleton_mortality_2022World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
+# Calculate % increase over today's mortality levels in Accra & Berlin (deaths per 100k); 
+# Source: https://www.un.org/en/development/desa/population/publications/pdf/mortality/World-Mortality-2017-Data-Booklet.pdf, pages 12 & 15
 write_stats('2.10',
     "Accra, Ghana % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"]/(8.3*100)*100,
     output.file
     )
-
-write_stats('2.11',
-    "Oslo, Norway % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
-    impacts_fin$mean[impacts_fin$region=="NOR.12.288"]/(8.0*100)*100,
-    output.file
-    )
-
 
 write_stats('2.12',
     "Berlin, DE % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
@@ -561,20 +532,13 @@ impacts_fin = get_mortality_impacts(
 
 
 # At the end of the century we project an increase of about XX death equivalents 
-# annually in Accra, Ghana and a decrease of about YY annually in Oslo, Norway (deaths per 100k)
-# and Berlin ! 
+# annually in Accra, Ghana and a decrease of about YY annually in Berlin, DE (deaths per 100k)
+
 write_stats('2.13',
     "Accra, Ghana noadapt deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"],
     output.file
     )
-
-write_stats('2.14',
-    "Oslo, Norway noadapt deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
-    impacts_fin$mean[impacts_fin$region=="NOR.12.288"],
-    output.file
-    )
-
 
 write_stats('2.15',
     "Berlin, DE noadapt deathrate impacts in 2100 (RCP8.5, SSP3, IIASA-GDP)",
@@ -582,20 +546,13 @@ write_stats('2.15',
     output.file
     )
 
-# Calculate % increase over today's mortality levels in Accra & Oslo & London (deaths per 100k); 
-# Source: www.un.org/en/development/desa/population/publications/pdf/carleton_mortality_2022World-Mortality-2017-Data-Booklet.pdf, page 12 & 15
+# Calculate % increase over today's mortality levels in Accra & Berlin (deaths per 100k); 
+# Source: https://www.un.org/en/development/desa/population/publications/pdf/mortality/World-Mortality-2017-Data-Booklet.pdf, pages 12 & 15
 write_stats('2.16',
     "Accra, Ghana % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
     impacts_fin$mean[impacts_fin$region=="GHA.5.70"]/(8.3*100)*100,
     output.file
     )
-
-write_stats('2.17',
-    "Oslo, Norway % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
-    impacts_fin$mean[impacts_fin$region=="NOR.12.288"]/(8.0*100)*100,
-    output.file
-    )
-
 
 write_stats('2.18',
     "Berlin, DE % increase over today's mortality levels without accounting for costs (RCP8.5, SSP3, IIASA-GDP)",
@@ -681,7 +638,7 @@ write_stats('3.1.8',
     ) 
 
 # 35C response in 2015 in Houston (Harris County USA.44.2628) and
-# Seattle (King County USA.48.2971) relative to MMT
+# Seattle (King County USA.48.2971) relative to location-specific minimum mortality temperature (MMT)
 seattle.oldest = betas$seattle[1]
 write_stats('3.1.9',
     "35C response in Seattle, (2015, 65+ age group)",
@@ -710,7 +667,7 @@ if (deprecated) {
     # Load population.
     pop = get_econvar('pop', regions='all', year_list=2015)
 
-    # Load binned temp distribution .
+    # Load binned temp distribution.
     temp = fread(glue("{DB}/2_projection/5_climate_data/tas_CCSM4_2015_35-44C_bin.csv"), 
             stringsAsFactors = F) %>%
         data.frame() %>%
@@ -736,7 +693,7 @@ if (deprecated) {
         output.file
         ) 
 
-    # Calculate In-sample number of deaths.
+    # Calculate in-sample number of deaths.
 
     curve.in = subset(curve, substr(curve$region, 1,3) %in% insamplelist) 
     curve.agg.in = aggregate(
@@ -753,7 +710,7 @@ if (deprecated) {
         output.file
         ) 
 
-    # Calculate difference between Global and Insample
+    # Calculate difference between Global and In-sample
     write_stats('3.1.2.3',
         "Difference between Global and Insample",
         global.total - insample.total,
@@ -843,112 +800,8 @@ write_stats('3.4.2',
     ) 
 
 
-# Section 4: Share of death equivalents attributable to adaptation costs by income deciles
-
-write('\n4. Share of death equivalents attributable to adaptation costs by income deciles', 
-    file=output.file, append=T)
-
-# load impacts
-impacts_fin = get_mortality_impacts(
-        qtile='mean',
-        scn='fulladaptcosts',
-        regions='all',
-        year_list=c(2099),
-        ssp=ssp,
-        rcp=rcp,
-        iam=iam) %>%
-    dplyr::rename(fulladaptcosts=mean)
-
-
-full = get_mortality_impacts(
-        qtile='mean',
-        scn='fulladapt',
-        regions='all',
-        year_list=c(2099),
-        ssp=ssp,
-        rcp=rcp,
-        iam=iam) %>%
-    dplyr::rename(fulladapt=mean)
-
-
-# merge both together
-impacts_fin = left_join(impacts_fin, full, by = c("region", "year"))
-
-# calculate costs
-impacts_fin$costs = impacts_fin$fulladaptcosts - impacts_fin$fulladapt
-
-# load 2015 & 2099 pop
-pop.baseline = get_econvar(econvars='pop', year_list=2015)
-pop.EOC = get_econvar(econvars='pop', year_list=2099)
-
-# create pop-weighted deciles from 2015 income
-covariates = get_mortality_covariates(covars='loggdppc', year_list=2015) %>%
-    dplyr::rename(covar=loggdppc)
-covariates$covar = as.numeric(covariates$covar)
-
-# merge in baseline population
-covariates = left_join(covariates, pop.baseline, by='region')
-
-# normalize popweights so they sum to 1 
-covariates$pop = covariates$pop/sum(covariates$pop)
-
-# multiply the weights by a scalar until they are all whole numbers in order to 
-# calculate weighted quantiles
-quantile_cov_box = data.frame(
-    covar = rep(covariates$covar,
-    times = covariates$pop*100000000))
-
-quantiles_cov = quantile(
-    quantile_cov_box$covar,
-    probs = seq(0, 1, by = 0.1), na.rm = T)
-
-# assign values based on quantiles
-covariates$quantile = cut(covariates$covar, breaks = quantiles_cov, 
-    labels = c("1","2","3","4","5","6","7","8","9","10"), include.lowest=TRUE)
-
-# merge deciles into main df
-impacts_fin_covar = left_join(impacts_fin, covariates, by="region")
-
-# find mean values for fulladapt+costs and costs in poorest and richest decile
-i = 1
-for (adapt in c("fulladaptcosts", "costs")) {
-    
-    quantiles.df = c() #create empty df
-    for (q in c(1,10)) { #loop over quantiles 1 and 10
-        
-        message(paste("Subsetting to quantile", q, adapt))
-        
-        # subset to decile
-        impacts_quantile = dplyr::filter(impacts_fin_covar, quantile == q)
-        
-        # Assign values to 'value' variable depending on adaptation scenario.
-        if (adapt == "fulladapt")
-            impacts_quantile$value = impacts_quantile$fulladapt
-        else if (adapt == "fulladaptcosts")
-            impacts_quantile$value = impacts_quantile$fulladaptcosts
-        else if (adapt == "costs")
-            impacts_quantile$value = impacts_quantile$costs
-        
-        # calculate 2099 pop-weighted mean
-        impacts_quantile_year = impacts_quantile %>% 
-            dplyr::select(-c(pop)) %>%
-            left_join(pop.EOC, by = c("region"))
-        impacts_quantile_year$pop = impacts_quantile_year$pop / 
-            sum(impacts_quantile_year$pop)
-        
-        # print mean value of decile {1,10} for {fulladaptcosts, costs}
-        write_stats(glue('4.{i}.{q}'),
-            glue("Mean value of decile {q} for {adapt}"),
-            weighted.mean(impacts_quantile_year$value, impacts_quantile_year$pop),
-            output.file
-            )
-    }
-    i = i+1
-    write('', file=output.file, append=T)
-}
-
-# Section 5. Monetized mortality damages as percent of GDP.
-write('5. Monetized damages as percent of global GDP.', 
+# Section 4. Monetized mortality damages as percent of GDP.
+write('4. Monetized damages as percent of global GDP.', 
     file=output.file, append=T)
 
 valuation = 'vsl_epa_scaled'
@@ -977,8 +830,8 @@ for (r in seq(1, length(rcplist))) {
     write('', file=output.file, append=T)
 }
 
-# Section 6: CPU-hours required for Monte Carlo simulations
-write('6. CPU-hours required for Monte Carlo simulations', 
+# Section 5: CPU-hours required for Monte Carlo simulations
+write('5. CPU-hours required for Monte Carlo simulations', 
     file=output.file, append=T)
 
 #number of nc4 files generated per cpu-hour
