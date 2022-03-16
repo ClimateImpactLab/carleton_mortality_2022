@@ -4,8 +4,6 @@
 #' Ex.
 #' wrap_mapply(year=c(2050, 2090), region=c('reg1', 'reg2'), FUN=map_func)
 #' 
-#' Originally written for delta-beta, so most additional features are for data
-#' in array format.
 #'
 #' @param FUN Function to vectorize.
 #' @param engine Underlying function for vectorizing. Defaults mapply, 
