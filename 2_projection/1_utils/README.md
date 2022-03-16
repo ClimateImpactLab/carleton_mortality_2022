@@ -6,7 +6,7 @@ This README summarizes the purpose of each file in this folder. For details on t
 
 - `load_utils.R` - This function loads required packages, both external packages and those in this repository.
   - `packages.txt` provides the list of required packages. It's passed to `pacman` which automatically installs packages in the active R environment if needed. 
-  - Packages are loaded from this directory (which primarily contains functions specific to this analysis) and from `carleton_mortality_2022utils` which contains functions that are general across the Climate Impact Lab sectors.
+  - Packages are loaded from this directory (which primarily contains functions specific to this analysis) and from `carleton_mortality_2022/utils/` which contains functions that are general across the Climate Impact Lab sectors.
 
 #### Code for loading and manipulating data
 
