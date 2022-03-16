@@ -9,20 +9,19 @@ This script does the following:
 	SSP-specific, and contain damages in 2019 USD for every Monte Carlo
 	batch-RCP-GCM-IAM-year combination. 
 2. Runs a regression in which the quadratic damage function is estimated
-	for each year 't' using data only from the 5 years around 't'
+	for each year 't' using data only from the 5 years around 't'.
 3. Runs a second regression in which GMST is interacted linearly with time. This
-	regression uses only data after 2085, given irregular early year
-	behavior documented in mortality
+	regression uses only data after 2085.
 4. Estimates damage function coefficients for all years 2015-2300, with
 	post-2100 extrapolation conducted using the linear temporal interaction
-	model and pre-2100 using the quadratic model
-5. Saves a csv of damage function coefficients to be used by the SCC calculation
+	model from step 3 and pre-2100 using the quadratic model from step 2.
+5. Saves a .csv of damage function coefficients to be used by the SCC calculation
 	derived from the FAIR simple climate model
 6. Produces plots of (1) the end of century damage function overlaying global
 	damages, (2) the damage function extrapolation in years beyond 2100 (grey)
 	alongside pre-2100 damage function plots (black & blue) subset to the max
 	and min of their GMST anomaly distributions, and (3) a kernel density plot
-	of GMST anomalies at end of century. These plots together make up Figure 7
+	of GMST anomalies at end of century. These plots together make up Figure VII
 	of Carleton et al. 2022
 7. Plots several diagnostic figures which are useful for understanding how
 	damage functions translate to the SCC. 
@@ -31,7 +30,7 @@ Note that the list above covers the functionality for mean damage
 function estimation. This script also has functionality for producing quantile
 damage function coefficients and a diagnostic plot for the quantile damage
 functions. The quantile regression process generally repeats the above process
-for 19 quantiles between 0.5 and .95, outputting one csv file containing all 
+for 19 quantiles between 0.5 and .95, outputting one .csv file containing all 
 quantile regression coefficients.
 
 Toggles
