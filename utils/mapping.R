@@ -5,8 +5,6 @@
 
 # Applicable to any variable (including impact maps, beta maps and spatial scc maps)
 
-# Updated 4 Jun 2019 by Trinetta Chong 
-
 # Packages to install: 
 # install.packages(c("rgdal", "rgeos", "raster", "rnaturalearth", 
 # "RColorBrewer", "scales")) #packages specific to this mapping code
