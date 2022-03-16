@@ -1,7 +1,6 @@
 # Timeseries function
 
 # This function returns a global timeseries from projection impacts
-# Updated 28 May 2018 by Trinetta Chong 
 
 #create function that plots timeseries
 ggtimeseries <- function(df.list = NULL, 
