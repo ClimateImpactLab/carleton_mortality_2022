@@ -1,11 +1,8 @@
 # GGSpaghetti Plot function
 
 # Grey lines indicate predicted response functions for each impact region 
-# The red line is the estimated response function  
 # The solid black line is the unweighted average across all regions
 # Opacity indicates the density of realized temperatures between 2000 - 2009
-
-# Updated 26 Sep 2019 by Trinetta Chong 
 
 TEMP_DEFAULT = glue('{DB}/2_projection/5_climate_data/',
     'GMFD_tavg_poly_1_2000_2009_daily_popwt.csv')
