@@ -1,7 +1,6 @@
 # Kernel Density Plotting Function
 
 # This function returns a kernel density plot from a specific impact region from projection impacts
-# Updated 19 Aug 2018 by Trinetta Chong 
 
 #----------------------------------------------------------------------------------
 
