@@ -1,9 +1,10 @@
 # Produces box-and-whisker plots of future mortality impacts of climate change
 # by deciles of today's income and climate distributions (Figure VI).
 
-DECILES_OUTPUT = glue("{OUTPUT}/2_projection/figures/6_decile_plots")
+DECILES_OUTPUT = glue("{OUTPUT}/figures/Figure_6_deciles")
 
-deciles_plot_new = function(
+
+deciles_plot = function(
 	covar,
 	ssp='SSP3', 
 	iam='low', 
@@ -17,6 +18,9 @@ deciles_plot_new = function(
 	ftype='pdf',
 	trimclim=TRUE) {
 	
+	# create output directory
+	dir.create(output_dir, showWarnings = FALSE)
+
 	#load impacts
 	impacts_fin = wrap_mapply(
 		scn=c('fulladaptcosts', 'fulladapt', 'costs'),
@@ -151,7 +155,7 @@ deciles_plot_new = function(
 
 	p
 
-	ggsave(p, file=glue("{output_dir}/new_deciles_{ssp}_{rcp}_{iam}_{covar}{suffix}.{ftype}"), width = 9, height = 7)
+	ggsave(p, file=glue("{output_dir}/deciles_{ssp}_{rcp}_{iam}_{covar}{suffix}.{ftype}"), width = 9, height = 7)
  }
 
 

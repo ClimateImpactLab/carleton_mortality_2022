@@ -19,6 +19,9 @@ quick_map = function(
     PlotArgs=list(),
     ftype='png') {
 
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)
+
     wrap = function(...) 
         (FUN(...)[c('region', plotvar)])
 

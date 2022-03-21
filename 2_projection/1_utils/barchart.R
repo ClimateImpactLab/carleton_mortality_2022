@@ -1,7 +1,8 @@
 # Purpose: Produces impacts at terciles of the income and climate distributions
 # for purposes of the bar chart in Figure IX.
 
-BARCHART_OUTPUT= glue("{OUTPUT}/2_projection/figures/5_barchart")
+BARCHART_OUTPUT= glue("{OUTPUT}/figures/Figure_9_barchart")
+
 
 #' This function generates the impacts values required to generate the bar chart
 #' in Figure IX of Carleton et al. 2022. Note that generating the figure in the
@@ -37,6 +38,10 @@ mortality_barchart = function(
     iam='low',
     ssp='SSP3',
     output_dir=BARCHART_OUTPUT) {
+
+	# create output directory
+	dir.create(output_dir, showWarnings = FALSE)
+
 
 	# Load Population (2099).
 	pop = get_econvar('pop', iam=iam, ssp=ssp, year_list=2099, as.DT=T)[,

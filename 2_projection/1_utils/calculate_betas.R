@@ -11,11 +11,8 @@ BETA_INPUT_DEFAULT = glue('{DB}/2_projection/3_impacts/main_specification/raw/',
     'single')
 
 BETA_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_3_D5_beta_maps')
-dir.create(BETA_OUTPUT_DEFAULT)
 RF_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_3_D5_spaghettis')
-dir.create(RF_OUTPUT_DEFAULT)
 DELTA_OUTPUT_DEFAULT = glue('{OUTPUT}/figures/Figure_E2_delta_maps')
-dir.create(DELTA_OUTPUT_DEFAULT)
 
 #' Generates response functions, or betas (which we define as the sensitivity of
 #' mortality to a given temperature day, i.e., the response function height at
@@ -420,7 +417,7 @@ calculate_response = function( betas.expanded, temp, inc_adapt=F) {
 #' 
 #' Outputs
 #' -------
-#' Exports "beta" maps to `outputwd`.
+#' Exports "beta" maps to `output_dir`.
 #' 
 #' Dependencies
 #' -------------
@@ -435,7 +432,7 @@ calculate_response = function( betas.expanded, temp, inc_adapt=F) {
 #' out.
 #' @param insample T/F for greying regions outside the estimation sample.
 #' @param inputwd Directory containing input single directory
-#' @param outputwd Output directory
+#' @param output_dir Output directory
 #' @param shp_master Shapefile, will load default if NULL.
 #' @param betas.plot Betas dataframe (output from calculate.betas). Loads by
 #' default if NULL, but saves on compute time if running a bunch of output.
@@ -455,13 +452,16 @@ plot.beta.maps = function(
     grey_uclip=FALSE, 
     insample=FALSE,
     inputwd=BETA_INPUT_DEFAULT,
-    outputwd=DELTA_OUTPUT_DEFAULT,
+    output_dir=DELTA_OUTPUT_DEFAULT,
     shp_master=NULL,
     betas.plot=NULL,
     summ_temp=35,
     grayscale=FALSE,
     override_MMTdir=FALSE,
     ...) {
+
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)    
 
     cov_path = glue('{inputwd}/{rcp}/CCSM4/{iam}/{ssp}')
 
@@ -497,7 +497,7 @@ plot.beta.maps = function(
             suffix = ''
         }
 
-        filename = glue("{outputwd}/beta_map_{age}_{ssp}_{rcp}_{iam}_{yr}{suffix}")
+        filename = glue("{output_dir}/beta_map_{age}_{ssp}_{rcp}_{iam}_{yr}{suffix}")
         
         if (grey_uclip) {
             
@@ -507,7 +507,7 @@ plot.beta.maps = function(
                 NA, shp_plot$betas_all_clip)
             
             # Update filename.
-            filename = glue("{outputwd}/beta_map_{age}_{ssp}_{rcp}_{iam}_{yr}_grey-uclip")
+            filename = glue("{output_dir}/beta_map_{age}_{ssp}_{rcp}_{iam}_{yr}_grey-uclip")
         }
         
         if (insample) {
@@ -668,7 +668,7 @@ plot.beta.maps = function(
 #' 
 #' Outputs
 #' -------
-#' Exports "spaghetti" plots to `outputwd`.
+#' Exports "spaghetti" plots to `output_dir`.
 #' 
 #' Dependencies
 #' -------------
@@ -683,7 +683,7 @@ plot.beta.maps = function(
 #' @param y.label y-axis label
 #' @param tempdir location of temperature data used to weight alpha.
 #' @param inputwd Directory containing input single directory
-#' @param outputwd Output directory
+#' @param output_dir Output directory
 #' @param betas.plot dataframe (output from calculate.betas). Loads by
 #' default if NULL, but saves on compute time if running a bunch of output.
 #' @param ftype file type for output (png or pdf, usually)
@@ -699,7 +699,7 @@ plot.spaghetti = function(
     y.label="Change in death rate relative to reference temperature", 
     tempdir=TEMP_DEFAULT,
     inputwd=BETA_INPUT_DEFAULT,
-    outputwd=RF_OUTPUT_DEFAULT,
+    output_dir=RF_OUTPUT_DEFAULT,
     betas.plot=NULL,
     ftype='pdf',
     override_MMTdir=FALSE,
@@ -707,6 +707,9 @@ plot.spaghetti = function(
 
 
     message('starting spaghetti wrapper...')
+
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE) 
 
     cov_path = glue('{inputwd}/{rcp}/CCSM4/{iam}/{ssp}')
 
@@ -762,7 +765,7 @@ plot.spaghetti = function(
         suffix = ''
     }
 
-    myfile = glue("{outputwd}/{region}_spaghetti_response_{age}_{ssp}_{rcp}_{iam}{suffix}")
+    myfile = glue("{output_dir}/{region}_spaghetti_response_{age}_{ssp}_{rcp}_{iam}{suffix}")
     
     ggsave(p, filename=glue("{myfile}.{ftype}"),
         width = 7, height = 7)  
@@ -784,7 +787,7 @@ plot.spaghetti = function(
 #' 
 #' Outputs
 #' -------
-#' Exports "delta" maps to `outputwd`.
+#' Exports "delta" maps to `output_dir`.
 #' 
 #' Dependencies
 #' -------------
@@ -797,7 +800,7 @@ plot.spaghetti = function(
 #' @param baseline baseline year for counterfactual approximation (2015)
 #' @param future Future year from which to subtract baseline.
 #' @param inputwd Directory containing input single directory
-#' @param outputwd Output directory
+#' @param output_dir Output directory
 #' @param shp_master Shapefile, will load default if NULL.
 #' @param betas.plot Betas dataframe (output from calculate.betas). Loads by
 #' default if NULL, but saves on compute time if running a bunch of output.
@@ -815,7 +818,7 @@ plot.delta.maps = function(
     baseline=2015,
     future=2100,
     inputwd=BETA_INPUT_DEFAULT,
-    outputwd=BETA_OUTPUT_DEFAULT,
+    output_dir=BETA_OUTPUT_DEFAULT,
     shp_master=NULL,
     betas.plot=NULL,
     summ_temp=35,
@@ -823,6 +826,9 @@ plot.delta.maps = function(
     ...) {
 
     cov_path = glue('{inputwd}/{rcp}/CCSM4/{iam}/{ssp}')
+
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE) 
 
     if (is.null(betas.plot))    
         betas.plot = calculate.beta(age,
@@ -857,7 +863,7 @@ plot.delta.maps = function(
         shp_plot$diff < limits_val[[age]],
         limits_val[[age]], shp_plot$diff)
     
-    filename = glue("{outputwd}/delta_map_{age}_{ssp}_{rcp}_{iam}_{future}_sensitivity.png")
+    filename = glue("{output_dir}/delta_map_{age}_{ssp}_{rcp}_{iam}_{future}_sensitivity.png")
     
     # Set variables for plotting.
     titleunit = glue("Change in marginal damages of a day at {summ_temp}C  (deaths per 100,000)")

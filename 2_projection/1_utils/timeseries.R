@@ -1,8 +1,8 @@
 # Purpose: Produces time series of projected impacts.
 
-TS_OUTPUT_DEFAULT = glue("{OUTPUT}/2_projection/figures/4_timeseries")
+TS_OUTPUT_DEFAULT = glue("{OUTPUT}/figures/timeseries")
 
-TS_APPENDIX_DEFAULT = glue("{OUTPUT}/2_projection/figures/appendix/timeseries")
+TS_APPENDIX_DEFAULT = glue("{OUTPUT}/figures/timeseries")
 
 multi_timeseries = function(
     ...,
@@ -14,6 +14,9 @@ multi_timeseries = function(
     suffix='',
     PlotArgs=list(),
     ftype='png') {
+
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)
 
     message('Loading data')
     if (length(plotvar) == 1) {
@@ -101,6 +104,9 @@ timeseries_compare_rcp = function(
     output_dir=TS_OUTPUT_DEFAULT,
     with_costs=TRUE) {
 
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)
+
     qtl = c('q5', 'q10', 'q25', 'mean', 'q75', 'q90', 'q95')
     scn ='fulladapt'
     suf = ''
@@ -148,6 +154,9 @@ timeseries_compare_incadapt_noadapt = function(
     iam='low',
     qtles,
     output_dir=TS_OUTPUT_DEFAULT) {
+
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)
 
     qtl = c('q5', 'q10', 'q25', 'mean', 'q75', 'q90', 'q95')
     scn =c('noadapt', 'incadapt')
@@ -253,6 +262,7 @@ timeseries_linear_extrapolation = function(output_dir=TS_APPENDIX_DEFAULT) {
 #' loads output from a batch of runs where we allowed for four different levels of long run temperature and income adaptation speed.
 #' @param adaptrate character. One of c('fast15', 'fast2', 'normal', 'slow'). 
 timeseries_flexadapt_rate = function(output_dir=TS_APPENDIX_DEFAULT, adaptrate='normal') {
+
     speeds = paste0('{DB}/2_projection/3_impacts/',
         c('fastadapt15','fastadapt2','main_specification/raw','slowadapt05'),'/single/rcp85/CCSM4/low/SSP3')
     names(speeds) <- c('fast15', 'fast2', 'normal', 'slow')

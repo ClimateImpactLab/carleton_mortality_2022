@@ -1,9 +1,8 @@
 # Purpose: Generates Figure II in Carleton et al. (2022), which compares
 # in-sample vs. global income and climate distributions in 2015 and 2100.
 
-BLOB_OUTPUT= glue("{OUTPUT}/2_projection/figures/Figure_2_covariate_coverage")
-browser()
-dir.create(BLOB_OUTPUT)
+BLOB_OUTPUT= glue("{OUTPUT}/figures/Figure_2_covariate_coverage")
+
 
 #' Generates heat plot showing in-sample coverage of covariates in 2015 and 2100 
 #' (Figure II in Carleton et al. (2022)). 
@@ -35,6 +34,9 @@ blob_plot = function(
     ssp='SSP3',
     grayscale=FALSE,
     output_dir=BLOB_OUTPUT) {
+
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)
 
     # Countries in sample.
     insample = c(

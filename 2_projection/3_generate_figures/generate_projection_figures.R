@@ -343,8 +343,8 @@ if (Part4) {
 
 if (Part5) {
 
-    deciles_plot_new('loggdppc', output_dir=glue('{OUTPUT}/figures/Figure_6_deciles'))
-    deciles_plot_new('climtas', output_dir=glue('{OUTPUT}/figures/Figure_6_deciles'))
+    deciles_plot('loggdppc', output_dir=glue('{OUTPUT}/figures/Figure_6_deciles'))
+    deciles_plot('climtas', output_dir=glue('{OUTPUT}/figures/Figure_6_deciles'))
 }
 
 
