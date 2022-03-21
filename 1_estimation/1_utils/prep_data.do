@@ -23,7 +23,7 @@ period before and after 2004. See Appendix B.1.3 for more details.
 */
 		
 
-use "$DB/0_data_cleaning/3_final/global_mortality_panel", clear
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_public", clear
 
 
 * a. create adm0 LR averages (one year one vote given imbalanced sample)
