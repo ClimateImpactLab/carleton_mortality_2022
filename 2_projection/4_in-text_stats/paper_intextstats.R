@@ -23,11 +23,11 @@ OUTPUT <- Sys.getenv(c("OUTPUT"))
 
 source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"))
 
-
-
-output.file = glue("{OUTPUT}/tables/Table_2_impacts/Table_2_stats_in-text.txt")
+output_dir = glue("{OUTPUT}/tables/Table_2_impacts")
 # create output directory
-dir.create(output.file, showWarnings = FALSE)
+dir.create(output_dir, showWarnings = FALSE)
+
+output.file = glue("{output_dir}/Table_2_stats_in-text.txt")
 
 write_stats = function(id, description, value, output_file) {
     if (is.numeric(value))
