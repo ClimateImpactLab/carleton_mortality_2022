@@ -26,7 +26,8 @@ source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"
 
 
 output.file = glue("{OUTPUT}/tables/Table_2_stats_in-text.txt")
-dir.create(glue("{OUTPUT}/tables"))
+# create output directory
+dir.create(output.file, showWarnings = FALSE)
 
 write_stats = function(id, description, value, output_file) {
     if (is.numeric(value))
@@ -54,7 +55,7 @@ write(glue('Valuing the Global Mortality Consequences of Climate Change, Account
 
 # Full adaptation (Income and Climate adaptation).
 full = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='fulladapt',
     regions='global',
     ssp=ssp,
@@ -63,7 +64,7 @@ full = get_mortality_impacts(
 
 # No adaptation.
 noadapt = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='noadapt',
     regions='global',
     ssp=ssp,
@@ -72,7 +73,7 @@ noadapt = get_mortality_impacts(
 
 # Income benefits.
 incben = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='incbenefits',
     regions='global',
     ssp=ssp,
@@ -81,7 +82,7 @@ incben = get_mortality_impacts(
 
 # Income adaptation only.
 climben = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='climbenefits',
     regions='global',
     ssp=ssp,
@@ -90,7 +91,7 @@ climben = get_mortality_impacts(
 
 # Income adaptation only.
 costs = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='climbenefits',
     regions='global',
     ssp=ssp,
@@ -99,7 +100,7 @@ costs = get_mortality_impacts(
 
 # Full adaptation (Income and Climate adaptation) plus adaptation costs.
 fullcosts = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='fulladaptcosts',
     regions='global',
     ssp=ssp,
@@ -108,7 +109,7 @@ fullcosts = get_mortality_impacts(
 
 # Full adaptation (Income and Climate adaptation).
 full.45 = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='fulladapt',
     regions='global',
     ssp=ssp,
@@ -117,7 +118,7 @@ full.45 = get_mortality_impacts(
 
 # No adaptation.
 noadapt.45 = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='noadapt',
     regions='global',
     ssp=ssp,
@@ -126,7 +127,7 @@ noadapt.45 = get_mortality_impacts(
 
 # Income benefits.
 incben.45 = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='incbenefits',
     regions='global',
     ssp=ssp,
@@ -135,7 +136,7 @@ incben.45 = get_mortality_impacts(
 
 # Income adaptation only.
 climben.45 = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='climbenefits',
     regions='global',
     ssp=ssp,
@@ -144,7 +145,7 @@ climben.45 = get_mortality_impacts(
 
 # Income adaptation only.
 costs.45 = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='climbenefits',
     regions='global',
     ssp=ssp,
@@ -153,7 +154,7 @@ costs.45 = get_mortality_impacts(
 
 # Full adaptation (Income and Climate adaptation) plus adaptation costs.
 fullcosts.45 = get_mortality_impacts(
-    qtile=c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95'),
+    qtile=c('mean', 'q25', 'q75'),
     scn='fulladaptcosts',
     regions='global',
     ssp=ssp,
@@ -171,7 +172,7 @@ write('\n1.1.1. Global impact full adapt + cost in 2100, (RCP8.5, SSP3, IIASA-GD
 # Note: we use 2099 rather than 2100 because some GCMs do not have data in 
 # 2100.
 i = 1
-for (qt in c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95')) {
+for (qt in c('mean', 'q25', 'q75')) {
     write_stats(glue('1.1.1.{i}'),
     qt,
     fullcosts[fullcosts$year==2099, qt],
@@ -186,7 +187,7 @@ write('\n1.1.2/ Global impact full adapt in 2100, (RCP8.5, SSP3, IIASA-GDP)',
 # Note: we use 2099 rather than 2100 because some GCMs do not have data in 
 # 2100.
 i = 1
-for (qt in c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95')) {
+for (qt in c('mean', 'q25', 'q75')) {
     write_stats(glue('1.1.2.{i}'),
     qt,
     full[full$year==2099, qt],
@@ -265,7 +266,7 @@ write('\n1.2.1. Global impact full adapt + cost in 2100, (RCP84.5, SSP3, IIASA-G
 # Note: we use 2099 rather than 2100 because some GCMs do not have data in 
 # 2100.
 i = 1
-for (qt in c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95')) {
+for (qt in c('mean', 'q25', 'q75')) {
     write_stats(glue('1.2.1.{i}'),
     qt,
     fullcosts.45[fullcosts.45$year==2099, qt],
@@ -280,7 +281,7 @@ write('\n1.2.2/ Global impact full adapt in 2100, (RCP4.5, SSP3, IIASA-GDP)',
 # Note: we use 2099 rather than 2100 because some GCMs do not have data in 
 # 2100.
 i = 1
-for (qt in c('mean', 'q5','q10', 'q25', 'q50', 'q75', 'q90', 'q95')) {
+for (qt in c('mean', 'q25', 'q75')) {
     write_stats(glue('1.2.2.{i}'),
     qt,
     full.45[full.45$year==2099, qt],
@@ -370,7 +371,7 @@ write_stats('1.4.1',
 
 write_stats('1.4.2',
     "Ratio of no adaptation impacts to full adaptation impacts without adaptation costs in 2100 (RCP8.5, SSP3, IIASA-GDP)",
-    no$mean[noadapt$year == 2099]/full$mean[full$year == 2099],
+    noadapt$mean[noadapt$year == 2099]/full$mean[full$year == 2099],
     output.file
     )
 
@@ -380,6 +381,8 @@ write_stats('1.4.2',
 
 write('\n2. Country-level Mortality Impacts\n', file=output.file, append=T)
 
+isos = c('CHN', 'USA', 'IND', 'PAK', 'BGD')
+
 # RCP8.5
 i = 1
 for (scn in c('noadapt', 'incbenefits', 'climbenefits', 'fulladapt', 'costs', 'fulladaptcosts')) {
@@ -388,17 +391,17 @@ for (scn in c('noadapt', 'incbenefits', 'climbenefits', 'fulladapt', 'costs', 'f
     impacts_fin = get_mortality_impacts(
         qtile='mean',
         scn=scn,
-        regions='all',
+        regions=isos,
         year_list=c(2099),
         ssp=ssp,
         rcp=rcp,
         iam=iam)
 
     j = 1
-    for (iso in c('CHN', 'USA', 'IND', 'PAK', 'BGD')) {
+    for (iso in isos) {
 
-        write_stats('2.1.{i}.{j}',
-            "{scn} impacts in 2100 (RCP8.5, SSP3, IIASA-GDP): {iso}",
+        write_stats(glue('2.1.{i}.{j}'),
+            glue("{scn} impacts in 2100 (RCP8.5, SSP3, IIASA-GDP): {iso}"),
             impacts_fin$mean[impacts_fin$region=={iso}],
             output.file
             )
@@ -415,17 +418,17 @@ for (scn in c('noadapt', 'incbenefits', 'climbenefits', 'fulladapt', 'costs', 'f
     impacts_fin = get_mortality_impacts(
         qtile='mean',
         scn=scn,
-        regions='all',
+        regions=isos,
         year_list=c(2099),
         ssp=ssp,
         rcp='rcp45',
         iam=iam)
 
     j = 1
-    for (iso in c('CHN', 'USA', 'IND', 'PAK', 'BGD')) {
+    for (iso in isos) {
 
-        write_stats('2.1.{i}.{j}',
-            "{scn} impacts in 2100 (RCP4.5, SSP3, IIASA-GDP): {iso}",
+        write_stats(glue('2.1.{i}.{j}'),
+            glue("{scn} impacts in 2100 (RCP4.5, SSP3, IIASA-GDP): {iso}"),
             impacts_fin$mean[impacts_fin$region=={iso}],
             output.file
             )
@@ -804,7 +807,7 @@ write_stats('3.4.2',
 write('4. Monetized damages as percent of global GDP.', 
     file=output.file, append=T)
 
-valuation = 'vsl_epa_scaled'
+valuation = 'vly_epa_scaled'
 qtile = c('mean', 'q25', 'q75')
 rcplist = c('rcp45', 'rcp85')
 
