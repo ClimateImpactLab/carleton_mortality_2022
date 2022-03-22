@@ -382,6 +382,7 @@ write_stats('1.4.2',
 write('\n2. Country-level Mortality Impacts\n', file=output.file, append=T)
 
 isos = c('CHN', 'USA', 'IND', 'PAK', 'BGD')
+qtile = c('q25', 'mean', 'q75')
 
 # RCP8.5
 i = 1
@@ -389,22 +390,25 @@ for (scn in c('noadapt', 'incbenefits', 'climbenefits', 'fulladapt', 'costs', 'f
 
     # Load country-level impacts, 
     impacts_fin = get_mortality_impacts(
-        qtile='mean',
+        qtile=qtile,
         scn=scn,
         regions=isos,
         year_list=c(2099),
         ssp=ssp,
-        rcp=rcp,
+        rcp='rcp85',
         iam=iam)
 
     j = 1
     for (iso in isos) {
-
-        write_stats(glue('2.1.{i}.{j}'),
-            glue("{scn} impacts in 2100 (RCP8.5, SSP3, IIASA-GDP): {iso}"),
-            impacts_fin$mean[impacts_fin$region=={iso}],
-            output.file
-            )
+        k = 1
+        for (q in qtile) {
+            write_stats(glue('2.1.{i}.{j}.{k}'),
+                glue("{scn} impacts in 2100 {q} (RCP8.5, SSP3, IIASA-GDP): {iso}"),
+                impacts_fin$mean[impacts_fin$region=={iso}],
+                output.file
+                )
+            k = {k}+1           
+        }
         j = {j}+1
     }
     i = {i}+1
@@ -416,7 +420,7 @@ for (scn in c('noadapt', 'incbenefits', 'climbenefits', 'fulladapt', 'costs', 'f
 
     # Load country-level impacts, 
     impacts_fin = get_mortality_impacts(
-        qtile='mean',
+        qtile=qtile,
         scn=scn,
         regions=isos,
         year_list=c(2099),
@@ -426,12 +430,15 @@ for (scn in c('noadapt', 'incbenefits', 'climbenefits', 'fulladapt', 'costs', 'f
 
     j = 1
     for (iso in isos) {
-
-        write_stats(glue('2.1.{i}.{j}'),
-            glue("{scn} impacts in 2100 (RCP4.5, SSP3, IIASA-GDP): {iso}"),
-            impacts_fin$mean[impacts_fin$region=={iso}],
-            output.file
-            )
+        k = 1
+        for (q in qtile) {
+            write_stats(glue('2.1.{i}.{j}.{k}'),
+                glue("{scn} impacts in 2100 {q} (RCP4.5, SSP3, IIASA-GDP): {iso}"),
+                impacts_fin$mean[impacts_fin$region=={iso}],
+                output.file
+                )
+            k = {k}+1           
+        }
         j = {j}+1
     }
     i = {i}+1
