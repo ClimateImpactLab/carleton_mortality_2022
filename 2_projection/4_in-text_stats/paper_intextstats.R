@@ -25,7 +25,7 @@ source(paste0(REPO, "/carleton_mortality_2022/2_projection/1_utils/load_utils.R"
 
 
 
-output.file = glue("{OUTPUT}/tables/Table_2_stats_in-text.txt")
+output.file = glue("{OUTPUT}/tables/Table_2_impacts/Table_2_stats_in-text.txt")
 # create output directory
 dir.create(output.file, showWarnings = FALSE)
 
