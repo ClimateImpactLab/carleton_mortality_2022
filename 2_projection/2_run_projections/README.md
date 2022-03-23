@@ -23,7 +23,7 @@ The scripts to generate projections mostly exist in the `impact-calculations` re
 `mortality_montecarlo.sh` is a convenience script that allows the user to populate arguments and run Monte Carlo projections from this repository. The script primarily wraps the `generate.sh` and `aggregate.sh` scripts in the `impact-calculations` repository, adding checks for the correct repositories and conda environment. To execute the script, you would run the following from your terminal:
 
 ```bash
-bash {REPO}/2_projection/2_run_projections/main_specification/mortality_montecarlo.sh
+bash mortality_montecarlo.sh
 ```
 
 ### 4. Extracting projections
