@@ -137,7 +137,7 @@ loc suffix ""
 
 * Code controls (defined above).
 loc run_regs = "true"
-loc quantilereg = "false"
+loc quantilereg = "true"
 * Figure 7 in paper
 loc paper_plots = "true" 
 * Diagnostic charts not used in paper
@@ -148,7 +148,7 @@ loc gmst_hist = "false"
 
 * Plot variables
 loc yearlist 2020 2050 2070 2097
-loc plot_obj "cil_vsl_epa_scaled"
+loc plot_obj "cil_vly_epa_scaled"
 
 * Main text figure y-axis
 loc ymin -100
