@@ -1,3 +1,9 @@
+'''
+This script contains the functions that compute the life expectancies of 
+each age group based on more granular breakdowns. This feeds into the calculation
+of VLY and MT valuations.
+'''
+
 import os
 import numpy as np
 import pandas as pd
