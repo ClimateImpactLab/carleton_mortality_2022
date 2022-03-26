@@ -7,14 +7,17 @@ using the remaing 8/9 adm1s, and used to predict the omitted subsample. Aggregat
 using the y-hats from the out of sample subsection predictions. Creates rows that feed into Table D5 in Carleton et al 2022.
 
 
-Note: Data must be demeaned/residualized prior to estimation. By providing the residualized data but not the regression 
-output that generated it, we are able to mask the not publicly available USA and China mortality data.
-Therefor, users can begin the script at this stage rather than being able to residualize themselves. 
+Note: Data must be demeaned/residualized prior to running this script. Residualized data is performed in the
+`residualized_regs_time.do` script in this folder, and output is saved in `$DB/1_estimation/2_crossval/covarcrossval`.
+
+Note: We are unable to include USA and China mortality in our pulic repository, hence this script pulls in the 
+`global_mortality_panel_public` file which does not include observations for these countries. Hence results generated
+by the user will not match results in the paper, which were run on the complete sample described in Carleton et al 2022.
 
 Inputs
 ------
 
-- `0_data_cleaning/3_final/global_mortality_panel` - Final mortality panel.
+- `0_data_cleaning/3_final/global_mortality_panel_public` - Final mortality panel.
 - `y_diagnostics/covarcrossval/residualized_series` - Residualized series to be merged 1:1 at obs level
 - `0_data_cleaning/2_cleaned/covar_pop_count` - IR level population data from projection system from which
 2010 and 2100 share of population in each subsections are calculated.
@@ -70,7 +73,7 @@ file write resultcsv "Omitted ADM1s, Observations, 2010 Pop Share, 2100 Pop Shar
 
 
 * Prepare data for regressions.
-use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_public", clear
 
 * merge in residualized series 
 merge 1:1 adm2_code year agegroup using "`data'/residualized_series.dta"

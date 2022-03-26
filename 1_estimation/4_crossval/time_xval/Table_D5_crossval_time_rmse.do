@@ -5,16 +5,19 @@ where the post 2004 observations are predicted using models fitted on the pre 20
 Creates rows that feed into Table D5 in Carleton et al 2022.
 
 
-Note: Data must be demeaned/residualized prior to estimation. By providing the residualized data but not the regression 
-output that generated it, we are able to mask the not publicly available USA and China mortality data.
-Therefor, users can begin the script at this stage rather than being able to residualize themselves. 
+Note: Data must be demeaned/residualized prior to running this script. Residualized data is performed in the
+`residualized_regs_time.do` script in this folder, and output is saved in `$DB/1_estimation/2_crossval/timecrossval`.
+
+Note: We are unable to include USA and China mortality in our pulic repository, hence this script pulls in the 
+`global_mortality_panel_public` file which does not include observations for these countries. Hence results generated
+by the user will not match results in the paper, which were run on the complete sample described in Carleton et al 2022.
 
 
 Inputs
 ------
 
-- `DB/0_data_cleaning/3_final/global_mortality_panel` - Final mortality panel.
-- `DB/y_diagnostics/timecrossval/residualized_series_time` - Residualized series to be merged 1:1 at obs level
+- `DB/0_data_cleaning/3_final/global_mortality_panel_public` - Final mortality panel.
+- `DB/y_diagnostics/timecrossval/residualized_regs_time` - Residualized series to be merged 1:1 at obs level
 
 
 Outputs
@@ -63,7 +66,7 @@ file write resultcsv "Omitted ADM1s, Observations, RMSE (adapt), RMSE (no adapt)
 
 
 * Prepare data for regressions.
-use "$DB/0_data_cleaning/3_final/global_mortality_panel_covariates", clear
+use "$DB/0_data_cleaning/3_final/global_mortality_panel_public", clear
 
 
 * generate dummy for if obs is pre or post 2005
