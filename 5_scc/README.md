@@ -15,7 +15,16 @@ conda activate mortalityverse
 
 ### 2. Calculate SCC point estimates and damage function uncertainty based upon estimated damage functions.
 
-`FAIR_pulse.ipynb` is a Jupyter notebook that estimates the mortality-only partial social cost of carbon using the simple climate model FAIR and the damage functions computed in `4_damage_function/`. Specifically, the code does the following:
+Carleton et al. (2022) reports several types of uncertainty in mortality partial SCCs (see Section VII of the main text for details):
+
+1. **Point estimates**: SCC estimates based on the median FAIR parameters and mean damage functions.
+2. **Damage function uncertainty**: SCC estimates based on median FAIR parameters and a set of quantile damage functions.
+3. **Climate-only uncertainty**: SCC estimates based on Monte Carlo draws from FAIR uncertainty and mean damage functions.
+4. **Full uncertainty**: SCC estimates based on Monte Carlo draws from FAIR uncertainty and a set of quantile damage functions.
+
+
+
+`FAIR_pulse.ipynb` is ther Jupyter notebook that estimates the mortality-only partial social cost of carbon using the simple climate model FAIR and the damage functions computed in `4_damage_function/`. Specifically, the code does the following:
 
 - Calculates GMST under the "baseline" RCP scenarios as defined by the default FAIR model
 - Adds an additional CO2 impulse (1 Gt C) to each trajectory in 2020 to create a "baseline+pulse" trajectory
@@ -24,24 +33,20 @@ conda activate mortalityverse
 - Divides this value by the quantity of added CO2 (1 Gt C * 44.0098 / 12.011 = 3.66 Gt CO2) to convert to \$/ton CO2
 - Computes the NPV of this time series of marginal damages using various discount rates
 
+`FAIR_pulse.ipynb` can be run to calculate both the point estimates of the SCCs as well as the damage function (ie econometric) uncertainty. 
+
 To operate the code, first ensure that you are in the `mortalityverse` conda environment. 
 
-Then, it is recommended you run the notebook cell by cell. There are a few toggles explained in the notebook which allow users to: calculate the point estimate of SCCs or to compute damage function uncertatinty leading to a range of SCCs, produce SCCs including or excluding adaptation costs, and other functionality. 
+Then, it is recommended you run the notebook cell by cell. There are a few toggles explained in the notebook which allow users to: calculate the point estimate of SCCs or to compute damage function uncertatinty leading to a range of SCCs, produce SCCs including or excluding adaptation costs, and other functionality. The toggles are currently configured to calculate the point estimate SCCs for SSP3 including the costs of adaptation. 
 
-[KELLY PLEASE REVIEW -- I don't understand the reference to `pFAIR` here??]The crucial link between the `pFAIR` notebooks and this repository is the output directory of the damage functions generated in `4_damage_function`. The toggles above will determine which input file is selsected. Be sure that the paths specified in the notebook correspond to the correct damage function coefficient output (i.e., the intended csv file in `data/4_damage_function/`). The corresponding output path where the SCCs will be saved should be `data/5_scc/global`.
+Given the large computational and storage requirements needed to calculate climate uncertainty, climate uncertainty and full uncertainty SCCs are computed in the second notebook, `full_uncertainty_ensemble.ipynb`. This notebook is set up to deploy server clusters  in ordrer to run the 100,000 climate simulations within the FAIR model. This uses an extraordinary amount of memmory, so it is not recommended users attempt to replicate this step without significant computational and data storage resources.
 
-Carleton et al. (2022) reports several types of uncertainty in mortality partial SCCs (see Section VII of the main text for details):
+`full_uncertainty_ensemble.ipynb` operates in a similar manner to the `FAIR_pulse.ipynb`, but with the added complexity of the inclusion of the climate simulations. 
 
-1. **Point estimates**: SCC estimates based on the median FAIR parameters and mean damage functions.
-2. **Damage function uncertainty**: SCC estimates based on median FAIR parameters and a set of quantile damage functions.
-3. **Climate-only uncertainty**: SCC estimates based on Monte Carlo draws from FAIR uncertainty and mean damage functions.
-4. **Full uncertainty**: SCC estimates based on Monte Carlo draws from FAIR uncertainty and a set of quantile damage functions.
 
-[KELLY PLEASE REVIEW -- could we release the code that does everything but just not the data that would let people actually run it all? Or is cleaning up the full uncertainty code too much work right now?] Due to data and computational constraints, the `FAIR_pulse.ipynb` notebook provided in this public release will only allow users to calculate the first two forms of uncertainty. Calculating climate and full uncertanty requires running 100,000 simulations within FAIR, which uses an extraordinary amount of memmory and can only be computed on server clusters or with cloud computing resources. A public-facing release of this code will follow and will be linked here when available. 
+The outputs of these notebooks are CSV files saved in `DB/5_scc//global_scc/quadratic/`, which store SCCs by valuation type, heterogeneity SSP, RCP, discount rate, and quantile (if running for damage function uncertainty). The values that appear in Table III are contianed within these files.
 
-[KELLY AND TAMMA TO DICUSS HOW TO HANDLE BASED ON THE ABOVE] See the `pFAIR` documentation for instructions on running the various types of uncertainty presented in Carleton et al. Note that the tables showing SCC uncertainty in the main text and appendix of Carleton et al (2022) provide the IQR from these runs.
-
-Alongside the main SCC table in the paper, which displays SCC estimates under each emissions scenario for a globally varying value of a statistical life that is age-adjusted (i.e., the `vly`, `epa`, `scaled` terminology below), the appendix presents SCCs based upon a range of alternative valuation assumptions. The following provides a summary of all valuation assumptions presented in Carleton et al. (2022):
+Alongside the main SCC table in the paper, which displays SCC estimates under each emissions scenario for a globally varying value of a statistical life that is age-adjusted (i.e., the `vly`, `epa`, `scaled` terminology below), Appendix tables H2, H3, H4 present SCCs based upon a range of alternative valuation assumptions, and show IQRs of the types of uncertainty descriped above. The following provides a summary of all valuation assumptions presented in Carleton et al. (2022):
 
 Age adjustment assumption:
 
@@ -66,9 +71,13 @@ There are also several robustness SCC results provided in the appendix:
 3. Estimates of SCC in which the estimated 2100 damage function is applied to all years from 2100-2300 (rather than extrapolating damage functions beyond 2100); and,
 4. Estimates of SCC using a cubic polynomial damage function.
 
-### 2. Calculate SCCs based upon Ashenfelter and Greenstone (2004) VSL by scaling EPA-based SCCs.
+### 3. Calculate SCCs based upon Ashenfelter and Greenstone (2004) VSL by scaling EPA-based SCCs.
 
-The analysis uses an income elasticity of 1 when income-scaling the VSLs, allowing us to cut down on the computational complexity of the SCC step by scaling our `epa` SCC by the ratios of VSLs and GDP per capita associated with the EPA and Ashenfelter and Greenstone (2004) analyses. This scaling is performed by the helper function in this folder of the repository `scale_ag02_scc.py`
+The analysis uses an income elasticity of 1 when income-scaling the VSLs, allowing us to cut down on the computational complexity of the SCC step by scaling our `epa` SCC by the ratios of VSLs and GDP per capita associated with the EPA and Ashenfelter and Greenstone (2004) analyses. This scaling is performed by the `Ashenfelter_Greenstone` function contained within the `FAIR_pulse.ipynb` notebook. This function is called at the very end as it inputs the SCC `.csv` file generated in a given run, applies the conversion to an appended set of variables, and saves a new output `.csv` file with a `_ag02` suffix.
+
+The function is stored in `functions/scale_ag02_scc.py`, where further documentation outlines the process of the conversion.
+
+While it is most convinent to run this as a part of the workflow mentioned in step 2, the function can also be run alone as long as a relevant input file exists.
 
 ## Description of relevant directories
 
