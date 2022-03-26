@@ -1,8 +1,10 @@
 ''' 
-This is a bundle of tools to essentially retrieve 'VSL's (value of stastical life) for a given impact region and year using a baseline, standard VSL
-that is transformed to obtain space and time specific values. This is obtained assuming that changes in income per capita change the VSL. 
+This is a bundle of tools used to compute 'VSL's (value of stastical life) for a given impact region and year. It relies on a baseline VSL from the 
+United States EPA that is transformed to obtain location- and time-specific values based on an income elasticity of one. 
+In most specifications in Carleton et al. (2022), the income elasticity is applied across space and time, but in some specifications it is only
+applied across time (giving all lives the same VSL globally in a given time period).
 
-The master function is `make_iryear_vsl` and this is the place to look at to understand where the input data and parameters come from. The calculations happen in the sub functions called
+The master function is `make_iryear_vsl` and this is the place to look to understand where the input data and parameters come from. The calculations happen in the sub functions called
 with this input data. 
 '''
 
