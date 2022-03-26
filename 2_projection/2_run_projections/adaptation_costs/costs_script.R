@@ -1,30 +1,18 @@
 
 ################################################
-# GENERATE ADAPTATION COST CURVES
-# This is an attempt to generalize the code to be able to use any functional form estimated in the response function
+# GENERATE ADAPTATION COST ESTIMATES FOLLOWING REVEALED PREFERNCE MODEL
 
-# T. Carleton, 3/13/2017
+# This script uses climate projection data and outputs from the projection of future mortality impacts of climate 
+# change (see 2_projection/2_run_projections/README.mdfor details) to construct empirical estimates of unobserved
+# adaptation costs, following the conceptual framework outlined in Section VI of Carleton et al. (2022).
 
-# UPDATE 05/31/2018: This version eliminates the non-cumulative costs, as they have no grounding in our theoretical framework. 
-# This version also updates the cumulative costs to have the correct expression for the lower bound, again based on updates
-# to our cost theory (T_t-1 - Tref replaced with T_baseyear - Tref for the lower bound object passed from James' daily impacts.)
-# Also allowed the base year for costs to be changed by the user at the top (baseyear defaults to 2015 here).
+# This calculation is the empirical implementation of Equation (7) in Section VI, except that it omits the VSL.
+# The VSL is later multiplied by these adaptation cost estimates in the valuation step of the paper pipeline.
+# See 3_valuation/ for details on the monetization of mortality impacts of climate change, including estimated 
+# adaptation costs.
 
-# UPDATE 04/25/2018: This version checks whether timesteps in the climate file are equivalent to timesteps in the impacts file  
-# Assumption: the impacts file always has 120 time steps (i.e. goes to year 2100) while the climate file may have < 120 time steps (e.g. up to year 2099 or 2098)
-# If found unequal, this code removes the last n columns in the impacts file corresponding to the difference in years
-
-# UPDATE 06/19/2017: This version brings in daily clipped values of marginal temperature effects from James 
-# This version uses AVERAGE temperature exposure rather than ANNUAL
-# This includes TWO VERSIONS OF COSTS: one that cumulates year-to-year costs, and one that estimates costs independently in each year
-
-#### Clipping: iWe set adaptation costs to zero whenever the impact falls below zero.
-
-# FOR REFERENCE: the calculation we are performing is:
-# tbar_0[beta(y_0, p_0, tbar_0) - beta(y_0, p_0, tbar_1)] < COST < tbar_1[beta(y_1, p_1, tbar_0) - beta(y_1, p_1, tbar_1)]
-# We calculate this for every year-region-bin, sum across bins for each region, sum across years (and eventually we will sum across regions)
-
-# This simplifies to: sum_k [ T_0^k * gamma_k * (Tbar_0^k - Tbar_1^k)] < COST < sum_k [ T_1^k * gamma_k * (Tbar_0^k - Tbar_1^k)], where "k" indicates each term in the nonlinear response (e.g. if it's a fourth order polynomial, we have k = 1,...,4), and where the Tbar values may vary by climate term (e.g for bins we interact each bin variable by the average number of days in that bin)
+# This script does not need to be run directly in order to replicate paper results. It is called by scripts in other
+# parts of the 2_projection/ directory and is implemented automatically. 
 
 ###########################
 # Syntax: cost_curves(rcp, climate_model, impactspath), Where:
@@ -33,33 +21,14 @@
 # impactspath = filepath for the projected impacts for this model
 ###########################
 
-###############################################
-
 rm(list=ls())
 
 list.of.packages <- c('pracma','ncdf4','dplyr','DataCombine','zoo','abind')
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages, repos = "http://cran.us.r-project.org")
-devtools::install_github("cran/rPython") # that one is not available directly from cran anymore : https://cran.r-project.org/web/packages/rPython/index.html
+devtools::install_github("cran/rPython") 
 invisible(lapply(c(list.of.packages, 'rPython'), function(x) suppressPackageStartupMessages({library(x, character.only=TRUE)})))
 suppressPackageStartupMessages({source("generate/stochpower.R")})
-
-
-#####################
-is.local <- F
-if(is.local) {
-tavgpath = "~/Dropbox/Tamma-Shackleton/GCP/adaptation_costs/data/climtas.nc4"
-tannpath = "~/Dropbox/Tamma-Shackleton/GCP/adaptation_costs/data/poly/"
-outpath = "~/Tamma-Shackleton/GCP/adaptation_costs/data/poly_dailyclip"
-impactspath <- "/Users/tammacarleton/Dropbox/Tamma-Shackleton/GCP/adaptation_costs/data/poly_dailyclip/global_interaction_Tmean-POLY-4-AgeSpec-oldest.nc4"
-gammapath = "~/Dropbox/Tamma-Shackleton/GCP/adaptation_costs/data/poly_dailyclip/global_interaction_Tmean-POLY-4-AgeSpec.csvv"
-gammarange = 25:36 #oldest! 
-minpath <- "~/Dropbox/Tamma-Shackleton/GCP/adaptation_costs/data/poly_dailyclip/global_interaction_Tmean-POLY-4-AgeSpec-oldest-polymins.csv"
-model <- 'poly'
-powers <- 4
-avgmethod = 'bartlett'
-}
-#####################
 
 ###############################################
 # Set up
@@ -78,25 +47,27 @@ impactspath <- args[3] # paste0("outputs/", sector, "/", impactsfolder, "/median
 
 suffix <- args[4] # "-costs"
 
-# Averaging method
-#avgmethod = args[5]
+# Averaging method: This is the method used to construct 'TMEAN' from annual temperatures. We use
+# a Bartlett kernel, as is done in estimation of the panel regression in Equation (4).
 avgmethod = 'bartlett'
 
 # Base year for costs
 baseyear <- 2015
 
 ##############################################################################################
-# LOAD realized climate variable from single folder
+# Load realized climate variable 
 ##############################################################################################
 
-# OPEN THE NETCDF - average temps
 nc.tavg <- nc_open(tavgpath)
 temps.avg <- ncvar_get(nc.tavg, 'averaged') #average temperatures
 regions <- ncvar_get(nc.tavg, 'regions')
 year.avg <- ncvar_get(nc.tavg, 'year')
 
 ##############################################################################################
-# LOAD ADAPTIVE INVESTMENTS TERM -- FROM JAMES' OUTPUT
+# Load adaptive investments term generated in projection process
+  # This is gamma1*E[T] in Equation (7). It isgenerated in the process
+  # of computing the Monte Carlo simulation, because it depends on the 
+  # draw of statistical uncertainty (gamma1) and on the climate model (E[T])
 ##############################################################################################
 
 nc.imp <- nc_open(impactspath)
@@ -124,6 +95,10 @@ print("IMPACTS LOADED")
 
 ##############################################################################################
 # Generate a moving average of the adaptive investments term
+     # From the projection output we have gamma1*T, but we need 
+     # gamma1*E[T]. Since gamma1 is a scalar for each Monte Carlo
+     # simulation, we simply compute E[gamma1*T]=gamma1*E[T] using 
+     # a Bartlett kernel to compute the expectation.
 ##############################################################################################
 
 # 15-year moving average 
@@ -150,13 +125,19 @@ if(avgmethod=='movingavg') {
 print("MOVING AVERAGE OF ADAPTIVE INVESTMENTS CALCULATED")
 
 ###############################################
-# For each region-year, calculate lower and upper bounds
+# For each region-year, calculate csosts
 ###############################################
 
-# Initialize -- region by lb/ub by year
+# Initialize 
 results <- array(0, dim=c(dim(temps.avg)[1], 2, dim(temps.avg)[2]) )
 
 # Loop: for each impact region and each year, calculate bounds
+# NOTE: "upper" and "lower" bounds are computed for each impact region and year.
+# However, only "upper" bounds are used in the paper, as they reflect the discrete 
+# approximation in Equation (7) of the continusous revealed preference solution
+# shown in Equation (6). The two bounds are equal in the limit, as the difference between
+# TMEAN_t and TMEAN_t-1 approaches zero.
+                         
 for (r in 1:R){
 
     options(warn=-1)
