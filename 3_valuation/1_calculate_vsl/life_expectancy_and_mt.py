@@ -1,7 +1,8 @@
 '''
 This script contains the functions that compute the life expectancies of 
-each age group based on more granular breakdowns. This feeds into the calculation
-of VLY and MT valuations.
+each age group in each impact region in each year. This feeds into the calculation
+of value of a life-year ('VLY') and the Murphy-Topel valuations, which are a modified VLY 
+in which each life-year gets a different value based on age.
 '''
 
 import os
