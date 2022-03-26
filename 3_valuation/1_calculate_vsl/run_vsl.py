@@ -1,10 +1,12 @@
 '''
-"master" script that generates inputs to the valuation of impacts. In particular, it generates:
-(1) the time-varying and spatially-varying monetary VSLs that are multiplied by the mortality risk impacts to achieve monetized damages and
-(2) the age-adjustment factors that are required for valuation assumptions which heterogeneously value the three age groups.
+This is the "master" script that generates key inputs into the valuation of mortality impacts from climate change.
+In particular, it generates:
 
-These intermediate inputs necessary to value MC inputs are currently saved in DB/3_valuation/inputs;
-so the user is not required to run this script to proceed to the damage function step.
+(1) the time-varying and spatially-varying monetary VSLs that are multiplied by the mortality risk impacts to achieve monetized damages; and
+(2) the age-adjustment factors that are required for valuation assumptions which heterogeneously value lives lost across the three age groups.
+
+The output from this script, which is necessary to value all Monte Carlo simulation results, are currently saved in `DB/3_valuation/inputs/`
+in the data released with the paper. Therefore, the user is not required to run this script to proceed to the damage function step.
 '''
 
 from life_expectancy_and_mt import life_expectancy_mt
