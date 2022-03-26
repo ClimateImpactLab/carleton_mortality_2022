@@ -1,5 +1,5 @@
 # Purpose: Generates in-text summary statistics for  Valuing the Global
-# Mortality Consequences of Climate Change, Accounting for Adaptation Costs
+# Mortality Consequences of Climate Change Accounting for Adaptation Costs
 # and Benefits, Carleton et al. 2022
 # 
 # Outputs a text file containing each statisitic in the structure outlined below.
