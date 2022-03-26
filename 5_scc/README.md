@@ -39,20 +39,19 @@ To operate the code, first ensure that you are in the `mortalityverse` conda env
 
 Then, it is recommended you run the notebook cell by cell. There are a few toggles explained in the notebook which allow users to: calculate the point estimate of SCCs or to compute damage function uncertatinty leading to a range of SCCs, produce SCCs including or excluding adaptation costs, and other functionality. The toggles are currently configured to calculate the point estimate SCCs for SSP3 including the costs of adaptation. 
 
-Given the large computational and storage requirements needed to calculate climate uncertainty, climate uncertainty and full uncertainty SCCs are computed in the second notebook, `full_uncertainty_ensemble.ipynb`. This notebook is set up to deploy server clusters  in ordrer to run the 100,000 climate simulations within the FAIR model. This uses an extraordinary amount of memmory, so it is not recommended users attempt to replicate this step without significant computational and data storage resources.
+Given the large computational and storage requirements needed to calculate climate uncertainty using FAIR, the climate uncertainty SCCs and full uncertainty SCCs are computed in the second notebook, `full_uncertainty_ensemble.ipynb`. This notebook is set up to deploy server clusters  in ordrer to run the 100,000 climate simulations within the FAIR model. This uses an extraordinary amount of memmory, so it is not recommended users attempt to replicate this step without significant computational and data storage resources.
 
 `full_uncertainty_ensemble.ipynb` operates in a similar manner to the `FAIR_pulse.ipynb`, but with the added complexity of the inclusion of the climate simulations. 
 
-
-The outputs of these notebooks are CSV files saved in `DB/5_scc//global_scc/quadratic/`, which store SCCs by valuation type, heterogeneity SSP, RCP, discount rate, and quantile (if running for damage function uncertainty). The values that appear in Table III are contianed within these files.
+The outputs of these notebooks are CSV files saved in `DB/5_scc/global_scc/quadratic/`, which store SCCs by valuation type, heterogeneity SSP, RCP, discount rate, and quantile (if running damage function uncertainty). The values that appear in Table III are contained within these files.
 
 Alongside the main SCC table in the paper, which displays SCC estimates under each emissions scenario for a globally varying value of a statistical life that is age-adjusted (i.e., the `vly`, `epa`, `scaled` terminology below), Appendix tables H2, H3, H4 present SCCs based upon a range of alternative valuation assumptions, and show IQRs of the types of uncertainty descriped above. The following provides a summary of all valuation assumptions presented in Carleton et al. (2022):
 
 Age adjustment assumption:
 
-- Value of a statistical life (`vsl`) consists of a single value associated with every death due to climate change.
+- Value of a statistical life (`vsl`) consists of a single value associated with every death due to climate change (regardless of age at death).
 - Age-adjusted value of a statistical life (`vly`) values climate change deaths based upon expected life-years lost. This assigns the same value to an additional year of life regardless of age.
-- Heterogeneous valuation of life years (`mt`) based upon Murphy and Topel (2006). This assigns a heterogeneous value to an additional year of life based on age, following the age profile in Murphy and Topel (2006). 
+- Heterogeneous valuation of life years (`mt`) based upon Murphy and Topel (2006). This uses a life-years lost approach as in `vly`, but assigns a heterogeneous value to an additional year of life based on age, following the age profile in Murphy and Topel (2006). 
 
 VSL source assumption:
 
@@ -61,15 +60,15 @@ VSL source assumption:
 
 Income-scaling assumption:
 
-- Globally varying VSL based on the ratio of projected income per capita at impact region level to USA GDP per capita in the year consistent with the VSL used (e.g., 2019 incomes consistent with the EPA value) (`scaled`).
-- Globally uniform VSL based upon the population-weighted average of the income-scaled values (`popavg`).
+- Globally varying VSL based on the ratio of projected income per capita at impact region level to USA GDP per capita in the year consistent with the VSL used (e.g., 2019 incomes consistent with the EPA value) (`scaled`). This is equivalent to an income elasticity of one for the VSL.
+- Globally uniform VSL based upon the population-weighted average of the income-scaled values (`popavg`). This is equivalent to an income elasticity of one for the VSL over time, but no income elasticity is applied over space.
 
 There are also several robustness SCC results provided in the appendix:
 
-1. Estimates of SCC under various socioeconomic projections;
-2. Estimates of SCC including or excluding adaptation costs;
-3. Estimates of SCC in which the estimated 2100 damage function is applied to all years from 2100-2300 (rather than extrapolating damage functions beyond 2100); and,
-4. Estimates of SCC using a cubic polynomial damage function.
+1. Estimates of SCC under various socioeconomic projections (Table H4);
+2. Estimates of SCC including or excluding adaptation costs (Panel B of Table III);
+3. Estimates of SCC in which the estimated 2100 damage function is applied to all years from 2100-2300 (rather than extrapolating damage functions beyond 2100; Table H6); and,
+4. Estimates of SCC using a cubic polynomial damage function (Table H7).
 
 ### 3. Calculate SCCs based upon Ashenfelter and Greenstone (2004) VSL by scaling EPA-based SCCs.
 
@@ -77,18 +76,18 @@ The analysis uses an income elasticity of 1 when income-scaling the VSLs, allowi
 
 The function is stored in `functions/scale_ag02_scc.py`, where further documentation outlines the process of the conversion.
 
-While it is most convinent to run this as a part of the workflow mentioned in step 2, the function can also be run alone as long as a relevant input file exists.
+While it is most convenient to run this as a part of the workflow mentioned in step 2, the function can also be run alone as long as a relevant input file exists.
 
 ## Description of relevant directories
 
-`data/5_scc/global_scc` - location in which output is saved from the SCC calculation notebooks.
+`data/5_scc/global_scc/` - location in which output is saved from the SCC calculation notebooks.
 
-- `quadratic` contains folders for the main specification (including uncertainty) and all the robustness checks except for the cubic damage function robustness check.
-  - `wo_costs` contain SCCs calculated without adaptation costs (Panel B in Table III in Carleton et al., 2022). The default is with costs (Panel A in Table III).
-  - `uncertainty` contains quantiles of SCCs using damage function, climate, and full uncertainty. While users can only calculate the first, the output of all 3 are stored in this colder
-- `cubic` contains output from the cubic damage function robustness check. 
+- `quadratic/` contains folders for the main specification (including uncertainty) and all the robustness checks except for the cubic damage function robustness check.
+  - `wo_costs/` contains SCCs calculated without adaptation costs (Panel B in Table III in Carleton et al., 2022). The default is with costs (Panel A in Table III).
+  - `uncertainty/` contains quantiles of SCCs using damage function, climate, and full uncertainty. While users can only calculate the first, the output of all 3 are stored in this colder
+- `cubic/` contains output from the cubic damage function robustness check. 
 
-`output/5_scc` - location of tables and figures in Carleton et al (2022).
+`output/5_scc/` - location of tables and figures in Carleton et al (2022).
 
-- `tables` contains Latex files for each SCC presentation table in the paper. These are generated manually from the output in `data/5_scc/global_scc`.
-- `figures` contains SCC-related figures that appear in the appendix of the paper. These are output by the SCC notebooks in this repo. 
+- `tables/` contains Latex files for each SCC table in the paper. These are generated manually from the output in `data/5_scc/global_scc/`.
+- `figures/` contains SCC-related figures that appear in the appendix of the paper. These are output by the SCC notebooks in this repo. 
