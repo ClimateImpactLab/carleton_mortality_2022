@@ -1,0 +1,26 @@
+outputdir: {DB}/montecarlo/ #manually point this to your DB variable
+weighting: agecohorts
+aggregated-unit: "portion/person"
+levels-unit: "portion"
+basename: Agespec_interaction_response.csvv
+#mode: "montecarlo"
+only-variables: 
+  - rebased
+  - costs_lb
+  - costs_ub
+costs-config: 
+  command-prefix: 'Rscript {REPO}/carleton_mortality_2022/2_projection/2_run_projections/adaptation_costs/costs_script.R' #manually point this to your REPO variable
+  ordered-args:
+    known-args:
+      - clim_scenario
+      - clim_model
+      - impactspath
+      - costs-suffix
+      - iam
+  costs-suffix: -costs
+  check-variable-costs: costs_lb
+  meta-info:
+    description: 'Upper and lower bounds costs of adaptation calculation.'
+    version: 'DEADLY-2016-04-22'
+    dependencies: 'TEMPERATURES, ADAPTATION-ALL-AGES'
+    author: 'Tamma Carleton'

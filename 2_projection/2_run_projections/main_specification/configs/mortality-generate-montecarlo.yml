@@ -1,0 +1,18 @@
+module: tests.configs.mortality.allmodels
+mode: montecarlo
+mc_n: 15
+outputdir: "{DB}/montecarlo/" #manually point this to your DB variable
+csvvfile: {DB}/1_estimation/3_csvv/Agespec_interaction_response.csvv #manually point this to your DB variable
+do_only: interpolation
+do_farmers: true
+do_historical: true
+specification: polynomial
+derivclip: true
+clipping: both
+clip-maxtemp: 30
+econcovar:
+   class: bartlett
+   length: 13
+climcovar:
+   class: bartlett
+   length: 30

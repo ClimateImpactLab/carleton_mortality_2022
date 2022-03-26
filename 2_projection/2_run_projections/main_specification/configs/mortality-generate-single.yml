@@ -1,0 +1,18 @@
+module: tests.configs.mortality.allmodels
+mode: single
+outputdir: "{DB}/single/" #manually point this to your DB variable
+do_only: interpolation
+do_farmers: true
+do_historical: true
+csvvfile: {DB}/1_estimation/3_csvv/Agespec_interaction_response.csvv #manually point this to your DB variable
+singledir: single
+specification: polynomial
+clipping: both
+clip-maxtemp: 30
+derivclip: true
+econcovar:
+   class: bartlett
+   length: 13
+climcovar:
+   class: bartlett
+   length: 30
