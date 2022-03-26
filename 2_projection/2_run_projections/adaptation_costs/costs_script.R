@@ -3,7 +3,7 @@
 # GENERATE ADAPTATION COST ESTIMATES FOLLOWING REVEALED PREFERNCE MODEL
 
 # This script uses climate projection data and outputs from the projection of future mortality impacts of climate 
-# change (see 2_projection/2_run_projections/README.mdfor details) to construct empirical estimates of unobserved
+# change (see 2_projection/2_run_projections/README.md for details) to construct empirical estimates of unobserved
 # adaptation costs, following the conceptual framework outlined in Section VI of Carleton et al. (2022).
 
 # This calculation is the empirical implementation of Equation (7) in Section VI, except that it omits the VSL.
@@ -65,9 +65,11 @@ year.avg <- ncvar_get(nc.tavg, 'year')
 
 ##############################################################################################
 # Load adaptive investments term generated in projection process
-  # This is gamma1*E[T] in Equation (7). It isgenerated in the process
+  # This is gamma1*E[T] in Equation (7). It is generated in the process
   # of computing the Monte Carlo simulation, because it depends on the 
-  # draw of statistical uncertainty (gamma1) and on the climate model (E[T])
+  # draw of statistical uncertainty (gamma1) and on the climate model (E[T]).
+  # Note that it will be zero if the response function is fully flat (no further
+  # adaptation is feasible, therefore there are no further adaptation costs).
 ##############################################################################################
 
 nc.imp <- nc_open(impactspath)
@@ -132,11 +134,11 @@ print("MOVING AVERAGE OF ADAPTIVE INVESTMENTS CALCULATED")
 results <- array(0, dim=c(dim(temps.avg)[1], 2, dim(temps.avg)[2]) )
 
 # Loop: for each impact region and each year, calculate bounds
-# NOTE: "upper" and "lower" bounds are computed for each impact region and year.
-# However, only "upper" bounds are used in the paper, as they reflect the discrete 
-# approximation in Equation (7) of the continusous revealed preference solution
-# shown in Equation (6). The two bounds are equal in the limit, as the difference between
-# TMEAN_t and TMEAN_t-1 approaches zero.
+  # NOTE: "upper" and "lower" bounds are computed for each impact region and year.
+  # However, only "upper" bounds are used in the paper, as they reflect the discrete 
+  # approximation in Equation (7) of the continusous revealed preference solution
+  # shown in Equation (6). The two bounds are equal in the limit, as the difference between
+  # TMEAN_t and TMEAN_t-1 approaches zero.
                          
 for (r in 1:R){
 
@@ -169,7 +171,7 @@ for (r in 1:R){
 }
 
 ###############################################
-# CLIP, ADD ZEROs AT START, CUMULATIVELY SUM
+# ADD ZEROs AT START, CUMULATIVELY SUM
 ###############################################
 
 #Add in costs of zero for initial years
