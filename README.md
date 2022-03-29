@@ -13,7 +13,7 @@ This repository provides code required to reproduce the tables, figures, and in-
 4. **Valuation** - Various assumptions regarding the Value of Statistical Life (VSL) are applied to projected impacts on mortality risk, yielding a set of economic damage estimates for all years 2020-2100 in constant 2019 dollars purchasing power parity (PPP). Valuation is performed for all Monte Carlo simulation estimates constructed in Step 3.
 5. **Damage Function** - Empirical “damage functions” are estimated by relating monetized damages from all Monte Carlo simulations to corresponding Global Mean Surface Temperature (GMST) anomalies from the surrogate mixed model ensemble (SMME).
 6. **SCC** - Damage functions are used in combination with the simple climate model FAIR to calculate the net present value of future damages associated with an additional ton of carbon dioxide in 2020, which represents a mortality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs) and Shared Socioeconomic Pathways (SSPs).
-    * Note: as in Step 3, estimating uncertainty in the mortality partial SCC (driven both by uncertainty in the damage function and climate uncertainty) is highly computationally intensive and relies on an external repository. However, constructing point estimates of the mortality partial SCC is relatively simple and can be completed fully using code and data contained within this repository. Deatils are provided in the `5_scc/` folder README. 
+    * Note: as in Step 3, estimating full uncertainty in the mortality partial SCC (driven both by uncertainty in the damage function and climate uncertainty) is highly computationally intensive and relies on distributed computing to generate future climate simulations. Code for this is included, but it is not advised to run this step without significant computational resources. However, constructing point estimates of the mortality partial SCC and uncertainty just from the damage function are relatively simple to reproduce. Details are provided in the `5_scc/` folder README. 
 
 ## Folders
 
@@ -39,7 +39,7 @@ For run instructions on each step of the analysis, refer to the README files loc
 
 1. You need to have `python`, `Stata`, and `R` programming capabilities, or at least environments to run code in these languages, on your computer. 
 
-2. We use `conda` to manage `python` enrivonments, so we recommend installing `conda` if you haven't already done so following [these instructions](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html). 
+2. We use `conda` to manage `python` environments, so we recommend installing `conda` if you haven't already done so following [these instructions](https://docs.conda.io/projects/conda/en/latest/user-guide/install/macos.html). 
 
 ## Setup Instructions
 
