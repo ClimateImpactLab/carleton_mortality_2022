@@ -12,8 +12,8 @@ However, regression output run on the full dataset are stored as `.ster` files i
 
 If however, you do decide to run the regression generation scripts, they will be saved with the suffix `_public` so that they can be differentiated from the full sample regression `ster` files. 
 
-### 3. Toggle desired outputs and run master do file, `estimate.do`.
-`estimate.do` is the master script for this step of the analysis, relying upon code within the subfolders of `1_estimation` to produce tables and figures related to the estimation of the temperature-mortality relationship. Following Carleton et al. (2022), the master script does the folowing:
+### 3. Toggle desired outputs and run master file, `estimate.do`.
+`estimate.do` is the master script for this step of the analysis, relying upon code within the subfolders of `1_estimation` to produce tables and figures related to the estimation of the temperature-mortality relationship. Following Carleton et al. (2022), the master script does the following:
 
 1. Estimates age-specific temperature-mortality relationships accounting for spatial heterogeneity in average income and climate.
 
@@ -31,13 +31,13 @@ Additionally, the user may generate:
 4. Summary statistics on historical mortality and climate and that produce Table I 
 5. Cross-validation exercises that appear in Appendix D 
 
-See the header of `estimate.do`for further instructions on running some or all portions of the `1_estimation` process.
+See the header of `estimate.do` for further instructions on running some or all portions of the `1_estimation` process.
 
 ## Folder Structure
 
 `estimate.do` - Master script for running estimation code, including regressions and the corresponding tables and figures.
 
-`1_utils`- Contains script which prepares the final dataset for regressions.
+`1_utils`- Contains scripts which prepare the final dataset for various regressions.
 
 `2_summary_statistics`- Generates summary statistics on historical mortality and climate (Table I). 
 
