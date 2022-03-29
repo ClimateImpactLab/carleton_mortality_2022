@@ -12,7 +12,7 @@ See [Downloading the Data](https://dataverse.harvard.edu/dataverse/qje) for inst
  
 
 ### 3. (Optional) Run master do file, `clean.do`. 
-`clean.do` is the master script for this step of the analysis, using code in the subfolders of `0_data_cleaning` to construct the final dataset from the raw inputs. `0_data_cleaning` proceeds in four steps. Note that mortality and population data from the United States and China are not publicly available. As such, they are not included in the public data repository and are not included in the scipt that compiles the final `global_mortality_panel.dta` file. 
+`clean.do` is the master script for this step of the analysis, using code in the subfolders of `0_data_cleaning` to construct the final dataset from the raw inputs. `0_data_cleaning` proceeds in four steps. Note that mortality and population data from the United States and China are not publicly available. As such, they are not included in the public data repository and are not included in the script that compiles the final `global_mortality_panel.dta` file. 
 
 This step is optional, since the output is saved in `DB/0_data_cleaning/3_final/`. The steps are as follows:
 
