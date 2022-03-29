@@ -37,9 +37,9 @@ Carleton et al. (2022) reports several types of uncertainty in mortality partial
 
 To operate the code, first ensure that you are in the `mortalityverse` conda environment. 
 
-Then, it is recommended you run the notebook cell by cell. There are a few toggles explained in the notebook which allow users to: calculate the point estimate of SCCs or to compute damage function uncertatinty leading to a range of SCCs, produce SCCs including or excluding adaptation costs, and other functionality. The toggles are currently configured to calculate the point estimate SCCs for SSP3 including the costs of adaptation. 
+Then, it is recommended you run the notebook cell by cell. There are a few toggles explained in the notebook which allow users to: calculate the point estimate of SCCs or to compute damage function uncertainty leading to a range of SCCs, produce SCCs including or excluding adaptation costs, and other functionality. The toggles are currently configured to calculate the point estimate SCCs for SSP3 including the costs of adaptation. 
 
-Given the large computational and storage requirements needed to calculate climate uncertainty using FAIR, the climate uncertainty SCCs and full uncertainty SCCs are computed in the second notebook, `full_uncertainty_ensemble.ipynb`. This notebook is set up to deploy server clusters  in ordrer to run the 100,000 climate simulations within the FAIR model. This uses an extraordinary amount of memmory, so it is not recommended users attempt to replicate this step without significant computational and data storage resources.
+Given the large computational and storage requirements needed to calculate climate uncertainty using FAIR, the climate uncertainty SCCs and full uncertainty SCCs are computed in the second notebook, `full_uncertainty_ensemble.ipynb`. This notebook is set up to deploy distributed computing in order to run 100,000 climate simulations. This uses an extraordinary amount of memory, so it is not recommended users attempt to replicate this step without significant computational and data storage resources.
 
 `full_uncertainty_ensemble.ipynb` operates in a similar manner to the `FAIR_pulse.ipynb`, but with the added complexity of the inclusion of the climate simulations. 
 
