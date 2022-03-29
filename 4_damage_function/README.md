@@ -10,7 +10,7 @@ The damage function code in this repository relies upon globally aggregated mone
 
 ### 3. Estimate quadratic damage functions under various valuation scenarios.
 
-`estimate_damage_functions.do` generates damage function coefficients by relating global monetized climate change damages to GMST anomalies from the surrogate mixed model ensemble (SMME). It also produces the 2 panels that compose Figure VII of Carleton et al. (2022). See the script header for more information regarding the damage function estimation procedure, running the code, and the locations of relevant inputs and outputs.
+`estimate_damage_functions.do` generates damage function coefficients by relating global monetized climate change damages to GMST anomalies from the surrogate mixed model ensemble (SMME). Damage functions can be estimated using global damages including or excluding adaptation costs (`damages` vs `wo_costs`). The script also produces the 2 panels that compose Figure VII of Carleton et al. (2022). See the header for more information regarding the damage function estimation procedure, running the code, and the locations of relevant inputs and outputs.
 
 ## Folder Structure
 
