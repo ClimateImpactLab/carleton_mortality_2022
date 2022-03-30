@@ -20,13 +20,13 @@
 # The Appendix toggle interacts with each section
 
 # TOGGLES
-Part1 = TRUE # Data coverage
-Part2 = TRUE # Temp. sensitivity maps and response Functions
-Part3 = TRUE # Maps and histograms
-Part4 = TRUE # Time series
-Part5 = TRUE # Decile plot
+Part1 = FALSE # Data coverage
+Part2 = FALSE # Temp. sensitivity maps and response Functions
+Part3 = FALSE # Maps and histograms
+Part4 = FALSE # Time series
+Part5 = FALSE # Decile plot
 Part6 = TRUE # Bar Chart
-Appendix = TRUE # Parts 1-4 have Appendix figures
+Appendix = TRUE # Also generate Appendix figures
 
 # Paper default: rcp85, low, SSP3
 
@@ -329,7 +329,7 @@ if (Part4) {
         # Figure F11: Robustness to models with different adaptation rates
         #   - Dependencies: `2_projection/1_utils/timeseries.R`
         #   - Output: `output/figures/Figure_F11_timeseries`
-        for speed in c('normal', 'slow', 'fast15') {
+        for (speed in c('normal', 'slow', 'fast15')) {
             timeseries_flexadapt_rate(adaptrate=speed, output_dir=glue('{OUTPUT}/figures/Figure_F11_timeseries'))
         }
     }

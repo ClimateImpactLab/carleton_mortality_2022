@@ -20,6 +20,9 @@ impacts_density_plot = function(
     xlim=c(-500, 1000),
     ...) {
 
+    # create output directory
+    dir.create(output_dir, showWarnings = FALSE)
+
     impacts_fin = get_mortality_impacts(
         regions=regions, 
         year_list=year_list,
