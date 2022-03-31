@@ -1,7 +1,7 @@
 #!/bin/bash
 
 outputdir="$REPO/montecarlo/"
-csvv="$DB/1_estimation/3_csvv/Agespec_interaction_response.csvv"
+csvv="$DB/1_estimation/2_csvv/Agespec_interaction_response.csvv"
 
 if [[ "$CONDA_DEFAULT_ENV" != "impact-env" ]] ; then
     { 
