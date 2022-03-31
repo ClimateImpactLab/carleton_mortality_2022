@@ -20,11 +20,11 @@
 # The Appendix toggle interacts with each section
 
 # TOGGLES
-Part1 = FALSE # Data coverage
-Part2 = FALSE # Temp. sensitivity maps and response Functions
-Part3 = FALSE # Maps and histograms
-Part4 = FALSE # Time series
-Part5 = FALSE # Decile plot
+Part1 = TRUE # Data coverage
+Part2 = TRUE # Temp. sensitivity maps and response Functions
+Part3 = TRUE # Maps and histograms
+Part4 = TRUE # Time series
+Part5 = TRUE # Decile plot
 Part6 = TRUE # Bar Chart
 Appendix = TRUE # Also generate Appendix figures
 

@@ -195,14 +195,15 @@ if `india' {
 
 if `crossval' {
 	* Crossvalidation exercises, Appendix Table D5 & Figures D9, D10
+	* NOTE: tables will not match those in text as they rely on residualized data not provided - uncomment if you wish to run anyway
 	preserve
-		do "$code_dir/1_estimation/4_crossval/adminxval/Table_D5_admincrossval.do"
-		do "$code_dir/1_estimation/4_crossval/covar_xval/residualize_regs_space.do"
-		do "$code_dir/1_estimation/4_crossval/covar_xval/Table_D5_crossval_rmse.do"
+		//do "$code_dir/1_estimation/4_crossval/adminxval/Table_D5_admincrossval.do"
+		//do "$code_dir/1_estimation/4_crossval/covar_xval/residualize_regs_space.do"
+		//do "$code_dir/1_estimation/4_crossval/covar_xval/Table_D5_crossval_rmse.do"
 		do "$code_dir/1_estimation/4_crossval/covar_xval/Figure_D9_outofsample_responsefunc_space.do"
-		do "$code_dir/1_estimation/4_crossval/time_xval/residualize_regs_time.do"
-		do "$code_dir/1_estimation/4_crossval/time_xval/Table_D5_crossval_time_rmse.do"
-		do "$code_dir/1_estimation/4_crossval/time_xval/Figure_D9_outofsample_responsefunc_time.do"
+		//do "$code_dir/1_estimation/4_crossval/time_xval/residualize_regs_time.do"
+		//do "$code_dir/1_estimation/4_crossval/time_xval/Table_D5_crossval_time_rmse.do"
+		do "$code_dir/1_estimation/4_crossval/time_xval/Figure_D10_outofsample_responsefunc_time.do"
 }
 
 
