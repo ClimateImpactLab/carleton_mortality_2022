@@ -8,8 +8,9 @@ As outlined in the main README, codes in this directory rely on the `REPO`, `DB`
 - Output path (global: `OUTPUT`) - specifies the folder in which output from the analysis should be saved. This includes all tables and figures in the main text and appendix of Carleton et al. (2022).
 
 ### 2. Download the data. 
-See [Downloading the Data](https://dataverse.harvard.edu/dataverse/qje) for instructions on accessing the online data repository.
- 
+See [Downloading the Data](https://dataverse.harvard.edu/dataverse/qje) for instructions on accessing the online data repository. 
+
+Please note that the mortality records used for the United States and for China are proprietary and cannot be distributed publicly. Please see Appendix B in Carleton et al. (2022) for details on the sources of these two datasets and the process for obtaining them. 
 
 ### 3. (Optional) Run master do file, `clean.do`. 
 `clean.do` is the master script for this step of the analysis, using code in the subfolders of `0_data_cleaning` to construct the final dataset from the raw inputs. `0_data_cleaning` proceeds in four steps. Note that mortality and population data from the United States and China are not publicly available. As such, they are not included in the public data repository and are not included in the script that compiles the final `global_mortality_panel.dta` file. 
