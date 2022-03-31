@@ -15,6 +15,12 @@ This repository provides code required to reproduce the tables, figures, and in-
 6. **SCC** - Damage functions are used in combination with the simple climate model FAIR to calculate the net present value of future damages associated with an additional ton of carbon dioxide in 2020, which represents a mortality-only partial social cost of carbon under various Representative Concentration Pathways (RCPs) and Shared Socioeconomic Pathways (SSPs).
     * Note: as in Step 3, estimating full uncertainty in the mortality partial SCC (driven both by uncertainty in the damage function and climate uncertainty) is highly computationally intensive and relies on distributed computing to generate future climate simulations. Code for this is included, but it is not advised to run this step without significant computational resources. However, constructing point estimates of the mortality partial SCC and uncertainty just from the damage function are relatively simple to reproduce. Details are provided in the `5_scc/` folder README. 
 
+## User suitability 
+
+Please note that the "Projection" step (step 2) is incredibly computationally intensive, as it computes a set of daily Monte Carlo simulations at the scale of 24,378 geospatial "impact regions". This step can only be feasibly calculated on a computing cluster or using cloud computing resources. Similarly, some components of the "Valuation" step (step 3) are difficult to replicate, as they conduct calculations using all Monte Carlo simulation outputs from step 2.  
+
+To ensure users can replicate all other stages of the analysis without directly running the most computationally intensive components, we have included key outputs of the projection step and valuation step as .csv files in the data repository associated with this repo, so that the user does not need to re-generate them. More details are provided in README files within the `2_projecton/` and `3_valuation/` folders.
+
 ## Folders
 
 The folders in this repository are broadly consistent with the steps outlined above:
