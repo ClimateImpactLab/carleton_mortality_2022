@@ -28,6 +28,9 @@ Please ensure that your `~/.bash_profile` defines the `REPO`, `DB`, and `OUTPUT`
 
 Toggles can be switched on or off allowing the user to selectively generate these charts. See the header of `generate_projection_figures.R` for further instructions on replicating figures.
 
+The code to produce Appendix Figure B2 which plots the 2080-2099 mean global surface temperature anomally of future climate projections from the surrogate model/mixed ensemble (SMME) can be found in [this separate repository](https://github.com/ClimateImpactLab/SMME-schematic-plot).
+
+
 ### 4. Produce the mortality impact values that populate Table 2, as well as in-text summary statistics using `4_in-text_stats/paper_intextstats.R`.
 `paper_intextstats.R` is the master script for summarizing projection output throughout the main text of Carleton et al. (2022). This script is also organized into six sections:
 
