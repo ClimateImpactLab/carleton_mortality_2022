@@ -373,9 +373,9 @@ if (Part6) {
     # The impact of climate change in 2100 compared to contemporary
     # leading causes of death (Figure 9)
     mortality_barchart(rcp='rcp85', iam='low', ssp='SSP3',
-        output_dir==glue('{OUTPUT}/figures/Figure_9_barchart'))
+        output_dir=glue('{OUTPUT}/figures/Figure_9_barchart'))
 
     # Same chart but for RCP 45 (Figure F8)
     mortality_barchart(rcp='rcp85', iam='low', ssp='SSP3',
-        output_dir==glue('{OUTPUT}/figures/Figure_F8_barchart'))
+        output_dir=glue('{OUTPUT}/figures/Figure_F8_barchart'))
 }
