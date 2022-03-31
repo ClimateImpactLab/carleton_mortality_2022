@@ -264,10 +264,10 @@ timeseries_linear_extrapolation = function(output_dir=TS_APPENDIX_DEFAULT) {
 timeseries_flexadapt_rate = function(output_dir=TS_APPENDIX_DEFAULT, adaptrate='normal') {
 
     speeds = paste0(glue('{DB}/2_projection/3_impacts/'),
-        c('fastadapt15','fastadapt2','main_specification/raw','slowadapt05'),'/single/rcp85/CCSM4/low/SSP3')
-    names(speeds) <- c('fast15', 'fast2', 'normal', 'slow')
+        c('fastadapt15','main_specification/raw','slowadapt05'),'/single/rcp85/CCSM4/low/SSP3')
+    names(speeds) <- c('fast15', 'normal', 'slow')
     n_single = length(speeds)
-    suffixes = c('_flexadapt-fast-15','_flexadapt-fast-2','_flexadapt-normal','_flexadapt-slow')
+    suffixes = c('_flexadapt-fast-15','_flexadapt-normal','_flexadapt-slow')
     names(suffixes) <- names(speeds)
 
     legend.breaks = c(
@@ -301,10 +301,17 @@ timeseries_flexadapt_rate = function(output_dir=TS_APPENDIX_DEFAULT, adaptrate='
         suffix=suffixes[[adaptrate]])
 
 
+    
+
     #iteratively add each single path to a copy of Funargs 
     singlepath <- speeds[[adaptrate]]
     basenamearg <- list()
-    basenamearg[[singlepath]] <- 'Agespec_interaction_response_pre-popfix'
+    if (adaptrate == 'normal') {
+        basenamearg[[singlepath]] <- 'Agespec_interaction_GMFD_POLY-4_TINV_CYA_NW_w1'
+    } else {
+        basenamearg[[singlepath]] <- 'Agespec_interaction_response_pre-popfix'
+        }
+
     FunArgs <- list(
             regions='global',
             basename=basenamearg,
