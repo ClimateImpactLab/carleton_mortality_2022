@@ -195,7 +195,9 @@ if `india' {
 
 if `crossval' {
 	* Crossvalidation exercises, Appendix Table D5 & Figures D9, D10
-	* NOTE: tables will not match those in text as they rely on residualized data not provided - uncomment if you wish to run anyway
+	* NOTE: tables will not match those in text as they rely on the full dataset, which gets residualized as the first part of the crossvalidation step.
+	* However, the publically avialble dataset provided does not include China and US observations, hence results from this exercise will not match the paper
+	* We have commented out the scripts that will not match the paper, but users may uncomment them if they wish to run the exercise anyway.
 	preserve
 		//do "$code_dir/1_estimation/4_crossval/adminxval/Table_D5_admincrossval.do"
 		//do "$code_dir/1_estimation/4_crossval/covar_xval/residualize_regs_space.do"
