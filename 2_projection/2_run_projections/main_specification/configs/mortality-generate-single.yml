@@ -4,7 +4,7 @@ outputdir: "{DB}/single/" #manually point this to your DB variable
 do_only: interpolation
 do_farmers: true
 do_historical: true
-csvvfile: {DB}/1_estimation/3_csvv/Agespec_interaction_response.csvv #manually point this to your DB variable
+csvvfile: {DB}/1_estimation/2_csvv/Agespec_interaction_response.csvv #manually point this to your DB variable
 singledir: single
 specification: polynomial
 clipping: both
