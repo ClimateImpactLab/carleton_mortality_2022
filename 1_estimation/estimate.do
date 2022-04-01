@@ -194,15 +194,18 @@ if `india' {
 
 
 if `crossval' {
-	* Crossvalidation exercises, Appendix Table D5 & Figures D9, D10
+	* Cross validation exercises, Appendix Table D5 & Figures D9, D10
+	* NOTE: tables will not match those in text as they rely on the full dataset, which gets residualized as the first part of the cross validation step.
+	* However, the publicly available dataset provided does not include China and US observations, hence results from this exercise will not match the paper
+	* We have commented out the scripts that will not match the paper, but users may uncomment them if they wish to run the exercise anyway.
 	preserve
-		do "$code_dir/1_estimation/4_crossval/adminxval/Table_D5_admincrossval.do"
-		do "$code_dir/1_estimation/4_crossval/covar_xval/residualize_regs_space.do"
-		do "$code_dir/1_estimation/4_crossval/covar_xval/Table_D5_crossval_rmse.do"
+		//do "$code_dir/1_estimation/4_crossval/adminxval/Table_D5_admincrossval.do"
+		//do "$code_dir/1_estimation/4_crossval/covar_xval/residualize_regs_space.do"
+		//do "$code_dir/1_estimation/4_crossval/covar_xval/Table_D5_crossval_rmse.do"
 		do "$code_dir/1_estimation/4_crossval/covar_xval/Figure_D9_outofsample_responsefunc_space.do"
-		do "$code_dir/1_estimation/4_crossval/time_xval/residualize_regs_time.do"
-		do "$code_dir/1_estimation/4_crossval/time_xval/Table_D5_crossval_time_rmse.do"
-		do "$code_dir/1_estimation/4_crossval/time_xval/Figure_D9_outofsample_responsefunc_time.do"
+		//do "$code_dir/1_estimation/4_crossval/time_xval/residualize_regs_time.do"
+		//do "$code_dir/1_estimation/4_crossval/time_xval/Table_D5_crossval_time_rmse.do"
+		do "$code_dir/1_estimation/4_crossval/time_xval/Figure_D10_outofsample_responsefunc_time.do"
 }
 
 

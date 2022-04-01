@@ -554,13 +554,13 @@ forval age = 1/3 {
     title("Response Function by Income and Tbar groups: Age `age'", size(medsmall)) ///
     subtitle("In sample Uninteracted model vs Out of sample Interacted model", size(medsmall)) ///
 
-    graph export "`OUTPUT'/Age`age'_xval_combined_2x2.pdf", replace
+    //graph export "`OUTPUT'/Age`age'_xval_combined_2x2.pdf", replace
 
     * combine 2x2 response dif/histogram charts
     graph combine h_7_`age' h_9_`age' hist_7 hist_9 h_1_`age' h_3_`age' hist_1 hist_3 , cols(2) imargin(2 2 0 0) ///
     title("Difference in response function by income group", size(medsmall)) subtitle("Predicted out of sample - In sample uninteracted", size(small))
     
-    //graph export "`OUTPUT'/Age`age'_xval_combined_2x2_dif.pdf", replace
+    graph export "`OUTPUT'/Age`age'_xval_combined_2x2_dif.pdf", replace
 
 }
 

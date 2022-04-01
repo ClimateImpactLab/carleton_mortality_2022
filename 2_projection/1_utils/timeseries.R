@@ -152,7 +152,7 @@ timeseries_compare_incadapt_noadapt = function(
     rcp='rcp85',
     ssp='SSP3',
     iam='low',
-    qtles,
+    qtles=c('q10', 'q90'),
     output_dir=TS_OUTPUT_DEFAULT) {
 
     # create output directory
@@ -263,11 +263,11 @@ timeseries_linear_extrapolation = function(output_dir=TS_APPENDIX_DEFAULT) {
 #' @param adaptrate character. One of c('fast15', 'fast2', 'normal', 'slow'). 
 timeseries_flexadapt_rate = function(output_dir=TS_APPENDIX_DEFAULT, adaptrate='normal') {
 
-    speeds = paste0('{DB}/2_projection/3_impacts/',
-        c('fastadapt15','fastadapt2','main_specification/raw','slowadapt05'),'/single/rcp85/CCSM4/low/SSP3')
-    names(speeds) <- c('fast15', 'fast2', 'normal', 'slow')
+    speeds = paste0(glue('{DB}/2_projection/3_impacts/'),
+        c('fastadapt15','main_specification/raw','slowadapt05'),'/single/rcp85/CCSM4/low/SSP3')
+    names(speeds) <- c('fast15', 'normal', 'slow')
     n_single = length(speeds)
-    suffixes = c('_flexadapt-fast-15','_flexadapt-fast-2','_flexadapt-normal','_flexadapt-slow')
+    suffixes = c('_flexadapt-fast-15','_flexadapt-normal','_flexadapt-slow')
     names(suffixes) <- names(speeds)
 
     legend.breaks = c(
@@ -301,10 +301,17 @@ timeseries_flexadapt_rate = function(output_dir=TS_APPENDIX_DEFAULT, adaptrate='
         suffix=suffixes[[adaptrate]])
 
 
+    
+
     #iteratively add each single path to a copy of Funargs 
     singlepath <- speeds[[adaptrate]]
     basenamearg <- list()
-    basenamearg[[singlepath]] <- 'Agespec_interaction_response_pre-popfix'
+    if (adaptrate == 'normal') {
+        basenamearg[[singlepath]] <- 'Agespec_interaction_GMFD_POLY-4_TINV_CYA_NW_w1'
+    } else {
+        basenamearg[[singlepath]] <- 'Agespec_interaction_response_pre-popfix'
+        }
+
     FunArgs <- list(
             regions='global',
             basename=basenamearg,
@@ -418,7 +425,7 @@ timeseries_compare_age_groups = function(output_dir=TS_APPENDIX_DEFAULT) {
         "age <5" = "#E69F00")
 
 
-    Args=list(
+    PlotArgs=list(
         y.limits=c(-5, 400),
         legend.breaks=legend.breaks,
         legend.values=legend.values,

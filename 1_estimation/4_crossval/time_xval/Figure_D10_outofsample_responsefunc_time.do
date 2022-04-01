@@ -47,7 +47,7 @@ if "$REPO" == "" {
 
 
 local STER "$ster_dir/age_spec_interacted/crossval/time"
-local OUTPUT "$output_dir/figures/Figure_D9_crossval/"
+local OUTPUT "$output_dir/figures/Figure_D10_time_crossval/"
 local DATA "$data_dir/3_final"
 
 *set rmsg on
@@ -529,13 +529,13 @@ forval age = 1/3 {
     grc1leg g1_`age' g3_`age', cols(2) ycommon imargin(tiny) title("Response Function by Income group, Age `age'", size(medsmall)) ///
     subtitle("Post 2004 Uninteracted Model vs Pre 2005 Interacted Model at Ybar and Tbar means", size(small))
 
-    graph export "`OUTPUT'/Age`age'_xval_time_ytile.pdf", replace
+    //graph export "`OUTPUT'/Age`age'_xval_time_ytile.pdf", replace
     
     * combine 2x2 response dif/histogram charts
     graph combine h1_`age' h3_`age' hist_1 hist_3, cols(2) imargin(2 2 0 0) ///
     title("Difference in response function by income group", size(medium)) subtitle("Predicted Pre 2005 interacted - Post 2004 uninteracted", size(medsmall))
 
-    //graph export "`OUTPUT'/Age`age'_xval_time_ytile_dif.pdf", replace
+    graph export "`OUTPUT'/Age`age'_xval_time_ytile_dif.pdf", replace
 }
 
 
