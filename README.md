@@ -17,7 +17,7 @@ This repository provides code required to reproduce the tables, figures, and in-
 
 ## User suitability 
 
-Please note that the "Projection" step (step 2) is incredibly computationally intensive, as it computes a set of daily Monte Carlo simulations at the scale of 24,378 geospatial "impact regions". This step can only be feasibly calculated on a computing cluster or using cloud computing resources. Similarly, some components of the "Valuation" step (step 3) are difficult to replicate, as they conduct calculations using all Monte Carlo simulation outputs from step 2.  
+Please note that the "Projection" step (step 2) is incredibly computationally intensive, as it computes a set of daily Monte Carlo simulations at the scale of 24,378 geospatial "impact regions". This step can only be feasibly calculated on a computing cluster or using cloud computing resources. Similarly, some components of the "Valuation" step (step 3) are computationally intensive to replicate, as they conduct calculations using all Monte Carlo simulation outputs from step 2.  
 
 To ensure users can replicate all other stages of the analysis without directly running the most computationally intensive components, we have included key outputs of the projection step and valuation step as .csv files in the data repository associated with this repo, so that the user does not need to re-generate them. More details are provided in README files within the `2_projecton/` and `3_valuation/` folders.
 
