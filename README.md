@@ -1,6 +1,6 @@
 # Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits
 
-Supporting material for Carleton, Tamma, Amir Jina, Michael T. Delgado, Michael Greenstone, Trevor Houser, Solomon M. Hsiang, Andrew Hultgren, Robert E. Kopp, Kelly E. McCusker, Ishan Nath, James Rising, Ashwin Rode, Hee Kwon Seo, Arvid Viaene, Jiacan Yuan, and Alice Tianbo Zhang, “Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits.” Quarterly Journal of Economics, (forthcoming).
+Supporting material for Carleton, Tamma, Amir Jina, Michael T. Delgado, Michael Greenstone, Trevor Houser, Solomon M. Hsiang, Andrew Hultgren, Robert E. Kopp, Kelly E. McCusker, Ishan Nath, James Rising, Ashwin Rode, Hee Kwon Seo, Arvid Viaene, Jiacan Yuan, and Alice Tianbo Zhang, “Valuing the Global Mortality Consequences of Climate Change Accounting for Adaptation Costs and Benefits.” Quarterly Journal of Economics, (2022). https://doi.org/10.1093/qje/qjac020
 
 # Description
 
